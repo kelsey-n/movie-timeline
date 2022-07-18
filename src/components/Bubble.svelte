@@ -10,6 +10,8 @@
   //   export let strokeNum;
   export let strokeWidth;
   export let strokeLength;
+  export let year;
+  export let minYear;
 
   let strokeNum = 40;
   let padding = 4;
@@ -26,6 +28,13 @@
     .outerRadius(max([budget, boxoffice]) + padding + strokeLength)
     .startAngle(-Math.PI)
     .endAngle(2 * Math.PI);
+
+  // arc generator to draw circle textPath for min year
+  $: arcGeneratorMinYear = arc()
+    .innerRadius(0)
+    .outerRadius(max([budget, boxoffice]) + 3 * (padding + strokeLength))
+    .startAngle(-Math.PI / 2)
+    .endAngle(-2 * Math.PI);
 </script>
 
 <g>
@@ -92,7 +101,7 @@
         text-anchor="middle">{movie}</textPath
       >
     </text>
-    <text dy="-3" font-size={strokeLength + 2}>
+    <text dy="-3" font-size={strokeLength}>
       <textPath
         xlink:href={`#bubble-${movie}`}
         startOffset="50%"
@@ -100,6 +109,14 @@
       >
     </text>
   </g>
+  {#if year === minYear}
+    <text
+      {x}
+      y={y + max([budget, boxoffice]) * 2 + padding + strokeLength}
+      text-anchor="middle"
+      fill="red">{year}</text
+    >
+  {/if}
 </g>
 
 <style>

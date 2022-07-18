@@ -20,14 +20,14 @@
   });
 
   $: for (let i = 0; i < timelineData.length - 1; i++) {
-    if (timelineData[i + 1].y === timelineData[i].y) {
+    if (timelineData[i + 1].x === timelineData[i].x) {
       timelineData.splice(i + 1, 0, {
         year: 0,
-        x: (timelineData[i].x + timelineData[i + 1].x) / 2,
-        y:
-          timelineData[i].y > height / 2
-            ? timelineData[i].y + 50
-            : timelineData[i].y - 50, //TODO: MAKE 50 DYNAMIC (?)
+        x:
+          timelineData[i].x > width / 2
+            ? timelineData[i].x + 50
+            : timelineData[i].x - 50, //TODO: MAKE 50 DYNAMIC (?)
+        y: (timelineData[i].y + timelineData[i + 1].y) / 2,
       });
     }
   }
@@ -38,24 +38,31 @@
 
 <path class="line" d={linePath} />
 {#each timelineData as { x, y, year }, idx}
-  {#if year % 10 === 0 && year !== 0}
-    <!-- <text {x} {y} fill="#e64415">{year}</text> -->
+  {#if year % 10 === 0 && year !== 0 && idx !== 0}
     <path
-      d={lineGenerator([
-        timelineData[idx - 3],
-        timelineData[idx - 2],
-        timelineData[idx - 1],
-        timelineData[idx],
-        timelineData[idx + 1],
-      ])}
+      d={x > width / 2
+        ? lineGenerator([
+            timelineData[idx + 1],
+            timelineData[idx],
+            timelineData[idx - 1],
+            timelineData[idx - 2],
+            timelineData[idx - 3],
+          ])
+        : lineGenerator([
+            timelineData[idx - 3],
+            timelineData[idx - 2],
+            timelineData[idx - 1],
+            timelineData[idx],
+            timelineData[idx + 1],
+          ])}
       id={`timeline${idx}`}
       fill="none"
     />
     <text dy="-5">
       <textPath
         xlink:href={`#timeline${idx}`}
-        startOffset="75%"
         text-anchor="middle"
+        startOffset={x > width / 2 ? "25%" : "75%"}
         fill="red">{year}</textPath
       >
     </text>

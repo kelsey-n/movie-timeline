@@ -2,7 +2,7 @@
   import { min, max, scaleLinear, scaleSqrt, scaleQuantize } from "d3";
 
   import Bubble from "./Bubble.svelte";
-  import TimeLine from "./Timeline.svelte";
+  import TimeLineHorizontal from "./TimelineHorizontal.svelte";
 
   export let data;
   export let xRange;
@@ -25,33 +25,47 @@
 
   $: yScale = scaleLinear()
     .domain(yRange)
-    .range([height - paddingBottom, paddingTop]);
+    .range([paddingTop, height - paddingBottom]);
+
+  // find the difference between subsequent years to adjust the circle scale (we want less white space if the minimum
+  // difference is > 1 year)
+  // this assumes that the data is ordered by year
+  $: yearsArr = [...years];
+  $: yearsDiff = [];
+  $: yearsArr.forEach((year, idx) => {
+    if (yearsArr[idx - 1]) yearsDiff.push(yearsArr[idx] - yearsArr[idx - 1]);
+  });
 
   $: circleScale = scaleSqrt()
     .domain(circleRange)
-    .range([10, (innerHeight / 10 - 11 * 3) / 2]);
+    .range(
+      min(yearsDiff) < 2
+        ? [10, (innerWidth / 10 - 11 * 2) / 2]
+        : [10, innerWidth / 10 / 2]
+    );
 
+  $: console.log((innerWidth / 10 - 11 * 2) / 2 / 2);
   // create scales to map radius to number of strokes, stroke width and stroke length
   // scaleQuantize maps a continuous domain to a discrete range
   $: strokeNumScale = scaleQuantize().domain(circleRange).range([30, 40]); //currently not using
 
-  $: strokeWidthScale = scaleLinear().domain(circleRange).range([2, 4]);
+  $: strokeWidthScale = scaleLinear().domain(circleRange).range([1.5, 3]);
 
   // $: strokeLengthScale = scaleLinear().domain(circleRange).range([9, 14]);
-  $: strokeLengthScale = scaleLinear().domain(circleRange).range([6, 11]);
+  $: strokeLengthScale = scaleLinear().domain(circleRange).range([7, 11]);
 
   $: renderedData = data.map((d) => {
     return {
       movie: d.Movie,
-      x: xScale(Math.floor(d.Year / 10)),
-      // reverse the y scale for every other decade - found by subtracting each decade from the first decade & determining if even or odd
-      y:
+      x:
         (Math.floor(d.Year / 10) -
           min(data.map((d) => Math.floor(d.Year / 10)))) %
           2 ===
         0
-          ? yScale(d.Year % 10)
-          : yScale(9 - (d.Year % 10)),
+          ? xScale(d.Year % 10)
+          : xScale(9 - (d.Year % 10)),
+      // reverse the y scale for every other decade - found by subtracting each decade from the first decade & determining if even or odd
+      y: yScale(Math.floor(d.Year / 10)),
       budget: circleScale(d.Budget),
       boxoffice: circleScale(d.BoxOffice),
       rating: (d.RottenTomatoes_Tomatometer + d.RottenTomatoes_Audience) / 2,
@@ -75,15 +89,15 @@
   $: timelineData = allYears.map((d) => {
     return {
       year: d.Year,
-      x: xScale(Math.floor(d.Year / 10)),
-      // reverse the y scale for every other decade - found by subtracting each decade from the first decade & determining if even or odd
-      y:
+      x:
         (Math.floor(d.Year / 10) -
           min(data.map((d) => Math.floor(d.Year / 10)))) %
           2 ===
         0
-          ? yScale(d.Year % 10)
-          : yScale(9 - (d.Year % 10)),
+          ? xScale(d.Year % 10)
+          : xScale(9 - (d.Year % 10)),
+      // reverse the y scale for every other decade - found by subtracting each decade from the first decade & determining if even or odd
+      y: yScale(Math.floor(d.Year / 10)),
     };
   });
 </script>
@@ -91,7 +105,7 @@
 <div class="chart" bind:clientWidth={width} bind:clientHeight={height}>
   {#if width && height}
     <svg {width} {height}>
-      <TimeLine {timelineData} {height} {width} />
+      <TimeLineHorizontal {timelineData} {height} {width} />
       {#each renderedData as { movie, x, y, budget, boxoffice, rating, strokeWidth, strokeLength, year, minYear }}
         <Bubble
           {movie}
