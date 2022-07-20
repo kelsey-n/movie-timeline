@@ -19,8 +19,9 @@
         max(data.map((d) => Math.floor(d.Year / 10))),
       ]}
       yRange={[0, 9]}
-      circleRange={[
-        min(data.map((d) => [d.Budget, d.BoxOffice]).flat()),
+      circleDomain={[
+        //min(data.map((d) => [d.Budget, d.BoxOffice]).flat()),
+        0,
         max(data.map((d) => [d.Budget, d.BoxOffice]).flat()),
       ]}
     />
@@ -32,8 +33,9 @@
         min(data.map((d) => Math.floor(d.Year / 10))),
         max(data.map((d) => Math.floor(d.Year / 10))),
       ]}
-      circleRange={[
-        min(data.map((d) => [d.Budget, d.BoxOffice]).flat()),
+      circleDomain={[
+        // min(data.map((d) => [d.Budget, d.BoxOffice]).flat()),
+        0,
         max(data.map((d) => [d.Budget, d.BoxOffice]).flat()),
       ]}
     />

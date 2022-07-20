@@ -1,13 +1,20 @@
 <script>
   import { min, max, scaleLinear, scaleSqrt, scaleQuantize } from "d3";
 
+  import { movieColors } from "./movieColors";
+
   import Bubble from "./Bubble.svelte";
   import TimeLineHorizontal from "./TimelineHorizontal.svelte";
+  import Description from "./Description.svelte";
+  import Legend from "./Legend.svelte";
+
+  let state = "The Grand Budapest Hotel"; //controls the current hovered movie in order to change the color scheme. defaults to grand budapest
+  $: colorScheme = movieColors[state];
 
   export let data;
   export let xRange;
   export let yRange;
-  export let circleRange;
+  export let circleDomain;
 
   let width;
   let height;
@@ -37,22 +44,21 @@
   });
 
   $: circleScale = scaleSqrt()
-    .domain(circleRange)
+    .domain(circleDomain)
     .range(
       min(yearsDiff) < 2
-        ? [10, (innerWidth / 10 - 11 * 2) / 2]
-        : [10, innerWidth / 10 / 2]
+        ? [1, (innerWidth / 10 - 11 * 2) / 2]
+        : [1, innerWidth / 10 / 2]
     );
 
-  $: console.log((innerWidth / 10 - 11 * 2) / 2 / 2);
   // create scales to map radius to number of strokes, stroke width and stroke length
   // scaleQuantize maps a continuous domain to a discrete range
-  $: strokeNumScale = scaleQuantize().domain(circleRange).range([30, 40]); //currently not using
+  $: strokeNumScale = scaleQuantize().domain(circleDomain).range([30, 40]); //currently not using
 
-  $: strokeWidthScale = scaleLinear().domain(circleRange).range([1.5, 3]);
+  $: strokeWidthScale = scaleLinear().domain(circleDomain).range([1.5, 3]);
 
-  // $: strokeLengthScale = scaleLinear().domain(circleRange).range([9, 14]);
-  $: strokeLengthScale = scaleLinear().domain(circleRange).range([7, 11]);
+  // $: strokeLengthScale = scaleLinear().domain(circleDomain).range([9, 14]);
+  $: strokeLengthScale = scaleLinear().domain(circleDomain).range([7, 11]);
 
   $: renderedData = data.map((d) => {
     return {
@@ -73,7 +79,6 @@
       strokeWidth: strokeWidthScale(max([d.Budget, d.BoxOffice])),
       strokeLength: strokeLengthScale(max([d.Budget, d.BoxOffice])),
       year: d.Year,
-      minYear: min(years),
     };
   });
 
@@ -100,14 +105,26 @@
       y: yScale(Math.floor(d.Year / 10)),
     };
   });
+  let minYear = min(years);
 </script>
 
 <div class="chart" bind:clientWidth={width} bind:clientHeight={height}>
   {#if width && height}
     <svg {width} {height}>
+      <!-- nest description & legend in foreignObject to create divs that wrap text & adjust to width -->
+      <foreignObject x="10" y="10" width={paddingLeft - 80} height="100%">
+        <Description />
+        <Legend
+          {paddingLeft}
+          {circleScale}
+          {strokeWidthScale}
+          {strokeLengthScale}
+        />
+      </foreignObject>
       <TimeLineHorizontal {timelineData} {height} {width} />
-      {#each renderedData as { movie, x, y, budget, boxoffice, rating, strokeWidth, strokeLength, year, minYear }}
+      {#each renderedData as { movie, x, y, budget, boxoffice, rating, strokeWidth, strokeLength, year }}
         <Bubble
+          bind:state
           {movie}
           {x}
           {y}
@@ -118,6 +135,7 @@
           {strokeLength}
           {year}
           {minYear}
+          {colorScheme}
         />
       {/each}
     </svg>
@@ -132,6 +150,7 @@
     overflow: hidden;
   }
   /* svg {
-        background: red;
-    } */
+    float: left;
+    width: 67%;
+  } */
 </style>

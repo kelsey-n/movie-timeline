@@ -13,8 +13,16 @@
   export let year;
   export let minYear;
 
+  export let state;
+
+  export let colorScheme;
+
+  let hovering;
+
   let strokeNum = 40;
   let padding = 4;
+
+  let defaultMovie = "The Grand Budapest Hotel";
 
   $: ratingArr = [
     ...Array(Math.round((rating / 100) * strokeNum)).fill(1),
@@ -29,60 +37,78 @@
     .startAngle(-Math.PI)
     .endAngle(2 * Math.PI);
 
-  // arc generator to draw circle textPath for min year
-  $: arcGeneratorMinYear = arc()
-    .innerRadius(0)
-    .outerRadius(max([budget, boxoffice]) + 3 * (padding + strokeLength))
-    .startAngle(-Math.PI / 2)
-    .endAngle(-2 * Math.PI);
+  function enter() {
+    hovering = true;
+    state = movie;
+  }
+
+  function leave() {
+    hovering = false;
+    state = defaultMovie;
+  }
 </script>
 
 <g>
-  <!-- draw white circle under actual circles to prevent timeline being seen through gaps in strokes  -->
-  <circle
-    cx={x}
-    cy={y}
-    r={max([budget, boxoffice]) + padding + strokeLength}
-    fill="white"
-  />
-  <!-- draw smaller circle on top of larger -->
-  {#if budget > boxoffice}
-    <circle class="budget-circle" cx={x} cy={y} r={budget} />
+  <g on:mouseenter={enter} on:mouseleave={leave}>
+    <!-- draw white circle under actual circles to prevent timeline being seen through gaps in strokes  -->
     <circle
-      class="boxoffice-circle"
       cx={x}
-      cy={y - boxoffice + budget}
-      r={boxoffice}
+      cy={y}
+      r={max([budget, boxoffice]) + padding + strokeLength}
+      fill="white"
     />
-  {:else}
-    <circle class="boxoffice-circle" cx={x} cy={y} r={boxoffice} />
-    <circle
-      class="budget-circle"
-      cx={x}
-      cy={y - budget + boxoffice}
-      r={budget}
-    />
-  {/if}
-  {#each ratingArr as val, idx}
-    <line
-      class={val === 1 ? "filled-stroke" : "empty-stroke"}
-      x1={x +
-        (max([budget, boxoffice]) + padding) *
-          Math.cos(((2 * Math.PI) / strokeNum) * idx - Math.PI / 2)}
-      y1={y +
-        (max([budget, boxoffice]) + padding) *
-          Math.sin(((2 * Math.PI) / strokeNum) * idx - Math.PI / 2)}
-      x2={x +
-        (max([budget, boxoffice]) + strokeLength) *
-          Math.cos(((2 * Math.PI) / strokeNum) * idx - Math.PI / 2)}
-      y2={y +
-        (max([budget, boxoffice]) + strokeLength) *
-          Math.sin(((2 * Math.PI) / strokeNum) * idx - Math.PI / 2)}
-      stroke="black"
-      stroke-width={strokeWidth}
-      stroke-linecap="round"
-    />
-  {/each}
+    <!-- draw smaller circle on top of larger -->
+    {#if budget > boxoffice}
+      <circle
+        class="budget-circle"
+        cx={x}
+        cy={y}
+        r={budget}
+        fill={colorScheme.Budget}
+      />
+      <circle
+        class="boxoffice-circle"
+        cx={x}
+        cy={y - boxoffice + budget}
+        r={boxoffice}
+        fill={colorScheme.BoxOff}
+      />
+    {:else}
+      <circle
+        class="boxoffice-circle"
+        cx={x}
+        cy={y}
+        r={boxoffice}
+        fill={colorScheme.BoxOff}
+      />
+      <circle
+        class="budget-circle"
+        cx={x}
+        cy={y - budget + boxoffice}
+        r={budget}
+        fill={colorScheme.Budget}
+      />
+    {/if}
+    {#each ratingArr as val, idx}
+      <line
+        x1={x +
+          (max([budget, boxoffice]) + padding) *
+            Math.cos(((2 * Math.PI) / strokeNum) * idx - Math.PI / 2)}
+        y1={y +
+          (max([budget, boxoffice]) + padding) *
+            Math.sin(((2 * Math.PI) / strokeNum) * idx - Math.PI / 2)}
+        x2={x +
+          (max([budget, boxoffice]) + strokeLength) *
+            Math.cos(((2 * Math.PI) / strokeNum) * idx - Math.PI / 2)}
+        y2={y +
+          (max([budget, boxoffice]) + strokeLength) *
+            Math.sin(((2 * Math.PI) / strokeNum) * idx - Math.PI / 2)}
+        stroke={val === 1 ? colorScheme.StrokeFilled : colorScheme.StrokeEmpty}
+        stroke-width={strokeWidth}
+        stroke-linecap="round"
+      />
+    {/each}
+  </g>
   <!-- group for movie name -->
   <g transform={`translate(${x},${y})`}>
     <!-- arc path to append textPath - to get text in an arc -->
@@ -120,19 +146,20 @@
 </g>
 
 <style>
-  .budget-circle {
-    fill: lightsalmon;
-  }
-
-  .boxoffice-circle {
-    fill: lightseagreen;
-  }
-
-  .filled-stroke {
-    stroke: black;
-  }
-
-  .empty-stroke {
-    stroke: lightgray;
+  .tooltip {
+    /* display: none;
+    opacity: 0;
+    pointer-events: none; */
+    position: absolute;
+    background: #2d426a;
+    padding: 12px;
+    color: #ffffff;
+    border-radius: 4px;
+    font-size: 11px;
+    left: 0px;
+    top: 0px;
+    overflow-wrap: break-word;
+    z-index: 9999;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
   }
 </style>
