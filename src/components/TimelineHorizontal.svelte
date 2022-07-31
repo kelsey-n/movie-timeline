@@ -7,6 +7,7 @@
   export let timelineData;
   export let height;
   export let width;
+  export let colorScheme;
 
   const lineGenerator = line()
     .x((d) => d.x)
@@ -36,7 +37,7 @@
   $: tLinePath.set(linePath);
 </script>
 
-<path class="line" d={linePath} />
+<path class="line" stroke={colorScheme.Timeline} d={linePath} />
 {#each timelineData as { x, y, year }, idx}
   {#if year % 10 === 0 && year !== 0 && idx !== 0}
     <path
@@ -63,7 +64,7 @@
         xlink:href={`#timeline${idx}`}
         text-anchor="middle"
         startOffset={x > width / 2 ? "25%" : "75%"}
-        fill="red">{year}</textPath
+        fill={colorScheme.Timeline}>{year}</textPath
       >
     </text>
   {/if}
@@ -72,7 +73,6 @@
 <style>
   .line {
     fill: none;
-    stroke: #e64415;
     stroke-width: 2;
   }
 </style>

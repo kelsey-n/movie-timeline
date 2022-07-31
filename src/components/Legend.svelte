@@ -4,6 +4,7 @@
   export let circleScale;
   export let strokeWidthScale;
   export let strokeLengthScale;
+  export let colorScheme;
 
   let bigR = 23;
   let smallR = 11;
@@ -38,25 +39,25 @@
       cx={(paddingLeft - 80) / 2 - bigR * 2}
       cy={bigR + smallR}
       r={bigR}
-      fill="lightsalmon"
+      fill={colorScheme.Budget}
     />
     <circle
       cx={(paddingLeft - 80) / 2 - bigR * 2}
       cy={2 * bigR}
       r={smallR}
-      fill="lightseagreen"
+      fill={colorScheme.BoxOff}
     />
     <circle
       cx={(paddingLeft - 80) / 2 + bigR * 2}
       cy={bigR + smallR}
       r={bigR}
-      fill="lightseagreen"
+      fill={colorScheme.BoxOff}
     />
     <circle
       cx={(paddingLeft - 80) / 2 + bigR * 2}
       cy={2 * bigR}
       r={smallR}
-      fill="lightsalmon"
+      fill={colorScheme.Budget}
     />
   </g>
 
@@ -192,7 +193,6 @@
   <g>
     {#each ratingArr25 as val, idx}
       <line
-        class={val === 1 ? "filled-stroke" : "empty-stroke"}
         x1={cx25 +
           (smallR + padding) *
             Math.cos(((2 * Math.PI) / strokeNum) * idx - Math.PI / 2)}
@@ -205,14 +205,13 @@
         y2={cy25 +
           (smallR + strokeLengthScale(circleScale.invert(smallR))) *
             Math.sin(((2 * Math.PI) / strokeNum) * idx - Math.PI / 2)}
-        stroke="black"
+        stroke={val === 1 ? colorScheme.StrokeFilled : colorScheme.StrokeEmpty}
         stroke-width={strokeWidthScale(circleScale.invert(smallR))}
         stroke-linecap="round"
       />
     {/each}
     {#each ratingArr50 as val, idx}
       <line
-        class={val === 1 ? "filled-stroke" : "empty-stroke"}
         x1={cx50 +
           (smallR + padding) *
             Math.cos(((2 * Math.PI) / strokeNum) * idx - Math.PI / 2)}
@@ -225,14 +224,13 @@
         y2={cy50 +
           (smallR + strokeLengthScale(circleScale.invert(smallR))) *
             Math.sin(((2 * Math.PI) / strokeNum) * idx - Math.PI / 2)}
-        stroke="black"
+        stroke={val === 1 ? colorScheme.StrokeFilled : colorScheme.StrokeEmpty}
         stroke-width={strokeWidthScale(circleScale.invert(smallR))}
         stroke-linecap="round"
       />
     {/each}
     {#each ratingArr75 as val, idx}
       <line
-        class={val === 1 ? "filled-stroke" : "empty-stroke"}
         x1={cx75 +
           (smallR + padding) *
             Math.cos(((2 * Math.PI) / strokeNum) * idx - Math.PI / 2)}
@@ -245,7 +243,7 @@
         y2={cy75 +
           (smallR + strokeLengthScale(circleScale.invert(smallR))) *
             Math.sin(((2 * Math.PI) / strokeNum) * idx - Math.PI / 2)}
-        stroke="black"
+        stroke={val === 1 ? colorScheme.StrokeFilled : colorScheme.StrokeEmpty}
         stroke-width={strokeWidthScale(circleScale.invert(smallR))}
         stroke-linecap="round"
       />

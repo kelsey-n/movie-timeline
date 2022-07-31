@@ -14,7 +14,6 @@
   export let minYear;
 
   export let state;
-
   export let colorScheme;
 
   let hovering;
@@ -127,7 +126,7 @@
         text-anchor="middle">{movie}</textPath
       >
     </text>
-    <text dy="-3" font-size={strokeLength}>
+    <text dy="-3" font-size={strokeLength} fill={colorScheme.Timeline}>
       <textPath
         xlink:href={`#bubble-${movie}`}
         startOffset="50%"
@@ -140,7 +139,7 @@
       {x}
       y={y + max([budget, boxoffice]) * 2 + padding + strokeLength}
       text-anchor="middle"
-      fill="red">{year}</text
+      fill={colorScheme.Timeline}>{year}</text
     >
   {/if}
 </g>

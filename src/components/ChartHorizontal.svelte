@@ -10,11 +10,13 @@
 
   let state = "The Grand Budapest Hotel"; //controls the current hovered movie in order to change the color scheme. defaults to grand budapest
   $: colorScheme = movieColors[state];
+  $: stateWrapper = state;
 
   export let data;
   export let xRange;
   export let yRange;
   export let circleDomain;
+  export let stateWrapper;
 
   let width;
   let height;
@@ -119,9 +121,10 @@
           {circleScale}
           {strokeWidthScale}
           {strokeLengthScale}
+          {colorScheme}
         />
       </foreignObject>
-      <TimeLineHorizontal {timelineData} {height} {width} />
+      <TimeLineHorizontal {timelineData} {height} {width} {colorScheme} />
       {#each renderedData as { movie, x, y, budget, boxoffice, rating, strokeWidth, strokeLength, year }}
         <Bubble
           bind:state
