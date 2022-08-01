@@ -5419,75 +5419,89 @@ var app = (function () {
     }
 
     var movieColors = {
+      // "Bottle Rocket": {
+      //   Budget: "#F23030",
+      //   BoxOff: "#F2CB57",
+      //   StrokeFilled: "#0487D9",
+      //   StrokeEmpty: "#0487D930",
+      //   Timeline: "#2C4001",
+      // },
       "Bottle Rocket": {
-        Budget: "#F23030",
-        BoxOff: "#F2CB57",
-        StrokeFilled: "#0487D9",
-        StrokeEmpty: "lightgray",
-        Timeline: "#2C4001",
+        Budget: "#6779bc",
+        BoxOff: "#d1ab59",
+        StrokeFilled: "#3c496d",
+        StrokeEmpty: "#3c496d40",
+        Timeline: "#8e3d24",
       },
+      // Rushmore: {
+      //   Budget: "#11C5D9",
+      //   BoxOff: "#FFD145", //"#F2C641",
+      //   StrokeFilled: "#B02624",
+      //   StrokeEmpty: "#B0262440",
+      //   Timeline: "#2484BF",
+      // },
       Rushmore: {
-        Budget: "#11C5D9",
-        BoxOff: "#FFD145", //"#F2C641",
-        StrokeFilled: "#B02624",
-        StrokeEmpty: "lightgray",
-        Timeline: "#2484BF",
+        Budget: "#3c5a3e",
+        BoxOff: "#9ba493", //"#F2C641",
+        StrokeFilled: "#99938d",
+        StrokeEmpty: "#99938d40",
+        Timeline: "#826451",
       },
       "The Royal Tenenbaums": {
-        Budget: "lightsalmon",
-        BoxOff: "lightseagreen",
-        StrokeFilled: "#D90B0B",
-        StrokeEmpty: "#F2DFBB",
-        Timeline: "#7F4667",
+        Budget: "#7d2312",
+        BoxOff: "#d98e5a",
+        StrokeFilled: "#c99365",
+        StrokeEmpty: "#c9936540",
+        Timeline: "#64351c",
       },
       "The Life Aquatic with Steve Zissou": {
-        Budget: "#038C8C",
-        BoxOff: "#F2CB05",
-        StrokeFilled: "#004949",
-        StrokeEmpty: "lightgray",
-        Timeline: "#D23C35",
+        Budget: "#38619a",
+        BoxOff: "#c0b0cc",
+        StrokeFilled: "#865536",
+        StrokeEmpty: "#86553640",
+        Timeline: "#d13b22",
       },
       "The Darjeeling Limited": {
-        Budget: "lightsalmon",
-        BoxOff: "lightseagreen",
-        StrokeFilled: "black",
-        StrokeEmpty: "lightgray",
-        Timeline: "#7F4667",
+        Budget: "#0a3c56", //"#F2C53D",
+        BoxOff: "#608b87",
+        StrokeFilled: "#958217",
+        StrokeEmpty: "#95821740",
+        Timeline: "#7a3f01",
       },
       "Fantastic Mr. Fox": {
-        Budget: "lightsalmon",
-        BoxOff: "lightseagreen",
-        StrokeFilled: "black",
-        StrokeEmpty: "lightgray",
-        Timeline: "#7F4667",
+        Budget: "#b5591c",
+        BoxOff: "#eebe77",
+        StrokeFilled: "#842b2e",
+        StrokeEmpty: "#842b2e40", //"#F2832250",
+        Timeline: "#7f4520",
       },
       "Moonrise Kingdom": {
-        StrokeFilled: "#261201", //"#BF2E21",
-        Budget: "#D973A2", //"#7F4667", //"#73436B",
-        BoxOff: "#EDD1D0", //"#D98FB1",
-        StrokeEmpty: "#F2E8B3",
-        Timeline: "#7F4667",
+        StrokeFilled: "#a37100", //"#BF2E21",
+        Budget: "#5c5a14", //"#7F4667", //"#73436B",
+        BoxOff: "#baa766", //"#D98FB1",
+        StrokeEmpty: "#a3710040",
+        Timeline: "#874901",
       },
       "The Grand Budapest Hotel": {
-        StrokeFilled: "#D94929", //"#BF2E21",
-        Budget: "#D973A2", //"#7F4667", //"#73436B",
-        BoxOff: "#EDD1D0", //"#D98FB1",
-        StrokeEmpty: "#F2E8B3",
-        Timeline: "#7F4667",
+        StrokeFilled: "#4f718d", //"#BF2E21",
+        Budget: "#e57291", //"#7F4667", //"#73436B",
+        BoxOff: "#edc1c2", //"#D98FB1",
+        StrokeEmpty: "#4f718d40",
+        Timeline: "#603a47",
       },
       "Isle of Dogs": {
-        Budget: "lightsalmon",
-        BoxOff: "lightseagreen",
-        StrokeFilled: "black",
-        StrokeEmpty: "lightgray",
-        Timeline: "#7F4667",
+        Budget: "#901904", //"#631300",
+        BoxOff: "#Ec2a07", // "#e36313",
+        StrokeFilled: "#db7328",
+        StrokeEmpty: "#db732840",
+        Timeline: "#100302",
       },
       "The French Dispatch": {
-        Budget: "lightsalmon",
-        BoxOff: "lightseagreen",
-        StrokeFilled: "black",
-        StrokeEmpty: "lightgray",
-        Timeline: "#7F4667",
+        Budget: "#F7c61f",
+        BoxOff: "#F5e9c0",
+        StrokeFilled: "#57755d",
+        StrokeEmpty: "#57755d40",
+        Timeline: "#754d29",
       },
     };
 
@@ -5911,9 +5925,17 @@ var app = (function () {
     	let br1;
     	let t1;
     	let div1;
-    	let t3;
-    	let div2;
+    	let t2;
     	let br2;
+    	let t3;
+    	let br3;
+    	let t4;
+    	let br4;
+    	let t5;
+    	let br5;
+    	let t6;
+    	let div2;
+    	let br6;
 
     	const block = {
     		c: function create() {
@@ -5923,18 +5945,29 @@ var app = (function () {
     			br1 = element("br");
     			t1 = space();
     			div1 = element("div");
-    			div1.textContent = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla pulvinar libero\n  nulla, vitae tempor mauris luctus at. Nam sit amet consequat magna, id rutrum\n  nisl. Phasellus vel mauris molestie, varius nunc in, blandit tellus. Lorem\n  ipsum dolor sit amet, consectetur adipiscing elit. Curabitur mauris nulla,\n  congue ut enim a, tempor sagittis lacus. Quisque iaculis molestie arcu, sed\n  mattis purus vulputate at. Fusce tristique erat id libero lobortis malesuada.\n  Integer sit amet dui et ex pharetra pharetra ut eu ex. Etiam vitae nulla ac\n  justo auctor euismod in et ex. Vestibulum aliquam urna odio. Praesent sit amet\n  elementum felis, non dictum massa. Ut sit amet ex semper, consectetur justo\n  at, ullamcorper lacus. Proin maximus velit sit amet mauris vehicula viverra.";
-    			t3 = space();
-    			div2 = element("div");
+    			t2 = text("Wes Anderson's masterful eye for crafting a scene is evident in all of his\n  movies. His stye has become instantly recognizable and has inspired admiring\n  Instagram accounts such as @accidentallywesanderson and even a book based on\n  the account. This timeline of his movies shows the critical reception and\n  financial reception (budget and box office numbers) of each of his movies.\n  Only in two occasions has his budget exceeded the box office amount - his\n  first movie, Bottle Rocket and The Life Aquatic with Steve Zissou. ");
     			br2 = element("br");
+    			t3 = space();
+    			br3 = element("br");
+    			t4 = text(" This ode to the director also celebrates his skillful use of color -\n  hovering on a movie briefly changes the color scheme of the visualization to\n  that of a chosen scene from the movie.\n  ");
+    			br4 = element("br");
+    			t5 = space();
+    			br5 = element("br");
+    			t6 = space();
+    			div2 = element("div");
+    			br6 = element("br");
     			add_location(br0, file$3, 0, 54, 54);
     			add_location(br1, file$3, 0, 60, 60);
     			attr_dev(div0, "class", "title svelte-1hblbwh");
     			add_location(div0, file$3, 0, 0, 0);
+    			add_location(br2, file$3, 8, 69, 625);
+    			add_location(br3, file$3, 9, 2, 634);
+    			add_location(br4, file$3, 12, 2, 832);
+    			add_location(br5, file$3, 12, 9, 839);
     			attr_dev(div1, "class", "text");
     			add_location(div1, file$3, 1, 0, 73);
-    			add_location(br2, file$3, 13, 5, 893);
-    			add_location(div2, file$3, 13, 0, 888);
+    			add_location(br6, file$3, 14, 5, 858);
+    			add_location(div2, file$3, 14, 0, 853);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -5946,9 +5979,17 @@ var app = (function () {
     			append_dev(div0, br1);
     			insert_dev(target, t1, anchor);
     			insert_dev(target, div1, anchor);
-    			insert_dev(target, t3, anchor);
+    			append_dev(div1, t2);
+    			append_dev(div1, br2);
+    			append_dev(div1, t3);
+    			append_dev(div1, br3);
+    			append_dev(div1, t4);
+    			append_dev(div1, br4);
+    			append_dev(div1, t5);
+    			append_dev(div1, br5);
+    			insert_dev(target, t6, anchor);
     			insert_dev(target, div2, anchor);
-    			append_dev(div2, br2);
+    			append_dev(div2, br6);
     		},
     		p: noop,
     		i: noop,
@@ -5957,7 +5998,7 @@ var app = (function () {
     			if (detaching) detach_dev(div0);
     			if (detaching) detach_dev(t1);
     			if (detaching) detach_dev(div1);
-    			if (detaching) detach_dev(t3);
+    			if (detaching) detach_dev(t6);
     			if (detaching) detach_dev(div2);
     		}
     	};
@@ -8109,7 +8150,7 @@ var app = (function () {
     		c: function create() {
     			div = element("div");
     			if_block.c();
-    			attr_dev(div, "class", div_class_value = "wrapper " + `wrapper${/*imgNum*/ ctx[3]}` + " svelte-okjze1");
+    			attr_dev(div, "class", div_class_value = "wrapper " + `wrapper${/*imgNum*/ ctx[3]}` + " svelte-1ysafah");
     			add_render_callback(() => /*div_elementresize_handler*/ ctx[9].call(div));
     			add_location(div, file, 16, 0, 341);
     		},
@@ -8149,7 +8190,7 @@ var app = (function () {
     				if_block.m(div, null);
     			}
 
-    			if (!current || dirty & /*imgNum*/ 8 && div_class_value !== (div_class_value = "wrapper " + `wrapper${/*imgNum*/ ctx[3]}` + " svelte-okjze1")) {
+    			if (!current || dirty & /*imgNum*/ 8 && div_class_value !== (div_class_value = "wrapper " + `wrapper${/*imgNum*/ ctx[3]}` + " svelte-1ysafah")) {
     				attr_dev(div, "class", div_class_value);
     			}
     		},
