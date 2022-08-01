@@ -1,15 +1,16 @@
 <div class="title">Wes Anderson: Many Hits, Few Misses<br /><br /></div>
 <div class="text">
-  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla pulvinar libero
-  nulla, vitae tempor mauris luctus at. Nam sit amet consequat magna, id rutrum
-  nisl. Phasellus vel mauris molestie, varius nunc in, blandit tellus. Lorem
-  ipsum dolor sit amet, consectetur adipiscing elit. Curabitur mauris nulla,
-  congue ut enim a, tempor sagittis lacus. Quisque iaculis molestie arcu, sed
-  mattis purus vulputate at. Fusce tristique erat id libero lobortis malesuada.
-  Integer sit amet dui et ex pharetra pharetra ut eu ex. Etiam vitae nulla ac
-  justo auctor euismod in et ex. Vestibulum aliquam urna odio. Praesent sit amet
-  elementum felis, non dictum massa. Ut sit amet ex semper, consectetur justo
-  at, ullamcorper lacus. Proin maximus velit sit amet mauris vehicula viverra.
+  Wes Anderson's masterful eye for crafting a scene is evident in all of his
+  movies. His stye has become instantly recognizable and has inspired admiring
+  Instagram accounts such as @accidentallywesanderson and even a book based on
+  the account. This timeline of his movies shows the critical reception and
+  financial reception (budget and box office numbers) of each of his movies.
+  Only in two occasions has his budget exceeded the box office amount - his
+  first movie, Bottle Rocket and The Life Aquatic with Steve Zissou. <br />
+  <br /> This ode to the director also celebrates his skillful use of color -
+  hovering on a movie briefly changes the color scheme of the visualization to
+  that of a chosen scene from the movie.
+  <br /> <br />
 </div>
 <div><br /></div>
 
