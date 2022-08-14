@@ -113,9 +113,9 @@
     <!-- arc path to append textPath - to get text in an arc -->
     <path d={arcGenerator(x)} fill="none" id={`bubble-${movie}`} />
     <!-- white background for text - so timeline doesn't seem to pass through text -->
-    <text
+    <!-- <text
       dy="-3"
-      font-size={strokeLength + 2}
+      font-size={strokeLength}
       fill="none"
       stroke="white"
       stroke-width="7"
@@ -125,8 +125,14 @@
         startOffset="50%"
         text-anchor="middle">{movie}</textPath
       >
-    </text>
-    <text dy="-3" font-size={strokeLength} fill={colorScheme.Timeline}>
+    </text> -->
+    <text
+      dy="-3"
+      font-size={strokeLength}
+      fill={colorScheme.Timeline}
+      stroke="white"
+      stroke-width="3"
+    >
       <textPath
         xlink:href={`#bubble-${movie}`}
         startOffset="50%"
