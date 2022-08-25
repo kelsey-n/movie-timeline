@@ -2967,7 +2967,7 @@ var app = (function () {
     	return block;
     }
 
-    // (137:2) {#if year === minYear}
+    // (138:2) {#if year === minYear}
     function create_if_block$5(ctx) {
     	let text_1;
     	let t;
@@ -2982,7 +2982,7 @@ var app = (function () {
     			attr_dev(text_1, "y", text_1_y_value = /*y*/ ctx[2] + max$1([/*budget*/ ctx[3], /*boxoffice*/ ctx[4]]) * 2 + /*padding*/ ctx[13] + /*strokeLength*/ ctx[6]);
     			attr_dev(text_1, "text-anchor", "middle");
     			attr_dev(text_1, "fill", text_1_fill_value = /*colorScheme*/ ctx[9].Timeline);
-    			add_location(text_1, file$7, 137, 4, 3591);
+    			add_location(text_1, file$7, 138, 4, 3618);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, text_1, anchor);
@@ -3012,7 +3012,7 @@ var app = (function () {
     		block,
     		id: create_if_block$5.name,
     		type: "if",
-    		source: "(137:2) {#if year === minYear}",
+    		source: "(138:2) {#if year === minYear}",
     		ctx
     	});
 
@@ -3033,7 +3033,6 @@ var app = (function () {
     	let textPath0;
     	let t0;
     	let textPath0_xlink_href_value;
-    	let text0_font_size_value;
     	let text1;
     	let textPath1;
     	let t1;
@@ -3094,21 +3093,22 @@ var app = (function () {
     			xlink_attr(textPath0, "xlink:href", textPath0_xlink_href_value = `#bubble-${/*movie*/ ctx[0]}`);
     			attr_dev(textPath0, "startOffset", "50%");
     			attr_dev(textPath0, "text-anchor", "middle");
-    			add_location(textPath0, file$7, 122, 6, 3191);
+    			add_location(textPath0, file$7, 123, 6, 3218);
     			attr_dev(text0, "dy", "-3");
-    			attr_dev(text0, "font-size", text0_font_size_value = /*strokeLength*/ ctx[6] + 2);
-    			attr_dev(text0, "fill", "none");
+    			attr_dev(text0, "font-size", /*strokeLength*/ ctx[6]);
     			attr_dev(text0, "stroke", "white");
-    			attr_dev(text0, "stroke-width", "7");
+    			attr_dev(text0, "fill", "white");
+    			attr_dev(text0, "stroke-width", "5");
+    			attr_dev(text0, "stroke-linejoin", "round");
     			add_location(text0, file$7, 115, 4, 3062);
     			xlink_attr(textPath1, "xlink:href", textPath1_xlink_href_value = `#bubble-${/*movie*/ ctx[0]}`);
     			attr_dev(textPath1, "startOffset", "50%");
     			attr_dev(textPath1, "text-anchor", "middle");
-    			add_location(textPath1, file$7, 129, 6, 3412);
+    			add_location(textPath1, file$7, 130, 6, 3439);
     			attr_dev(text1, "dy", "-3");
     			attr_dev(text1, "font-size", /*strokeLength*/ ctx[6]);
     			attr_dev(text1, "fill", text1_fill_value = /*colorScheme*/ ctx[9].Timeline);
-    			add_location(text1, file$7, 128, 4, 3338);
+    			add_location(text1, file$7, 129, 4, 3365);
     			attr_dev(g1, "transform", g1_transform_value = `translate(${/*x*/ ctx[1]},${/*y*/ ctx[2]})`);
     			add_location(g1, file$7, 111, 2, 2799);
     			add_location(g2, file$7, 49, 0, 1006);
@@ -3209,8 +3209,8 @@ var app = (function () {
     				xlink_attr(textPath0, "xlink:href", textPath0_xlink_href_value);
     			}
 
-    			if (dirty & /*strokeLength*/ 64 && text0_font_size_value !== (text0_font_size_value = /*strokeLength*/ ctx[6] + 2)) {
-    				attr_dev(text0, "font-size", text0_font_size_value);
+    			if (dirty & /*strokeLength*/ 64) {
+    				attr_dev(text0, "font-size", /*strokeLength*/ ctx[6]);
     			}
 
     			if (dirty & /*movie*/ 1) set_data_dev(t1, /*movie*/ ctx[0]);

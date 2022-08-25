@@ -113,25 +113,13 @@
     <!-- arc path to append textPath - to get text in an arc -->
     <path d={arcGenerator(x)} fill="none" id={`bubble-${movie}`} />
     <!-- white background for text - so timeline doesn't seem to pass through text -->
-    <!-- <text
-      dy="-3"
-      font-size={strokeLength}
-      fill="none"
-      stroke="white"
-      stroke-width="7"
-    >
-      <textPath
-        xlink:href={`#bubble-${movie}`}
-        startOffset="50%"
-        text-anchor="middle">{movie}</textPath
-      >
-    </text> -->
     <text
       dy="-3"
       font-size={strokeLength}
-      fill={colorScheme.Timeline}
       stroke="white"
-      stroke-width="3"
+      fill="white"
+      stroke-width="5"
+      stroke-linejoin="round"
     >
       <textPath
         xlink:href={`#bubble-${movie}`}
@@ -139,7 +127,14 @@
         text-anchor="middle">{movie}</textPath
       >
     </text>
-  </g>
+    <text dy="-3" font-size={strokeLength} fill={colorScheme.Timeline}>
+      <textPath
+        xlink:href={`#bubble-${movie}`}
+        startOffset="50%"
+        text-anchor="middle">{movie}</textPath
+      >
+    </text></g
+  >
   {#if year === minYear}
     <text
       {x}
