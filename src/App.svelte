@@ -57,6 +57,7 @@
     flex-direction: column;
     width: 100%;
     height: 100%;
+    font-family: Arial, Helvetica, sans-serif;
   }
 
   .wrapper::before {
@@ -75,7 +76,7 @@
 
   .wrapper0::before {
     content: "";
-    background: url("https://live.staticflickr.com/65535/52254412885_eefa510490_c.jpg");
+    background: url("https://live.staticflickr.com/65535/52237731696_042c9df85d_z.jpg");
     /* background: url("https://live.staticflickr.com/65535/52253949498_b0cc054217_b.jpg"); */
     background-repeat: no-repeat;
     background-position: center top;
@@ -90,7 +91,7 @@
   .wrapper1::before {
     content: "";
     /* background: url("https://live.staticflickr.com/65535/52231419199_7245107d9d_z.jpg"); */
-    background: url("https://live.staticflickr.com/65535/52253957596_c4011616c4_c.jpg");
+    background: url("https://live.staticflickr.com/65535/52231419199_7245107d9d_z.jpg");
     background-repeat: no-repeat;
     background-position: center top;
     position: absolute;
@@ -103,7 +104,7 @@
 
   .wrapper2::before {
     content: "";
-    background: url("https://live.staticflickr.com/65535/52254058613_a6655537c6_c.jpg");
+    background: url("https://live.staticflickr.com/65535/52309487498_820d91884c_z.jpg");
     background-repeat: no-repeat;
     background-position: center top;
     position: absolute;
@@ -116,7 +117,7 @@
 
   .wrapper3::before {
     content: "";
-    background: url("https://live.staticflickr.com/65535/52254108868_b6ae0fd847_c.jpg");
+    background: url("https://live.staticflickr.com/65535/52238263810_c392bc7dc9_z.jpg");
     background-repeat: no-repeat;
     background-position: center top;
     position: absolute;
@@ -129,7 +130,7 @@
 
   .wrapper4::before {
     content: "";
-    background: url("https://live.staticflickr.com/65535/52254405049_6bd82691dd_c.jpg");
+    background: url("https://live.staticflickr.com/65535/52309535104_6ea3c0b35e_z.jpg");
     background-repeat: no-repeat;
     background-position: center top;
     position: absolute;
@@ -168,7 +169,7 @@
 
   .wrapper7::before {
     content: "";
-    background: url("https://live.staticflickr.com/65535/52254100516_fc74ea4dae_c.jpg");
+    background: url("https://live.staticflickr.com/65535/52230771980_4e9fb1051b_z.jpg");
     background-repeat: no-repeat;
     background-position: center top;
     position: absolute;
