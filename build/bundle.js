@@ -2755,13 +2755,13 @@ var app = (function () {
     			attr_dev(circle0, "cy", /*y*/ ctx[2]);
     			attr_dev(circle0, "r", /*boxoffice*/ ctx[4]);
     			attr_dev(circle0, "fill", circle0_fill_value = /*colorScheme*/ ctx[9].BoxOff);
-    			add_location(circle0, file$7, 75, 6, 1688);
+    			add_location(circle0, file$7, 75, 6, 1671);
     			attr_dev(circle1, "class", "budget-circle");
     			attr_dev(circle1, "cx", /*x*/ ctx[1]);
     			attr_dev(circle1, "cy", circle1_cy_value = /*y*/ ctx[2] - /*budget*/ ctx[3] + /*boxoffice*/ ctx[4]);
     			attr_dev(circle1, "r", /*budget*/ ctx[3]);
     			attr_dev(circle1, "fill", circle1_fill_value = /*colorScheme*/ ctx[9].Budget);
-    			add_location(circle1, file$7, 82, 6, 1830);
+    			add_location(circle1, file$7, 82, 6, 1813);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, circle0, anchor);
@@ -2834,13 +2834,13 @@ var app = (function () {
     			attr_dev(circle0, "cy", /*y*/ ctx[2]);
     			attr_dev(circle0, "r", /*budget*/ ctx[3]);
     			attr_dev(circle0, "fill", circle0_fill_value = /*colorScheme*/ ctx[9].Budget);
-    			add_location(circle0, file$7, 60, 6, 1377);
+    			add_location(circle0, file$7, 60, 6, 1360);
     			attr_dev(circle1, "class", "boxoffice-circle");
     			attr_dev(circle1, "cx", /*x*/ ctx[1]);
     			attr_dev(circle1, "cy", circle1_cy_value = /*y*/ ctx[2] - /*boxoffice*/ ctx[4] + /*budget*/ ctx[3]);
     			attr_dev(circle1, "r", /*boxoffice*/ ctx[4]);
     			attr_dev(circle1, "fill", circle1_fill_value = /*colorScheme*/ ctx[9].BoxOff);
-    			add_location(circle1, file$7, 67, 6, 1513);
+    			add_location(circle1, file$7, 67, 6, 1496);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, circle0, anchor);
@@ -2919,7 +2919,7 @@ var app = (function () {
 
     			attr_dev(line, "stroke-width", /*strokeWidth*/ ctx[5]);
     			attr_dev(line, "stroke-linecap", "round");
-    			add_location(line, file$7, 91, 6, 2031);
+    			add_location(line, file$7, 91, 6, 2014);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, line, anchor);
@@ -2982,7 +2982,8 @@ var app = (function () {
     			attr_dev(text_1, "y", text_1_y_value = /*y*/ ctx[2] + max$1([/*budget*/ ctx[3], /*boxoffice*/ ctx[4]]) * 2 + /*padding*/ ctx[13] + /*strokeLength*/ ctx[6]);
     			attr_dev(text_1, "text-anchor", "middle");
     			attr_dev(text_1, "fill", text_1_fill_value = /*colorScheme*/ ctx[9].Timeline);
-    			add_location(text_1, file$7, 138, 4, 3618);
+    			attr_dev(text_1, "class", "year-text svelte-1m8a2bh");
+    			add_location(text_1, file$7, 138, 4, 3601);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, text_1, anchor);
@@ -3084,34 +3085,36 @@ var app = (function () {
     			attr_dev(circle, "cy", /*y*/ ctx[2]);
     			attr_dev(circle, "r", circle_r_value = max$1([/*budget*/ ctx[3], /*boxoffice*/ ctx[4]]) + /*padding*/ ctx[13] + /*strokeLength*/ ctx[6]);
     			attr_dev(circle, "fill", "white");
-    			add_location(circle, file$7, 52, 4, 1172);
-    			add_location(g0, file$7, 50, 2, 1012);
+    			add_location(circle, file$7, 52, 4, 1155);
+    			add_location(g0, file$7, 50, 2, 995);
     			attr_dev(path, "d", path_d_value = /*arcGenerator*/ ctx[10](/*x*/ ctx[1]));
     			attr_dev(path, "fill", "none");
     			attr_dev(path, "id", path_id_value = `bubble-${/*movie*/ ctx[0]}`);
-    			add_location(path, file$7, 113, 4, 2907);
+    			add_location(path, file$7, 113, 4, 2890);
     			xlink_attr(textPath0, "xlink:href", textPath0_xlink_href_value = `#bubble-${/*movie*/ ctx[0]}`);
     			attr_dev(textPath0, "startOffset", "50%");
     			attr_dev(textPath0, "text-anchor", "middle");
-    			add_location(textPath0, file$7, 123, 6, 3218);
+    			add_location(textPath0, file$7, 123, 6, 3201);
     			attr_dev(text0, "dy", "-3");
     			attr_dev(text0, "font-size", /*strokeLength*/ ctx[6]);
     			attr_dev(text0, "stroke", "white");
     			attr_dev(text0, "fill", "white");
     			attr_dev(text0, "stroke-width", "5");
     			attr_dev(text0, "stroke-linejoin", "round");
-    			add_location(text0, file$7, 115, 4, 3062);
+    			attr_dev(text0, "class", "svelte-1m8a2bh");
+    			add_location(text0, file$7, 115, 4, 3045);
     			xlink_attr(textPath1, "xlink:href", textPath1_xlink_href_value = `#bubble-${/*movie*/ ctx[0]}`);
     			attr_dev(textPath1, "startOffset", "50%");
     			attr_dev(textPath1, "text-anchor", "middle");
-    			add_location(textPath1, file$7, 130, 6, 3439);
+    			add_location(textPath1, file$7, 130, 6, 3422);
     			attr_dev(text1, "dy", "-3");
     			attr_dev(text1, "font-size", /*strokeLength*/ ctx[6]);
     			attr_dev(text1, "fill", text1_fill_value = /*colorScheme*/ ctx[9].Timeline);
-    			add_location(text1, file$7, 129, 4, 3365);
+    			attr_dev(text1, "class", "svelte-1m8a2bh");
+    			add_location(text1, file$7, 129, 4, 3348);
     			attr_dev(g1, "transform", g1_transform_value = `translate(${/*x*/ ctx[1]},${/*y*/ ctx[2]})`);
-    			add_location(g1, file$7, 111, 2, 2799);
-    			add_location(g2, file$7, 49, 0, 1006);
+    			add_location(g1, file$7, 111, 2, 2782);
+    			add_location(g2, file$7, 49, 0, 989);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -3287,7 +3290,7 @@ var app = (function () {
     	let hovering;
     	let strokeNum = 40;
     	let padding = 4;
-    	let defaultMovie = "The Grand Budapest Hotel";
+    	let defaultMovie = "Default";
 
     	function enter() {
     		hovering = true;
@@ -4473,21 +4476,21 @@ var app = (function () {
 
     function get_each_context$4(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[6] = list[i].x;
-    	child_ctx[7] = list[i].y;
-    	child_ctx[8] = list[i].year;
-    	child_ctx[10] = i;
+    	child_ctx[5] = list[i].x;
+    	child_ctx[6] = list[i].y;
+    	child_ctx[7] = list[i].year;
+    	child_ctx[9] = i;
     	return child_ctx;
     }
 
-    // (41:2) {#if year % 10 === 0 && year !== 0}
+    // (40:2) {#if year % 10 === 0 && year !== 0}
     function create_if_block$4(ctx) {
     	let path;
     	let path_d_value;
     	let t0;
     	let text_1;
     	let textPath;
-    	let t1_value = /*year*/ ctx[8] + "";
+    	let t1_value = /*year*/ ctx[7] + "";
     	let t1;
 
     	const block = {
@@ -4499,23 +4502,23 @@ var app = (function () {
     			t1 = text(t1_value);
 
     			attr_dev(path, "d", path_d_value = /*lineGenerator*/ ctx[2]([
-    				/*timelineData*/ ctx[0][/*idx*/ ctx[10] - 3],
-    				/*timelineData*/ ctx[0][/*idx*/ ctx[10] - 2],
-    				/*timelineData*/ ctx[0][/*idx*/ ctx[10] - 1],
-    				/*timelineData*/ ctx[0][/*idx*/ ctx[10]],
-    				/*timelineData*/ ctx[0][/*idx*/ ctx[10] + 1]
+    				/*timelineData*/ ctx[0][/*idx*/ ctx[9] - 3],
+    				/*timelineData*/ ctx[0][/*idx*/ ctx[9] - 2],
+    				/*timelineData*/ ctx[0][/*idx*/ ctx[9] - 1],
+    				/*timelineData*/ ctx[0][/*idx*/ ctx[9]],
+    				/*timelineData*/ ctx[0][/*idx*/ ctx[9] + 1]
     			]));
 
-    			attr_dev(path, "id", `timeline${/*idx*/ ctx[10]}`);
+    			attr_dev(path, "id", `timeline${/*idx*/ ctx[9]}`);
     			attr_dev(path, "fill", "none");
-    			add_location(path, file$6, 42, 4, 1155);
-    			xlink_attr(textPath, "xlink:href", `#timeline${/*idx*/ ctx[10]}`);
+    			add_location(path, file$6, 41, 4, 1135);
+    			xlink_attr(textPath, "xlink:href", `#timeline${/*idx*/ ctx[9]}`);
     			attr_dev(textPath, "startOffset", "75%");
     			attr_dev(textPath, "text-anchor", "middle");
     			attr_dev(textPath, "fill", "red");
-    			add_location(textPath, file$6, 54, 6, 1425);
+    			add_location(textPath, file$6, 53, 6, 1405);
     			attr_dev(text_1, "dy", "-5");
-    			add_location(text_1, file$6, 53, 4, 1404);
+    			add_location(text_1, file$6, 52, 4, 1384);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, path, anchor);
@@ -4526,16 +4529,16 @@ var app = (function () {
     		},
     		p: function update(ctx, dirty) {
     			if (dirty & /*timelineData*/ 1 && path_d_value !== (path_d_value = /*lineGenerator*/ ctx[2]([
-    				/*timelineData*/ ctx[0][/*idx*/ ctx[10] - 3],
-    				/*timelineData*/ ctx[0][/*idx*/ ctx[10] - 2],
-    				/*timelineData*/ ctx[0][/*idx*/ ctx[10] - 1],
-    				/*timelineData*/ ctx[0][/*idx*/ ctx[10]],
-    				/*timelineData*/ ctx[0][/*idx*/ ctx[10] + 1]
+    				/*timelineData*/ ctx[0][/*idx*/ ctx[9] - 3],
+    				/*timelineData*/ ctx[0][/*idx*/ ctx[9] - 2],
+    				/*timelineData*/ ctx[0][/*idx*/ ctx[9] - 1],
+    				/*timelineData*/ ctx[0][/*idx*/ ctx[9]],
+    				/*timelineData*/ ctx[0][/*idx*/ ctx[9] + 1]
     			]))) {
     				attr_dev(path, "d", path_d_value);
     			}
 
-    			if (dirty & /*timelineData*/ 1 && t1_value !== (t1_value = /*year*/ ctx[8] + "")) set_data_dev(t1, t1_value);
+    			if (dirty & /*timelineData*/ 1 && t1_value !== (t1_value = /*year*/ ctx[7] + "")) set_data_dev(t1, t1_value);
     		},
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(path);
@@ -4548,17 +4551,17 @@ var app = (function () {
     		block,
     		id: create_if_block$4.name,
     		type: "if",
-    		source: "(41:2) {#if year % 10 === 0 && year !== 0}",
+    		source: "(40:2) {#if year % 10 === 0 && year !== 0}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (40:0) {#each timelineData as { x, y, year }
+    // (39:0) {#each timelineData as { x, y, year }
     function create_each_block$4(ctx) {
     	let if_block_anchor;
-    	let if_block = /*year*/ ctx[8] % 10 === 0 && /*year*/ ctx[8] !== 0 && create_if_block$4(ctx);
+    	let if_block = /*year*/ ctx[7] % 10 === 0 && /*year*/ ctx[7] !== 0 && create_if_block$4(ctx);
 
     	const block = {
     		c: function create() {
@@ -4570,7 +4573,7 @@ var app = (function () {
     			insert_dev(target, if_block_anchor, anchor);
     		},
     		p: function update(ctx, dirty) {
-    			if (/*year*/ ctx[8] % 10 === 0 && /*year*/ ctx[8] !== 0) {
+    			if (/*year*/ ctx[7] % 10 === 0 && /*year*/ ctx[7] !== 0) {
     				if (if_block) {
     					if_block.p(ctx, dirty);
     				} else {
@@ -4593,7 +4596,7 @@ var app = (function () {
     		block,
     		id: create_each_block$4.name,
     		type: "each",
-    		source: "(40:0) {#each timelineData as { x, y, year }",
+    		source: "(39:0) {#each timelineData as { x, y, year }",
     		ctx
     	});
 
@@ -4624,7 +4627,7 @@ var app = (function () {
     			each_1_anchor = empty();
     			attr_dev(path, "class", "line svelte-yniea2");
     			attr_dev(path, "d", /*linePath*/ ctx[1]);
-    			add_location(path, file$6, 38, 0, 978);
+    			add_location(path, file$6, 37, 0, 958);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -4695,7 +4698,6 @@ var app = (function () {
     	validate_slots('Timeline', slots, []);
     	let { timelineData } = $$props;
     	let { height } = $$props;
-    	let { width } = $$props;
     	const lineGenerator = line().x(d => d.x).y(d => d.y).curve(curveBasis);
 
     	const tLinePath = tweened(null, {
@@ -4704,7 +4706,7 @@ var app = (function () {
     		interpolate: interpolatePath
     	});
 
-    	const writable_props = ['timelineData', 'height', 'width'];
+    	const writable_props = ['timelineData', 'height'];
 
     	Object.keys($$props).forEach(key => {
     		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== '$$' && key !== 'slot') console.warn(`<Timeline> was created with unknown prop '${key}'`);
@@ -4713,7 +4715,6 @@ var app = (function () {
     	$$self.$$set = $$props => {
     		if ('timelineData' in $$props) $$invalidate(0, timelineData = $$props.timelineData);
     		if ('height' in $$props) $$invalidate(3, height = $$props.height);
-    		if ('width' in $$props) $$invalidate(4, width = $$props.width);
     	};
 
     	$$self.$capture_state = () => ({
@@ -4726,7 +4727,6 @@ var app = (function () {
     		interpolatePath,
     		timelineData,
     		height,
-    		width,
     		lineGenerator,
     		tLinePath,
     		linePath
@@ -4735,7 +4735,6 @@ var app = (function () {
     	$$self.$inject_state = $$props => {
     		if ('timelineData' in $$props) $$invalidate(0, timelineData = $$props.timelineData);
     		if ('height' in $$props) $$invalidate(3, height = $$props.height);
-    		if ('width' in $$props) $$invalidate(4, width = $$props.width);
     		if ('linePath' in $$props) $$invalidate(1, linePath = $$props.linePath);
     	};
 
@@ -4768,13 +4767,13 @@ var app = (function () {
     		}
     	};
 
-    	return [timelineData, linePath, lineGenerator, height, width];
+    	return [timelineData, linePath, lineGenerator, height];
     }
 
     class Timeline extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
-    		init(this, options, instance$6, create_fragment$6, safe_not_equal, { timelineData: 0, height: 3, width: 4 });
+    		init(this, options, instance$6, create_fragment$6, safe_not_equal, { timelineData: 0, height: 3 });
 
     		dispatch_dev("SvelteRegisterComponent", {
     			component: this,
@@ -4793,10 +4792,6 @@ var app = (function () {
     		if (/*height*/ ctx[3] === undefined && !('height' in props)) {
     			console.warn("<Timeline> was created without expected prop 'height'");
     		}
-
-    		if (/*width*/ ctx[4] === undefined && !('width' in props)) {
-    			console.warn("<Timeline> was created without expected prop 'width'");
-    		}
     	}
 
     	get timelineData() {
@@ -4812,14 +4807,6 @@ var app = (function () {
     	}
 
     	set height(value) {
-    		throw new Error("<Timeline>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
-    	}
-
-    	get width() {
-    		throw new Error("<Timeline>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
-    	}
-
-    	set width(value) {
     		throw new Error("<Timeline>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
     }
@@ -5419,13 +5406,14 @@ var app = (function () {
     }
 
     var movieColors = {
-      // "Bottle Rocket": {
-      //   Budget: "#F23030",
-      //   BoxOff: "#F2CB57",
-      //   StrokeFilled: "#0487D9",
-      //   StrokeEmpty: "#0487D930",
-      //   Timeline: "#2C4001",
-      // },
+      // default colors are those for grand budapest hotel
+      Default: {
+        StrokeFilled: "#4f718d", //"#BF2E21",
+        Budget: "#e57291", //"#7F4667", //"#73436B",
+        BoxOff: "#edc1c2", //"#D98FB1",
+        StrokeEmpty: "#4f718d40",
+        Timeline: "#603a47",
+      },
       "Bottle Rocket": {
         Budget: "#a77520",
         BoxOff: "#f8d75c",
@@ -5510,21 +5498,21 @@ var app = (function () {
 
     function get_each_context$2(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[7] = list[i].x;
-    	child_ctx[8] = list[i].y;
-    	child_ctx[9] = list[i].year;
-    	child_ctx[11] = i;
+    	child_ctx[6] = list[i].x;
+    	child_ctx[7] = list[i].y;
+    	child_ctx[8] = list[i].year;
+    	child_ctx[10] = i;
     	return child_ctx;
     }
 
-    // (42:2) {#if year % 10 === 0 && year !== 0 && idx !== 0}
+    // (41:2) {#if year % 10 === 0 && year !== 0 && idx !== 0}
     function create_if_block$2(ctx) {
     	let path;
     	let path_d_value;
     	let t0;
     	let text_1;
     	let textPath;
-    	let t1_value = /*year*/ ctx[9] + "";
+    	let t1_value = /*year*/ ctx[8] + "";
     	let t1;
     	let textPath_startOffset_value;
     	let textPath_fill_value;
@@ -5537,32 +5525,32 @@ var app = (function () {
     			textPath = svg_element("textPath");
     			t1 = text(t1_value);
 
-    			attr_dev(path, "d", path_d_value = /*x*/ ctx[7] > /*width*/ ctx[1] / 2
+    			attr_dev(path, "d", path_d_value = /*x*/ ctx[6] > /*width*/ ctx[1] / 2
     			? /*lineGenerator*/ ctx[4]([
-    					/*timelineData*/ ctx[0][/*idx*/ ctx[11] + 1],
-    					/*timelineData*/ ctx[0][/*idx*/ ctx[11]],
-    					/*timelineData*/ ctx[0][/*idx*/ ctx[11] - 1],
-    					/*timelineData*/ ctx[0][/*idx*/ ctx[11] - 2],
-    					/*timelineData*/ ctx[0][/*idx*/ ctx[11] - 3]
+    					/*timelineData*/ ctx[0][/*idx*/ ctx[10] + 1],
+    					/*timelineData*/ ctx[0][/*idx*/ ctx[10]],
+    					/*timelineData*/ ctx[0][/*idx*/ ctx[10] - 1],
+    					/*timelineData*/ ctx[0][/*idx*/ ctx[10] - 2],
+    					/*timelineData*/ ctx[0][/*idx*/ ctx[10] - 3]
     				])
     			: /*lineGenerator*/ ctx[4]([
-    					/*timelineData*/ ctx[0][/*idx*/ ctx[11] - 3],
-    					/*timelineData*/ ctx[0][/*idx*/ ctx[11] - 2],
-    					/*timelineData*/ ctx[0][/*idx*/ ctx[11] - 1],
-    					/*timelineData*/ ctx[0][/*idx*/ ctx[11]],
-    					/*timelineData*/ ctx[0][/*idx*/ ctx[11] + 1]
+    					/*timelineData*/ ctx[0][/*idx*/ ctx[10] - 3],
+    					/*timelineData*/ ctx[0][/*idx*/ ctx[10] - 2],
+    					/*timelineData*/ ctx[0][/*idx*/ ctx[10] - 1],
+    					/*timelineData*/ ctx[0][/*idx*/ ctx[10]],
+    					/*timelineData*/ ctx[0][/*idx*/ ctx[10] + 1]
     				]));
 
-    			attr_dev(path, "id", `timeline${/*idx*/ ctx[11]}`);
+    			attr_dev(path, "id", `timeline${/*idx*/ ctx[10]}`);
     			attr_dev(path, "fill", "none");
-    			add_location(path, file$4, 42, 4, 1167);
-    			xlink_attr(textPath, "xlink:href", `#timeline${/*idx*/ ctx[11]}`);
+    			add_location(path, file$4, 41, 4, 1146);
+    			xlink_attr(textPath, "xlink:href", `#timeline${/*idx*/ ctx[10]}`);
     			attr_dev(textPath, "text-anchor", "middle");
-    			attr_dev(textPath, "startOffset", textPath_startOffset_value = /*x*/ ctx[7] > /*width*/ ctx[1] / 2 ? "25%" : "75%");
+    			attr_dev(textPath, "startOffset", textPath_startOffset_value = /*x*/ ctx[6] > /*width*/ ctx[1] / 2 ? "25%" : "75%");
     			attr_dev(textPath, "fill", textPath_fill_value = /*colorScheme*/ ctx[2].Timeline);
-    			add_location(textPath, file$4, 62, 6, 1695);
+    			add_location(textPath, file$4, 61, 6, 1674);
     			attr_dev(text_1, "dy", "-5");
-    			add_location(text_1, file$4, 61, 4, 1674);
+    			add_location(text_1, file$4, 60, 4, 1653);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, path, anchor);
@@ -5572,27 +5560,27 @@ var app = (function () {
     			append_dev(textPath, t1);
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty & /*timelineData, width*/ 3 && path_d_value !== (path_d_value = /*x*/ ctx[7] > /*width*/ ctx[1] / 2
+    			if (dirty & /*timelineData, width*/ 3 && path_d_value !== (path_d_value = /*x*/ ctx[6] > /*width*/ ctx[1] / 2
     			? /*lineGenerator*/ ctx[4]([
-    					/*timelineData*/ ctx[0][/*idx*/ ctx[11] + 1],
-    					/*timelineData*/ ctx[0][/*idx*/ ctx[11]],
-    					/*timelineData*/ ctx[0][/*idx*/ ctx[11] - 1],
-    					/*timelineData*/ ctx[0][/*idx*/ ctx[11] - 2],
-    					/*timelineData*/ ctx[0][/*idx*/ ctx[11] - 3]
+    					/*timelineData*/ ctx[0][/*idx*/ ctx[10] + 1],
+    					/*timelineData*/ ctx[0][/*idx*/ ctx[10]],
+    					/*timelineData*/ ctx[0][/*idx*/ ctx[10] - 1],
+    					/*timelineData*/ ctx[0][/*idx*/ ctx[10] - 2],
+    					/*timelineData*/ ctx[0][/*idx*/ ctx[10] - 3]
     				])
     			: /*lineGenerator*/ ctx[4]([
-    					/*timelineData*/ ctx[0][/*idx*/ ctx[11] - 3],
-    					/*timelineData*/ ctx[0][/*idx*/ ctx[11] - 2],
-    					/*timelineData*/ ctx[0][/*idx*/ ctx[11] - 1],
-    					/*timelineData*/ ctx[0][/*idx*/ ctx[11]],
-    					/*timelineData*/ ctx[0][/*idx*/ ctx[11] + 1]
+    					/*timelineData*/ ctx[0][/*idx*/ ctx[10] - 3],
+    					/*timelineData*/ ctx[0][/*idx*/ ctx[10] - 2],
+    					/*timelineData*/ ctx[0][/*idx*/ ctx[10] - 1],
+    					/*timelineData*/ ctx[0][/*idx*/ ctx[10]],
+    					/*timelineData*/ ctx[0][/*idx*/ ctx[10] + 1]
     				]))) {
     				attr_dev(path, "d", path_d_value);
     			}
 
-    			if (dirty & /*timelineData*/ 1 && t1_value !== (t1_value = /*year*/ ctx[9] + "")) set_data_dev(t1, t1_value);
+    			if (dirty & /*timelineData*/ 1 && t1_value !== (t1_value = /*year*/ ctx[8] + "")) set_data_dev(t1, t1_value);
 
-    			if (dirty & /*timelineData, width*/ 3 && textPath_startOffset_value !== (textPath_startOffset_value = /*x*/ ctx[7] > /*width*/ ctx[1] / 2 ? "25%" : "75%")) {
+    			if (dirty & /*timelineData, width*/ 3 && textPath_startOffset_value !== (textPath_startOffset_value = /*x*/ ctx[6] > /*width*/ ctx[1] / 2 ? "25%" : "75%")) {
     				attr_dev(textPath, "startOffset", textPath_startOffset_value);
     			}
 
@@ -5611,17 +5599,17 @@ var app = (function () {
     		block,
     		id: create_if_block$2.name,
     		type: "if",
-    		source: "(42:2) {#if year % 10 === 0 && year !== 0 && idx !== 0}",
+    		source: "(41:2) {#if year % 10 === 0 && year !== 0 && idx !== 0}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (41:0) {#each timelineData as { x, y, year }
+    // (40:0) {#each timelineData as { x, y, year }
     function create_each_block$2(ctx) {
     	let if_block_anchor;
-    	let if_block = /*year*/ ctx[9] % 10 === 0 && /*year*/ ctx[9] !== 0 && /*idx*/ ctx[11] !== 0 && create_if_block$2(ctx);
+    	let if_block = /*year*/ ctx[8] % 10 === 0 && /*year*/ ctx[8] !== 0 && /*idx*/ ctx[10] !== 0 && create_if_block$2(ctx);
 
     	const block = {
     		c: function create() {
@@ -5633,7 +5621,7 @@ var app = (function () {
     			insert_dev(target, if_block_anchor, anchor);
     		},
     		p: function update(ctx, dirty) {
-    			if (/*year*/ ctx[9] % 10 === 0 && /*year*/ ctx[9] !== 0 && /*idx*/ ctx[11] !== 0) {
+    			if (/*year*/ ctx[8] % 10 === 0 && /*year*/ ctx[8] !== 0 && /*idx*/ ctx[10] !== 0) {
     				if (if_block) {
     					if_block.p(ctx, dirty);
     				} else {
@@ -5656,7 +5644,7 @@ var app = (function () {
     		block,
     		id: create_each_block$2.name,
     		type: "each",
-    		source: "(41:0) {#each timelineData as { x, y, year }",
+    		source: "(40:0) {#each timelineData as { x, y, year }",
     		ctx
     	});
 
@@ -5689,7 +5677,7 @@ var app = (function () {
     			attr_dev(path, "class", "line svelte-des1j5");
     			attr_dev(path, "stroke", path_stroke_value = /*colorScheme*/ ctx[2].Timeline);
     			attr_dev(path, "d", /*linePath*/ ctx[3]);
-    			add_location(path, file$4, 39, 0, 1003);
+    			add_location(path, file$4, 38, 0, 982);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -5763,7 +5751,6 @@ var app = (function () {
     	let { $$slots: slots = {}, $$scope } = $$props;
     	validate_slots('TimelineHorizontal', slots, []);
     	let { timelineData } = $$props;
-    	let { height } = $$props;
     	let { width } = $$props;
     	let { colorScheme } = $$props;
     	const lineGenerator = line().x(d => d.x).y(d => d.y).curve(curveBasis);
@@ -5774,7 +5761,7 @@ var app = (function () {
     		interpolate: interpolatePath
     	});
 
-    	const writable_props = ['timelineData', 'height', 'width', 'colorScheme'];
+    	const writable_props = ['timelineData', 'width', 'colorScheme'];
 
     	Object.keys($$props).forEach(key => {
     		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== '$$' && key !== 'slot') console.warn(`<TimelineHorizontal> was created with unknown prop '${key}'`);
@@ -5782,7 +5769,6 @@ var app = (function () {
 
     	$$self.$$set = $$props => {
     		if ('timelineData' in $$props) $$invalidate(0, timelineData = $$props.timelineData);
-    		if ('height' in $$props) $$invalidate(5, height = $$props.height);
     		if ('width' in $$props) $$invalidate(1, width = $$props.width);
     		if ('colorScheme' in $$props) $$invalidate(2, colorScheme = $$props.colorScheme);
     	};
@@ -5796,7 +5782,6 @@ var app = (function () {
     		max: max$1,
     		interpolatePath,
     		timelineData,
-    		height,
     		width,
     		colorScheme,
     		lineGenerator,
@@ -5806,7 +5791,6 @@ var app = (function () {
 
     	$$self.$inject_state = $$props => {
     		if ('timelineData' in $$props) $$invalidate(0, timelineData = $$props.timelineData);
-    		if ('height' in $$props) $$invalidate(5, height = $$props.height);
     		if ('width' in $$props) $$invalidate(1, width = $$props.width);
     		if ('colorScheme' in $$props) $$invalidate(2, colorScheme = $$props.colorScheme);
     		if ('linePath' in $$props) $$invalidate(3, linePath = $$props.linePath);
@@ -5840,7 +5824,7 @@ var app = (function () {
     		}
     	};
 
-    	return [timelineData, width, colorScheme, linePath, lineGenerator, height];
+    	return [timelineData, width, colorScheme, linePath, lineGenerator];
     }
 
     class TimelineHorizontal extends SvelteComponentDev {
@@ -5849,7 +5833,6 @@ var app = (function () {
 
     		init(this, options, instance$4, create_fragment$4, safe_not_equal, {
     			timelineData: 0,
-    			height: 5,
     			width: 1,
     			colorScheme: 2
     		});
@@ -5868,10 +5851,6 @@ var app = (function () {
     			console.warn("<TimelineHorizontal> was created without expected prop 'timelineData'");
     		}
 
-    		if (/*height*/ ctx[5] === undefined && !('height' in props)) {
-    			console.warn("<TimelineHorizontal> was created without expected prop 'height'");
-    		}
-
     		if (/*width*/ ctx[1] === undefined && !('width' in props)) {
     			console.warn("<TimelineHorizontal> was created without expected prop 'width'");
     		}
@@ -5886,14 +5865,6 @@ var app = (function () {
     	}
 
     	set timelineData(value) {
-    		throw new Error("<TimelineHorizontal>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
-    	}
-
-    	get height() {
-    		throw new Error("<TimelineHorizontal>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
-    	}
-
-    	set height(value) {
     		throw new Error("<TimelineHorizontal>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
 
@@ -5930,12 +5901,20 @@ var app = (function () {
     	let t3;
     	let br3;
     	let t4;
-    	let br4;
-    	let t5;
-    	let br5;
+    	let em0;
     	let t6;
-    	let div2;
+    	let em1;
+    	let t8;
+    	let br4;
+    	let t9;
+    	let br5;
+    	let t10;
     	let br6;
+    	let t11;
+    	let br7;
+    	let t12;
+    	let div2;
+    	let br8;
 
     	const block = {
     		c: function create() {
@@ -5945,29 +5924,43 @@ var app = (function () {
     			br1 = element("br");
     			t1 = space();
     			div1 = element("div");
-    			t2 = text("Wes Anderson's masterful eye for crafting a scene is evident in all of his\n  movies. His style has become instantly recognizable and has inspired admiring\n  Instagram accounts such as @accidentallywesanderson and even a book based on\n  the account. This timeline of his movies shows the critical reception and\n  financial reception (budget and box office numbers) of each of his movies.\n  Only in two occasions has his budget exceeded the box office amount - his\n  first movie, Bottle Rocket and The Life Aquatic with Steve Zissou. ");
+    			t2 = text("Wes Anderson's masterful eye for crafting a scene is evident in all of his\n  movies. His style has become instantly recognizable and has inspired admiring\n  Instagram accounts, analyses and articles on his own inspirations. ");
     			br2 = element("br");
     			t3 = space();
     			br3 = element("br");
-    			t4 = text(" This ode to the director also celebrates his skillful use of color -\n  hovering on a movie briefly changes the color scheme of the visualization to\n  that of a chosen scene from the movie.\n  ");
+    			t4 = text("\n  This timeline of his movies shows the critical reception and financial reception\n  (budget and box office numbers) of each of his movies. In only two occasions has\n  his budget exceeded the box office amount - his first movie,\n  ");
+    			em0 = element("em");
+    			em0.textContent = "Bottle Rocket";
+    			t6 = text("\n  and ");
+    			em1 = element("em");
+    			em1.textContent = "The Life Aquatic with Steve Zissou";
+    			t8 = text(". ");
     			br4 = element("br");
-    			t5 = space();
+    			t9 = space();
     			br5 = element("br");
-    			t6 = space();
-    			div2 = element("div");
+    			t10 = text(" This ode to the director also celebrates his skillful use of color -\n  hover on a movie to see more!\n  ");
     			br6 = element("br");
+    			t11 = space();
+    			br7 = element("br");
+    			t12 = space();
+    			div2 = element("div");
+    			br8 = element("br");
     			add_location(br0, file$3, 0, 54, 54);
     			add_location(br1, file$3, 0, 60, 60);
     			attr_dev(div0, "class", "title svelte-aucz7u");
     			add_location(div0, file$3, 0, 0, 0);
-    			add_location(br2, file$3, 8, 69, 626);
-    			add_location(br3, file$3, 9, 2, 635);
-    			add_location(br4, file$3, 12, 2, 833);
-    			add_location(br5, file$3, 12, 9, 840);
+    			add_location(br2, file$3, 4, 69, 318);
+    			add_location(br3, file$3, 5, 2, 327);
+    			add_location(em0, file$3, 9, 2, 565);
+    			add_location(em1, file$3, 10, 6, 594);
+    			add_location(br4, file$3, 10, 51, 639);
+    			add_location(br5, file$3, 11, 2, 648);
+    			add_location(br6, file$3, 13, 2, 758);
+    			add_location(br7, file$3, 13, 9, 765);
     			attr_dev(div1, "class", "text svelte-aucz7u");
     			add_location(div1, file$3, 1, 0, 73);
-    			add_location(br6, file$3, 14, 5, 859);
-    			add_location(div2, file$3, 14, 0, 854);
+    			add_location(br8, file$3, 15, 5, 784);
+    			add_location(div2, file$3, 15, 0, 779);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -5984,12 +5977,20 @@ var app = (function () {
     			append_dev(div1, t3);
     			append_dev(div1, br3);
     			append_dev(div1, t4);
+    			append_dev(div1, em0);
+    			append_dev(div1, t6);
+    			append_dev(div1, em1);
+    			append_dev(div1, t8);
     			append_dev(div1, br4);
-    			append_dev(div1, t5);
+    			append_dev(div1, t9);
     			append_dev(div1, br5);
-    			insert_dev(target, t6, anchor);
+    			append_dev(div1, t10);
+    			append_dev(div1, br6);
+    			append_dev(div1, t11);
+    			append_dev(div1, br7);
+    			insert_dev(target, t12, anchor);
     			insert_dev(target, div2, anchor);
-    			append_dev(div2, br6);
+    			append_dev(div2, br8);
     		},
     		p: noop,
     		i: noop,
@@ -5998,7 +5999,7 @@ var app = (function () {
     			if (detaching) detach_dev(div0);
     			if (detaching) detach_dev(t1);
     			if (detaching) detach_dev(div1);
-    			if (detaching) detach_dev(t6);
+    			if (detaching) detach_dev(t12);
     			if (detaching) detach_dev(div2);
     		}
     	};
@@ -6549,7 +6550,7 @@ var app = (function () {
     			attr_dev(line3, "x2", line3_x__value_1 = (/*paddingLeft*/ ctx[0] - 80) / 2 + /*bigR*/ ctx[17] * 3 + 19);
     			attr_dev(line3, "y2", 2 * /*bigR*/ ctx[17] - /*smallR*/ ctx[18]);
     			add_location(line3, file$2, 120, 4, 3339);
-    			attr_dev(g2, "class", "lines svelte-166hema");
+    			attr_dev(g2, "class", "lines svelte-1k49nyr");
     			add_location(g2, file$2, 101, 2, 2851);
     			attr_dev(circle4, "cx", circle4_cx_value = (/*paddingLeft*/ ctx[0] - 80) / 2);
     			attr_dev(circle4, "cy", circle4_cy_value = /*smallR*/ ctx[18] + 2 * /*bigR*/ ctx[17] + 2 * /*r3*/ ctx[5]);
@@ -6563,7 +6564,7 @@ var app = (function () {
     			attr_dev(circle6, "cy", circle6_cy_value = /*smallR*/ ctx[18] + 2 * /*bigR*/ ctx[17] + 2 * /*r3*/ ctx[5] - /*r1*/ ctx[16] + /*r3*/ ctx[5]);
     			attr_dev(circle6, "r", /*r1*/ ctx[16]);
     			add_location(circle6, file$2, 138, 4, 3768);
-    			attr_dev(g3, "class", "circles-size-legend svelte-166hema");
+    			attr_dev(g3, "class", "circles-size-legend svelte-1k49nyr");
     			add_location(g3, file$2, 127, 2, 3514);
     			attr_dev(line4, "x1", line4_x__value = (/*paddingLeft*/ ctx[0] - 80) / 2);
     			attr_dev(line4, "y1", line4_y__value = /*smallR*/ ctx[18] + 2 * /*bigR*/ ctx[17] + 2 * /*r3*/ ctx[5] - /*r3*/ ctx[5]);
@@ -6580,7 +6581,7 @@ var app = (function () {
     			attr_dev(line6, "x2", line6_x__value_1 = (/*paddingLeft*/ ctx[0] - 80) / 2 + /*r3*/ ctx[5] + 40);
     			attr_dev(line6, "y2", line6_y__value_1 = /*smallR*/ ctx[18] + 2 * /*bigR*/ ctx[17] + 2 * /*r3*/ ctx[5] - 2 * /*r1*/ ctx[16] + /*r3*/ ctx[5]);
     			add_location(line6, file$2, 158, 4, 4290);
-    			attr_dev(g4, "class", "lines svelte-166hema");
+    			attr_dev(g4, "class", "lines svelte-1k49nyr");
     			add_location(g4, file$2, 145, 2, 3888);
     			attr_dev(text6, "x", text6_x_value = (/*paddingLeft*/ ctx[0] - 80) / 2 + /*r3*/ ctx[5] + 40);
     			attr_dev(text6, "y", text6_y_value = /*smallR*/ ctx[18] + 2 * /*bigR*/ ctx[17] + 2 * /*r3*/ ctx[5] - /*r3*/ ctx[5] + 2);
@@ -6591,7 +6592,7 @@ var app = (function () {
     			attr_dev(text8, "x", text8_x_value = (/*paddingLeft*/ ctx[0] - 80) / 2 + /*r3*/ ctx[5] + 40);
     			attr_dev(text8, "y", text8_y_value = /*smallR*/ ctx[18] + 2 * /*bigR*/ ctx[17] + 2 * /*r3*/ ctx[5] - 2 * /*r1*/ ctx[16] + /*r3*/ ctx[5] + 2);
     			add_location(text8, file$2, 177, 4, 4848);
-    			attr_dev(g5, "class", "size-labels svelte-166hema");
+    			attr_dev(g5, "class", "size-labels svelte-1k49nyr");
     			add_location(g5, file$2, 166, 2, 4495);
     			add_location(div, file$2, 191, 4, 5150);
     			attr_dev(foreignObject, "x", "0");
@@ -6612,7 +6613,7 @@ var app = (function () {
     			attr_dev(text11, "y", /*cy75*/ ctx[7]);
     			attr_dev(text11, "text-anchor", "end");
     			add_location(text11, file$2, 270, 4, 8028);
-    			attr_dev(g7, "class", "size-labels svelte-166hema");
+    			attr_dev(g7, "class", "size-labels svelte-1k49nyr");
     			add_location(g7, file$2, 254, 2, 7675);
     			attr_dev(svg, "width", svg_width_value = /*paddingLeft*/ ctx[0] - 80);
     			attr_dev(svg, "height", /*legendHeight*/ ctx[19]);
@@ -7355,12 +7356,12 @@ var app = (function () {
     			attr_dev(foreignObject, "y", "10");
     			attr_dev(foreignObject, "width", foreignObject_width_value = /*paddingLeft*/ ctx[6] - 80);
     			attr_dev(foreignObject, "height", /*height*/ ctx[2]);
-    			attr_dev(foreignObject, "class", "left-menu svelte-1c2n7dq");
-    			add_location(foreignObject, file$1, 116, 6, 4181);
+    			attr_dev(foreignObject, "class", "left-menu svelte-9mvhgf");
+    			add_location(foreignObject, file$1, 116, 6, 4164);
     			attr_dev(svg, "width", /*width*/ ctx[1]);
     			attr_dev(svg, "height", /*height*/ ctx[2]);
-    			attr_dev(svg, "class", "svelte-1c2n7dq");
-    			add_location(svg, file$1, 114, 4, 4046);
+    			attr_dev(svg, "class", "svelte-9mvhgf");
+    			add_location(svg, file$1, 114, 4, 4029);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, svg, anchor);
@@ -7574,9 +7575,9 @@ var app = (function () {
     		c: function create() {
     			div = element("div");
     			if (if_block) if_block.c();
-    			attr_dev(div, "class", "chart svelte-1c2n7dq");
+    			attr_dev(div, "class", "chart svelte-9mvhgf");
     			add_render_callback(() => /*div_elementresize_handler*/ ctx[25].call(div));
-    			add_location(div, file$1, 112, 0, 3946);
+    			add_location(div, file$1, 112, 0, 3929);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -7658,7 +7659,7 @@ var app = (function () {
     	let timelineData;
     	let { $$slots: slots = {}, $$scope } = $$props;
     	validate_slots('ChartHorizontal', slots, []);
-    	let state = "The Grand Budapest Hotel"; //controls the current hovered movie in order to change the color scheme. defaults to grand budapest
+    	let state = "Default"; //controls the current hovered movie in order to change the color scheme. defaults to grand budapest
     	let { data } = $$props;
     	let { xRange } = $$props;
     	let { yRange } = $$props;
@@ -8160,7 +8161,7 @@ var app = (function () {
     		c: function create() {
     			div = element("div");
     			if_block.c();
-    			attr_dev(div, "class", div_class_value = "wrapper " + `wrapper${/*imgNum*/ ctx[3]}` + " svelte-1elxhx9");
+    			attr_dev(div, "class", div_class_value = "wrapper " + `wrapper${/*imgNum*/ ctx[3]}` + " svelte-jnu4kx");
     			add_render_callback(() => /*div_elementresize_handler*/ ctx[9].call(div));
     			add_location(div, file, 16, 0, 341);
     		},
@@ -8200,7 +8201,7 @@ var app = (function () {
     				if_block.m(div, null);
     			}
 
-    			if (!current || dirty & /*imgNum*/ 8 && div_class_value !== (div_class_value = "wrapper " + `wrapper${/*imgNum*/ ctx[3]}` + " svelte-1elxhx9")) {
+    			if (!current || dirty & /*imgNum*/ 8 && div_class_value !== (div_class_value = "wrapper " + `wrapper${/*imgNum*/ ctx[3]}` + " svelte-jnu4kx")) {
     				attr_dev(div, "class", div_class_value);
     			}
     		},
