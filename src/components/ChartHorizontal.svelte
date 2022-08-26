@@ -8,7 +8,7 @@
   import Description from "./Description.svelte";
   import Legend from "./Legend.svelte";
 
-  let state = "The Grand Budapest Hotel"; //controls the current hovered movie in order to change the color scheme. defaults to grand budapest
+  let state = "Default"; //controls the current hovered movie in order to change the color scheme. defaults to grand budapest
   $: colorScheme = movieColors[state];
   $: stateWrapper = state;
 

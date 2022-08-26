@@ -6,7 +6,6 @@
 
   export let timelineData;
   export let height;
-  export let width;
 
   const lineGenerator = line()
     .x((d) => d.x)

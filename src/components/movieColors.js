@@ -1,11 +1,12 @@
 export var movieColors = {
-  // "Bottle Rocket": {
-  //   Budget: "#F23030",
-  //   BoxOff: "#F2CB57",
-  //   StrokeFilled: "#0487D9",
-  //   StrokeEmpty: "#0487D930",
-  //   Timeline: "#2C4001",
-  // },
+  // default colors are those for grand budapest hotel
+  Default: {
+    StrokeFilled: "#4f718d", //"#BF2E21",
+    Budget: "#e57291", //"#7F4667", //"#73436B",
+    BoxOff: "#edc1c2", //"#D98FB1",
+    StrokeEmpty: "#4f718d40",
+    Timeline: "#603a47",
+  },
   "Bottle Rocket": {
     Budget: "#a77520",
     BoxOff: "#f8d75c",

@@ -5,7 +5,6 @@
   import { interpolatePath } from "d3-interpolate-path";
 
   export let timelineData;
-  export let height;
   export let width;
   export let colorScheme;
 

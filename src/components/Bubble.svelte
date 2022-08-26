@@ -21,7 +21,7 @@
   let strokeNum = 40;
   let padding = 4;
 
-  let defaultMovie = "The Grand Budapest Hotel";
+  let defaultMovie = "Default";
 
   $: ratingArr = [
     ...Array(Math.round((rating / 100) * strokeNum)).fill(1),

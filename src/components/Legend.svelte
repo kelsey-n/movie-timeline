@@ -293,12 +293,4 @@
   .size-labels {
     font-size: 8px;
   }
-
-  .filled-stroke {
-    stroke: black;
-  }
-
-  .empty-stroke {
-    stroke: lightgray;
-  }
 </style>
