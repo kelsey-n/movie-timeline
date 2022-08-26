@@ -17,5 +17,10 @@
 <style>
   .title {
     font-size: 20px;
+    margin-right: 12px;
+  }
+
+  .text {
+    margin-right: 12px;
   }
 </style>

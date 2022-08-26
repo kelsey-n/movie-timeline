@@ -161,6 +161,7 @@
 
   .left-menu {
     overflow-y: auto;
+    /* margin-left: 22px;  */
     /* scrollbar-color: red blue;
     scrollbar-width: auto; */
   }
@@ -176,7 +177,7 @@
   } */
 
   ::-webkit-scrollbar {
-    width: 12px;
+    width: 11px;
   }
 
   ::-webkit-scrollbar-track {

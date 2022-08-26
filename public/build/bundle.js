@@ -5427,8 +5427,8 @@ var app = (function () {
       //   Timeline: "#2C4001",
       // },
       "Bottle Rocket": {
-        Budget: "#6779bc",
-        BoxOff: "#d1ab59",
+        Budget: "#a77520",
+        BoxOff: "#f8d75c",
         StrokeFilled: "#3c496d",
         StrokeEmpty: "#3c496d40",
         Timeline: "#8e3d24",
@@ -5441,8 +5441,8 @@ var app = (function () {
       //   Timeline: "#2484BF",
       // },
       Rushmore: {
-        Budget: "#3c5a3e",
-        BoxOff: "#9ba493", //"#F2C641",
+        Budget: "#4675b9", // "#3c5a3e",
+        BoxOff: "#9cc6e3", // "#9ba493", //"#F2C641",
         StrokeFilled: "#99938d",
         StrokeEmpty: "#99938d40",
         Timeline: "#826451",
@@ -5455,15 +5455,15 @@ var app = (function () {
         Timeline: "#64351c",
       },
       "The Life Aquatic with Steve Zissou": {
-        Budget: "#38619a",
-        BoxOff: "#c0b0cc",
+        Budget: "#106970", //"#38619a",
+        BoxOff: "#86bac8", //"#73b9a8", // "#c0b0cc",
         StrokeFilled: "#865536",
         StrokeEmpty: "#86553640",
         Timeline: "#d13b22",
       },
       "The Darjeeling Limited": {
-        Budget: "#0a3c56", //"#F2C53D",
-        BoxOff: "#608b87",
+        Budget: "#34664c", //"#0a3c56", //"#F2C53D",
+        BoxOff: "#82ae99", //"#608b87",
         StrokeFilled: "#958217",
         StrokeEmpty: "#95821740",
         Timeline: "#7a3f01",
@@ -5490,9 +5490,9 @@ var app = (function () {
         Timeline: "#603a47",
       },
       "Isle of Dogs": {
-        Budget: "#901904", //"#631300",
-        BoxOff: "#Ec2a07", // "#e36313",
-        StrokeFilled: "#db7328",
+        Budget: "#941a18", //"#631300",
+        BoxOff: "#ec3e3c", // "#e36313",
+        StrokeFilled: "#a8571f", //"#db7328",
         StrokeEmpty: "#db732840",
         Timeline: "#100302",
       },
@@ -5958,13 +5958,13 @@ var app = (function () {
     			br6 = element("br");
     			add_location(br0, file$3, 0, 54, 54);
     			add_location(br1, file$3, 0, 60, 60);
-    			attr_dev(div0, "class", "title svelte-1hblbwh");
+    			attr_dev(div0, "class", "title svelte-aucz7u");
     			add_location(div0, file$3, 0, 0, 0);
     			add_location(br2, file$3, 8, 69, 626);
     			add_location(br3, file$3, 9, 2, 635);
     			add_location(br4, file$3, 12, 2, 833);
     			add_location(br5, file$3, 12, 9, 840);
-    			attr_dev(div1, "class", "text");
+    			attr_dev(div1, "class", "text svelte-aucz7u");
     			add_location(div1, file$3, 1, 0, 73);
     			add_location(br6, file$3, 14, 5, 859);
     			add_location(div2, file$3, 14, 0, 854);
@@ -7355,11 +7355,11 @@ var app = (function () {
     			attr_dev(foreignObject, "y", "10");
     			attr_dev(foreignObject, "width", foreignObject_width_value = /*paddingLeft*/ ctx[6] - 80);
     			attr_dev(foreignObject, "height", /*height*/ ctx[2]);
-    			attr_dev(foreignObject, "class", "left-menu svelte-l86ri4");
+    			attr_dev(foreignObject, "class", "left-menu svelte-1c2n7dq");
     			add_location(foreignObject, file$1, 116, 6, 4181);
     			attr_dev(svg, "width", /*width*/ ctx[1]);
     			attr_dev(svg, "height", /*height*/ ctx[2]);
-    			attr_dev(svg, "class", "svelte-l86ri4");
+    			attr_dev(svg, "class", "svelte-1c2n7dq");
     			add_location(svg, file$1, 114, 4, 4046);
     		},
     		m: function mount(target, anchor) {
@@ -7574,7 +7574,7 @@ var app = (function () {
     		c: function create() {
     			div = element("div");
     			if (if_block) if_block.c();
-    			attr_dev(div, "class", "chart svelte-l86ri4");
+    			attr_dev(div, "class", "chart svelte-1c2n7dq");
     			add_render_callback(() => /*div_elementresize_handler*/ ctx[25].call(div));
     			add_location(div, file$1, 112, 0, 3946);
     		},
@@ -8160,7 +8160,7 @@ var app = (function () {
     		c: function create() {
     			div = element("div");
     			if_block.c();
-    			attr_dev(div, "class", div_class_value = "wrapper " + `wrapper${/*imgNum*/ ctx[3]}` + " svelte-1y5kb8h");
+    			attr_dev(div, "class", div_class_value = "wrapper " + `wrapper${/*imgNum*/ ctx[3]}` + " svelte-1elxhx9");
     			add_render_callback(() => /*div_elementresize_handler*/ ctx[9].call(div));
     			add_location(div, file, 16, 0, 341);
     		},
@@ -8200,7 +8200,7 @@ var app = (function () {
     				if_block.m(div, null);
     			}
 
-    			if (!current || dirty & /*imgNum*/ 8 && div_class_value !== (div_class_value = "wrapper " + `wrapper${/*imgNum*/ ctx[3]}` + " svelte-1y5kb8h")) {
+    			if (!current || dirty & /*imgNum*/ 8 && div_class_value !== (div_class_value = "wrapper " + `wrapper${/*imgNum*/ ctx[3]}` + " svelte-1elxhx9")) {
     				attr_dev(div, "class", div_class_value);
     			}
     		},

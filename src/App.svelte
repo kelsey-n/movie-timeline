@@ -148,7 +148,7 @@
   .wrapper5::before {
     content: "";
     /* background: url("https://live.staticflickr.com/65535/52254077238_042d4ffc18_c.jpg"); */
-    background: url("https://live.staticflickr.com/65535/52311461540_25d4aa0c01_z.jpg");
+    background: url("https://live.staticflickr.com/65535/52253439748_47c3747f22_z.jpg");
     background-repeat: no-repeat;
     background-position: center top;
     position: absolute;
