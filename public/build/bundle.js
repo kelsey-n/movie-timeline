@@ -2982,6 +2982,7 @@ var app = (function () {
     			attr_dev(text_1, "y", text_1_y_value = /*y*/ ctx[2] + max$1([/*budget*/ ctx[3], /*boxoffice*/ ctx[4]]) * 2 + /*padding*/ ctx[13] + /*strokeLength*/ ctx[6]);
     			attr_dev(text_1, "text-anchor", "middle");
     			attr_dev(text_1, "fill", text_1_fill_value = /*colorScheme*/ ctx[9].Timeline);
+    			attr_dev(text_1, "class", "year-text svelte-1m8a2bh");
     			add_location(text_1, file$7, 138, 4, 3601);
     		},
     		m: function mount(target, anchor) {
@@ -3100,6 +3101,7 @@ var app = (function () {
     			attr_dev(text0, "fill", "white");
     			attr_dev(text0, "stroke-width", "5");
     			attr_dev(text0, "stroke-linejoin", "round");
+    			attr_dev(text0, "class", "svelte-1m8a2bh");
     			add_location(text0, file$7, 115, 4, 3045);
     			xlink_attr(textPath1, "xlink:href", textPath1_xlink_href_value = `#bubble-${/*movie*/ ctx[0]}`);
     			attr_dev(textPath1, "startOffset", "50%");
@@ -3108,6 +3110,7 @@ var app = (function () {
     			attr_dev(text1, "dy", "-3");
     			attr_dev(text1, "font-size", /*strokeLength*/ ctx[6]);
     			attr_dev(text1, "fill", text1_fill_value = /*colorScheme*/ ctx[9].Timeline);
+    			attr_dev(text1, "class", "svelte-1m8a2bh");
     			add_location(text1, file$7, 129, 4, 3348);
     			attr_dev(g1, "transform", g1_transform_value = `translate(${/*x*/ ctx[1]},${/*y*/ ctx[2]})`);
     			add_location(g1, file$7, 111, 2, 2782);
@@ -5898,12 +5901,20 @@ var app = (function () {
     	let t3;
     	let br3;
     	let t4;
-    	let br4;
-    	let t5;
-    	let br5;
+    	let em0;
     	let t6;
-    	let div2;
+    	let em1;
+    	let t8;
+    	let br4;
+    	let t9;
+    	let br5;
+    	let t10;
     	let br6;
+    	let t11;
+    	let br7;
+    	let t12;
+    	let div2;
+    	let br8;
 
     	const block = {
     		c: function create() {
@@ -5913,29 +5924,43 @@ var app = (function () {
     			br1 = element("br");
     			t1 = space();
     			div1 = element("div");
-    			t2 = text("Wes Anderson's masterful eye for crafting a scene is evident in all of his\n  movies. His style has become instantly recognizable and has inspired admiring\n  Instagram accounts such as @accidentallywesanderson and even a book based on\n  the account. This timeline of his movies shows the critical reception and\n  financial reception (budget and box office numbers) of each of his movies.\n  Only in two occasions has his budget exceeded the box office amount - his\n  first movie, Bottle Rocket and The Life Aquatic with Steve Zissou. ");
+    			t2 = text("Wes Anderson's masterful eye for crafting a scene is evident in all of his\n  movies. His style has become instantly recognizable and has inspired admiring\n  Instagram accounts, analyses and articles on his own inspirations. ");
     			br2 = element("br");
     			t3 = space();
     			br3 = element("br");
-    			t4 = text(" This ode to the director also celebrates his skillful use of color -\n  hovering on a movie briefly changes the color scheme of the visualization to\n  that of a chosen scene from the movie.\n  ");
+    			t4 = text("\n  This timeline of his movies shows the critical reception and financial reception\n  (budget and box office numbers) of each of his movies. In only two occasions has\n  his budget exceeded the box office amount - his first movie,\n  ");
+    			em0 = element("em");
+    			em0.textContent = "Bottle Rocket";
+    			t6 = text("\n  and ");
+    			em1 = element("em");
+    			em1.textContent = "The Life Aquatic with Steve Zissou";
+    			t8 = text(". ");
     			br4 = element("br");
-    			t5 = space();
+    			t9 = space();
     			br5 = element("br");
-    			t6 = space();
-    			div2 = element("div");
+    			t10 = text(" This ode to the director also celebrates his skillful use of color -\n  hover on a movie to see more!\n  ");
     			br6 = element("br");
+    			t11 = space();
+    			br7 = element("br");
+    			t12 = space();
+    			div2 = element("div");
+    			br8 = element("br");
     			add_location(br0, file$3, 0, 54, 54);
     			add_location(br1, file$3, 0, 60, 60);
     			attr_dev(div0, "class", "title svelte-aucz7u");
     			add_location(div0, file$3, 0, 0, 0);
-    			add_location(br2, file$3, 8, 69, 626);
-    			add_location(br3, file$3, 9, 2, 635);
-    			add_location(br4, file$3, 12, 2, 833);
-    			add_location(br5, file$3, 12, 9, 840);
+    			add_location(br2, file$3, 4, 69, 318);
+    			add_location(br3, file$3, 5, 2, 327);
+    			add_location(em0, file$3, 9, 2, 565);
+    			add_location(em1, file$3, 10, 6, 594);
+    			add_location(br4, file$3, 10, 51, 639);
+    			add_location(br5, file$3, 11, 2, 648);
+    			add_location(br6, file$3, 13, 2, 758);
+    			add_location(br7, file$3, 13, 9, 765);
     			attr_dev(div1, "class", "text svelte-aucz7u");
     			add_location(div1, file$3, 1, 0, 73);
-    			add_location(br6, file$3, 14, 5, 859);
-    			add_location(div2, file$3, 14, 0, 854);
+    			add_location(br8, file$3, 15, 5, 784);
+    			add_location(div2, file$3, 15, 0, 779);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -5952,12 +5977,20 @@ var app = (function () {
     			append_dev(div1, t3);
     			append_dev(div1, br3);
     			append_dev(div1, t4);
+    			append_dev(div1, em0);
+    			append_dev(div1, t6);
+    			append_dev(div1, em1);
+    			append_dev(div1, t8);
     			append_dev(div1, br4);
-    			append_dev(div1, t5);
+    			append_dev(div1, t9);
     			append_dev(div1, br5);
-    			insert_dev(target, t6, anchor);
+    			append_dev(div1, t10);
+    			append_dev(div1, br6);
+    			append_dev(div1, t11);
+    			append_dev(div1, br7);
+    			insert_dev(target, t12, anchor);
     			insert_dev(target, div2, anchor);
-    			append_dev(div2, br6);
+    			append_dev(div2, br8);
     		},
     		p: noop,
     		i: noop,
@@ -5966,7 +5999,7 @@ var app = (function () {
     			if (detaching) detach_dev(div0);
     			if (detaching) detach_dev(t1);
     			if (detaching) detach_dev(div1);
-    			if (detaching) detach_dev(t6);
+    			if (detaching) detach_dev(t12);
     			if (detaching) detach_dev(div2);
     		}
     	};
@@ -7323,11 +7356,11 @@ var app = (function () {
     			attr_dev(foreignObject, "y", "10");
     			attr_dev(foreignObject, "width", foreignObject_width_value = /*paddingLeft*/ ctx[6] - 80);
     			attr_dev(foreignObject, "height", /*height*/ ctx[2]);
-    			attr_dev(foreignObject, "class", "left-menu svelte-1c2n7dq");
+    			attr_dev(foreignObject, "class", "left-menu svelte-9mvhgf");
     			add_location(foreignObject, file$1, 116, 6, 4164);
     			attr_dev(svg, "width", /*width*/ ctx[1]);
     			attr_dev(svg, "height", /*height*/ ctx[2]);
-    			attr_dev(svg, "class", "svelte-1c2n7dq");
+    			attr_dev(svg, "class", "svelte-9mvhgf");
     			add_location(svg, file$1, 114, 4, 4029);
     		},
     		m: function mount(target, anchor) {
@@ -7542,7 +7575,7 @@ var app = (function () {
     		c: function create() {
     			div = element("div");
     			if (if_block) if_block.c();
-    			attr_dev(div, "class", "chart svelte-1c2n7dq");
+    			attr_dev(div, "class", "chart svelte-9mvhgf");
     			add_render_callback(() => /*div_elementresize_handler*/ ctx[25].call(div));
     			add_location(div, file$1, 112, 0, 3929);
     		},
@@ -8128,7 +8161,7 @@ var app = (function () {
     		c: function create() {
     			div = element("div");
     			if_block.c();
-    			attr_dev(div, "class", div_class_value = "wrapper " + `wrapper${/*imgNum*/ ctx[3]}` + " svelte-1elxhx9");
+    			attr_dev(div, "class", div_class_value = "wrapper " + `wrapper${/*imgNum*/ ctx[3]}` + " svelte-jnu4kx");
     			add_render_callback(() => /*div_elementresize_handler*/ ctx[9].call(div));
     			add_location(div, file, 16, 0, 341);
     		},
@@ -8168,7 +8201,7 @@ var app = (function () {
     				if_block.m(div, null);
     			}
 
-    			if (!current || dirty & /*imgNum*/ 8 && div_class_value !== (div_class_value = "wrapper " + `wrapper${/*imgNum*/ ctx[3]}` + " svelte-1elxhx9")) {
+    			if (!current || dirty & /*imgNum*/ 8 && div_class_value !== (div_class_value = "wrapper " + `wrapper${/*imgNum*/ ctx[3]}` + " svelte-jnu4kx")) {
     				attr_dev(div, "class", div_class_value);
     			}
     		},

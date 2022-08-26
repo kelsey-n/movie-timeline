@@ -155,27 +155,12 @@
   .chart {
     flex: 1;
     width: 100%;
-    /* height: 100%;  */
     overflow: hidden;
   }
 
   .left-menu {
     overflow-y: auto;
-    /* margin-left: 22px;  */
-    /* scrollbar-color: red blue;
-    scrollbar-width: auto; */
   }
-
-  /* .left-menu::-webkit-scrollbar {
-    width: 5px;
-    height: 8px;
-    background-color: #aaa; 
-  }
-
-  .left-menu::-webkit-scrollbar-thumb {
-    background: #000;
-  } */
-
   ::-webkit-scrollbar {
     width: 11px;
   }
@@ -189,9 +174,4 @@
     border-radius: 10px;
     -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
   }
-
-  /* svg {
-    float: left;
-    width: 67%;
-  } */
 </style>

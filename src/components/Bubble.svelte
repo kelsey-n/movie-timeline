@@ -140,12 +140,20 @@
       {x}
       y={y + max([budget, boxoffice]) * 2 + padding + strokeLength}
       text-anchor="middle"
-      fill={colorScheme.Timeline}>{year}</text
+      fill={colorScheme.Timeline}
+      class="year-text">{year}</text
     >
   {/if}
 </g>
 
 <style>
+  text {
+    font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+      "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  }
+  .year-text {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  }
   .tooltip {
     /* display: none;
     opacity: 0;
