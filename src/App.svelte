@@ -76,8 +76,9 @@
 
   .wrapper0::before {
     content: "";
+    /* background: url("https://live.staticflickr.com/65535/52237731696_042c9df85d_z.jpg"); other poster option */
     background: url("https://live.staticflickr.com/65535/52237731696_042c9df85d_z.jpg");
-    /* background: url("https://live.staticflickr.com/65535/52253949498_b0cc054217_b.jpg"); */
+    /* background: url("https://live.staticflickr.com/65535/52254412885_eefa510490_c.jpg"); */
     background-repeat: no-repeat;
     background-position: center top;
     position: absolute;
@@ -90,8 +91,8 @@
 
   .wrapper1::before {
     content: "";
-    /* background: url("https://live.staticflickr.com/65535/52231419199_7245107d9d_z.jpg"); */
-    background: url("https://live.staticflickr.com/65535/52231419199_7245107d9d_z.jpg");
+    /* background: url("https://live.staticflickr.com/65535/52253957596_c4011616c4_c.jpg"); */
+    background: url("https://live.staticflickr.com/65535/52310362999_f31255c65b_z.jpg");
     background-repeat: no-repeat;
     background-position: center top;
     position: absolute;
@@ -105,6 +106,7 @@
   .wrapper2::before {
     content: "";
     background: url("https://live.staticflickr.com/65535/52309487498_820d91884c_z.jpg");
+    /* background: url("https://live.staticflickr.com/65535/52254058613_a6655537c6_c.jpg"); */
     background-repeat: no-repeat;
     background-position: center top;
     position: absolute;
@@ -118,6 +120,7 @@
   .wrapper3::before {
     content: "";
     background: url("https://live.staticflickr.com/65535/52238263810_c392bc7dc9_z.jpg");
+    /* background: url("https://live.staticflickr.com/65535/52254108868_b6ae0fd847_c.jpg"); */
     background-repeat: no-repeat;
     background-position: center top;
     position: absolute;
@@ -131,6 +134,7 @@
   .wrapper4::before {
     content: "";
     background: url("https://live.staticflickr.com/65535/52309535104_6ea3c0b35e_z.jpg");
+    /* background: url("https://live.staticflickr.com/65535/52254405049_6bd82691dd_c.jpg"); */
     background-repeat: no-repeat;
     background-position: center top;
     position: absolute;
@@ -143,7 +147,8 @@
 
   .wrapper5::before {
     content: "";
-    background: url("https://live.staticflickr.com/65535/52254077238_042d4ffc18_c.jpg");
+    /* background: url("https://live.staticflickr.com/65535/52254077238_042d4ffc18_c.jpg"); */
+    background: url("https://live.staticflickr.com/65535/52311461540_25d4aa0c01_z.jpg");
     background-repeat: no-repeat;
     background-position: center top;
     position: absolute;
@@ -156,7 +161,8 @@
 
   .wrapper6::before {
     content: "";
-    background: url("https://live.staticflickr.com/65535/52254536731_59c6397363_c.jpg");
+    /* background: url("https://live.staticflickr.com/65535/52254536731_59c6397363_c.jpg"); */
+    background: url("https://live.staticflickr.com/65535/52310391879_0d2fa5a0dc_z.jpg");
     background-repeat: no-repeat;
     background-position: center top;
     position: absolute;
@@ -170,6 +176,7 @@
   .wrapper7::before {
     content: "";
     background: url("https://live.staticflickr.com/65535/52230771980_4e9fb1051b_z.jpg");
+    /* background: url("https://live.staticflickr.com/65535/52254100516_fc74ea4dae_c.jpg"); */
     background-repeat: no-repeat;
     background-position: center top;
     position: absolute;
@@ -182,7 +189,8 @@
 
   .wrapper8::before {
     content: "";
-    background: url("https://live.staticflickr.com/65535/52254594018_cf22b0b474_c.jpg");
+    /* background: url("https://live.staticflickr.com/65535/52254594018_cf22b0b474_c.jpg"); */
+    background: url("https://live.staticflickr.com/65535/52310356393_992079ba8f_z.jpg");
     background-repeat: no-repeat;
     background-position: center top;
     position: absolute;
@@ -195,7 +203,8 @@
 
   .wrapper9::before {
     content: "";
-    background: url("https://live.staticflickr.com/65535/52255100190_98fde545bc_z.jpg");
+    /* background: url("https://live.staticflickr.com/65535/52255100190_98fde545bc_z.jpg"); */
+    background: url("https://live.staticflickr.com/65535/52310391813_2518bdacc1_z.jpg");
     background-repeat: no-repeat;
     background-position: center top;
     position: absolute;

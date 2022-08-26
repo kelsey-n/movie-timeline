@@ -9,6 +9,8 @@
   let bigR = 23;
   let smallR = 11;
 
+  let legendHeight = 280;
+
   let niceDomain = circleScale.nice().domain();
   $: r2 = circleScale(Math.round((niceDomain[1] + niceDomain[0]) / 2));
   $: r1 = circleScale(Math.round((niceDomain[0] + circleScale.invert(r2)) / 2));
@@ -33,7 +35,7 @@
   $: cy75 = smallR + 2 * bigR + 2 * r3 + r3 + 70;
 </script>
 
-<svg width={paddingLeft - 80} height="100%" overflow="visible">
+<svg width={paddingLeft - 80} height={legendHeight} overflow="visible">
   <g>
     <circle
       cx={(paddingLeft - 80) / 2 - bigR * 2}

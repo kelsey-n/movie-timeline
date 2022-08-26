@@ -1,7 +1,7 @@
 <div class="title">Wes Anderson: Many Hits, Few Misses<br /><br /></div>
 <div class="text">
   Wes Anderson's masterful eye for crafting a scene is evident in all of his
-  movies. His stye has become instantly recognizable and has inspired admiring
+  movies. His style has become instantly recognizable and has inspired admiring
   Instagram accounts such as @accidentallywesanderson and even a book based on
   the account. This timeline of his movies shows the critical reception and
   financial reception (budget and box office numbers) of each of his movies.

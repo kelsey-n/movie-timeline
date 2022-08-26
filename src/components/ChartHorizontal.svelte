@@ -114,7 +114,13 @@
   {#if width && height}
     <svg {width} {height}>
       <!-- nest description & legend in foreignObject to create divs that wrap text & adjust to width -->
-      <foreignObject x="10" y="10" width={paddingLeft - 80} height="100%">
+      <foreignObject
+        x="10"
+        y="10"
+        width={paddingLeft - 80}
+        {height}
+        class="left-menu"
+      >
         <Description />
         <Legend
           {paddingLeft}
@@ -152,6 +158,37 @@
     /* height: 100%;  */
     overflow: hidden;
   }
+
+  .left-menu {
+    overflow-y: auto;
+    /* scrollbar-color: red blue;
+    scrollbar-width: auto; */
+  }
+
+  /* .left-menu::-webkit-scrollbar {
+    width: 5px;
+    height: 8px;
+    background-color: #aaa; 
+  }
+
+  .left-menu::-webkit-scrollbar-thumb {
+    background: #000;
+  } */
+
+  ::-webkit-scrollbar {
+    width: 12px;
+  }
+
+  ::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+  }
+
   /* svg {
     float: left;
     width: 67%;
