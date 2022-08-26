@@ -1,5 +1,5 @@
 
-(function(l, r) { if (!l || l.getElementById('livereloadscript')) return; r = l.createElement('script'); r.async = 1; r.src = '//' + (self.location.host || 'localhost').split(':')[0] + ':35730/livereload.js?snipver=1'; r.id = 'livereloadscript'; l.getElementsByTagName('head')[0].appendChild(r) })(self.document);
+(function(l, r) { if (!l || l.getElementById('livereloadscript')) return; r = l.createElement('script'); r.async = 1; r.src = '//' + (self.location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1'; r.id = 'livereloadscript'; l.getElementsByTagName('head')[0].appendChild(r) })(self.document);
 var app = (function () {
     'use strict';
 
@@ -5945,7 +5945,7 @@ var app = (function () {
     			br1 = element("br");
     			t1 = space();
     			div1 = element("div");
-    			t2 = text("Wes Anderson's masterful eye for crafting a scene is evident in all of his\n  movies. His stye has become instantly recognizable and has inspired admiring\n  Instagram accounts such as @accidentallywesanderson and even a book based on\n  the account. This timeline of his movies shows the critical reception and\n  financial reception (budget and box office numbers) of each of his movies.\n  Only in two occasions has his budget exceeded the box office amount - his\n  first movie, Bottle Rocket and The Life Aquatic with Steve Zissou. ");
+    			t2 = text("Wes Anderson's masterful eye for crafting a scene is evident in all of his\n  movies. His style has become instantly recognizable and has inspired admiring\n  Instagram accounts such as @accidentallywesanderson and even a book based on\n  the account. This timeline of his movies shows the critical reception and\n  financial reception (budget and box office numbers) of each of his movies.\n  Only in two occasions has his budget exceeded the box office amount - his\n  first movie, Bottle Rocket and The Life Aquatic with Steve Zissou. ");
     			br2 = element("br");
     			t3 = space();
     			br3 = element("br");
@@ -5960,14 +5960,14 @@ var app = (function () {
     			add_location(br1, file$3, 0, 60, 60);
     			attr_dev(div0, "class", "title svelte-1hblbwh");
     			add_location(div0, file$3, 0, 0, 0);
-    			add_location(br2, file$3, 8, 69, 625);
-    			add_location(br3, file$3, 9, 2, 634);
-    			add_location(br4, file$3, 12, 2, 832);
-    			add_location(br5, file$3, 12, 9, 839);
+    			add_location(br2, file$3, 8, 69, 626);
+    			add_location(br3, file$3, 9, 2, 635);
+    			add_location(br4, file$3, 12, 2, 833);
+    			add_location(br5, file$3, 12, 9, 840);
     			attr_dev(div1, "class", "text");
     			add_location(div1, file$3, 1, 0, 73);
-    			add_location(br6, file$3, 14, 5, 858);
-    			add_location(div2, file$3, 14, 0, 853);
+    			add_location(br6, file$3, 14, 5, 859);
+    			add_location(div2, file$3, 14, 0, 854);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -6045,26 +6045,26 @@ var app = (function () {
 
     function get_each_context$1(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[22] = list[i];
-    	child_ctx[24] = i;
+    	child_ctx[23] = list[i];
+    	child_ctx[25] = i;
     	return child_ctx;
     }
 
     function get_each_context_1(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[22] = list[i];
-    	child_ctx[24] = i;
+    	child_ctx[23] = list[i];
+    	child_ctx[25] = i;
     	return child_ctx;
     }
 
     function get_each_context_2(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[22] = list[i];
-    	child_ctx[24] = i;
+    	child_ctx[23] = list[i];
+    	child_ctx[25] = i;
     	return child_ctx;
     }
 
-    // (194:4) {#each ratingArr25 as val, idx}
+    // (196:4) {#each ratingArr25 as val, idx}
     function create_each_block_2(ctx) {
     	let line;
     	let line_x__value;
@@ -6077,40 +6077,40 @@ var app = (function () {
     	const block = {
     		c: function create() {
     			line = svg_element("line");
-    			attr_dev(line, "x1", line_x__value = /*cx25*/ ctx[14] + (/*smallR*/ ctx[18] + /*padding*/ ctx[20]) * Math.cos(2 * Math.PI / /*strokeNum*/ ctx[19] * /*idx*/ ctx[24] - Math.PI / 2));
-    			attr_dev(line, "y1", line_y__value = /*cy25*/ ctx[13] + (/*smallR*/ ctx[18] + /*padding*/ ctx[20]) * Math.sin(2 * Math.PI / /*strokeNum*/ ctx[19] * /*idx*/ ctx[24] - Math.PI / 2));
-    			attr_dev(line, "x2", line_x__value_1 = /*cx25*/ ctx[14] + (/*smallR*/ ctx[18] + /*strokeLengthScale*/ ctx[3](/*circleScale*/ ctx[1].invert(/*smallR*/ ctx[18]))) * Math.cos(2 * Math.PI / /*strokeNum*/ ctx[19] * /*idx*/ ctx[24] - Math.PI / 2));
-    			attr_dev(line, "y2", line_y__value_1 = /*cy25*/ ctx[13] + (/*smallR*/ ctx[18] + /*strokeLengthScale*/ ctx[3](/*circleScale*/ ctx[1].invert(/*smallR*/ ctx[18]))) * Math.sin(2 * Math.PI / /*strokeNum*/ ctx[19] * /*idx*/ ctx[24] - Math.PI / 2));
+    			attr_dev(line, "x1", line_x__value = /*cx25*/ ctx[14] + (/*smallR*/ ctx[18] + /*padding*/ ctx[21]) * Math.cos(2 * Math.PI / /*strokeNum*/ ctx[20] * /*idx*/ ctx[25] - Math.PI / 2));
+    			attr_dev(line, "y1", line_y__value = /*cy25*/ ctx[13] + (/*smallR*/ ctx[18] + /*padding*/ ctx[21]) * Math.sin(2 * Math.PI / /*strokeNum*/ ctx[20] * /*idx*/ ctx[25] - Math.PI / 2));
+    			attr_dev(line, "x2", line_x__value_1 = /*cx25*/ ctx[14] + (/*smallR*/ ctx[18] + /*strokeLengthScale*/ ctx[3](/*circleScale*/ ctx[1].invert(/*smallR*/ ctx[18]))) * Math.cos(2 * Math.PI / /*strokeNum*/ ctx[20] * /*idx*/ ctx[25] - Math.PI / 2));
+    			attr_dev(line, "y2", line_y__value_1 = /*cy25*/ ctx[13] + (/*smallR*/ ctx[18] + /*strokeLengthScale*/ ctx[3](/*circleScale*/ ctx[1].invert(/*smallR*/ ctx[18]))) * Math.sin(2 * Math.PI / /*strokeNum*/ ctx[20] * /*idx*/ ctx[25] - Math.PI / 2));
 
-    			attr_dev(line, "stroke", line_stroke_value = /*val*/ ctx[22] === 1
+    			attr_dev(line, "stroke", line_stroke_value = /*val*/ ctx[23] === 1
     			? /*colorScheme*/ ctx[4].StrokeFilled
     			: /*colorScheme*/ ctx[4].StrokeEmpty);
 
     			attr_dev(line, "stroke-width", line_stroke_width_value = /*strokeWidthScale*/ ctx[2](/*circleScale*/ ctx[1].invert(/*smallR*/ ctx[18])));
     			attr_dev(line, "stroke-linecap", "round");
-    			add_location(line, file$2, 194, 6, 5248);
+    			add_location(line, file$2, 196, 6, 5283);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, line, anchor);
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty & /*cx25*/ 16384 && line_x__value !== (line_x__value = /*cx25*/ ctx[14] + (/*smallR*/ ctx[18] + /*padding*/ ctx[20]) * Math.cos(2 * Math.PI / /*strokeNum*/ ctx[19] * /*idx*/ ctx[24] - Math.PI / 2))) {
+    			if (dirty & /*cx25*/ 16384 && line_x__value !== (line_x__value = /*cx25*/ ctx[14] + (/*smallR*/ ctx[18] + /*padding*/ ctx[21]) * Math.cos(2 * Math.PI / /*strokeNum*/ ctx[20] * /*idx*/ ctx[25] - Math.PI / 2))) {
     				attr_dev(line, "x1", line_x__value);
     			}
 
-    			if (dirty & /*cy25*/ 8192 && line_y__value !== (line_y__value = /*cy25*/ ctx[13] + (/*smallR*/ ctx[18] + /*padding*/ ctx[20]) * Math.sin(2 * Math.PI / /*strokeNum*/ ctx[19] * /*idx*/ ctx[24] - Math.PI / 2))) {
+    			if (dirty & /*cy25*/ 8192 && line_y__value !== (line_y__value = /*cy25*/ ctx[13] + (/*smallR*/ ctx[18] + /*padding*/ ctx[21]) * Math.sin(2 * Math.PI / /*strokeNum*/ ctx[20] * /*idx*/ ctx[25] - Math.PI / 2))) {
     				attr_dev(line, "y1", line_y__value);
     			}
 
-    			if (dirty & /*cx25, strokeLengthScale, circleScale*/ 16394 && line_x__value_1 !== (line_x__value_1 = /*cx25*/ ctx[14] + (/*smallR*/ ctx[18] + /*strokeLengthScale*/ ctx[3](/*circleScale*/ ctx[1].invert(/*smallR*/ ctx[18]))) * Math.cos(2 * Math.PI / /*strokeNum*/ ctx[19] * /*idx*/ ctx[24] - Math.PI / 2))) {
+    			if (dirty & /*cx25, strokeLengthScale, circleScale*/ 16394 && line_x__value_1 !== (line_x__value_1 = /*cx25*/ ctx[14] + (/*smallR*/ ctx[18] + /*strokeLengthScale*/ ctx[3](/*circleScale*/ ctx[1].invert(/*smallR*/ ctx[18]))) * Math.cos(2 * Math.PI / /*strokeNum*/ ctx[20] * /*idx*/ ctx[25] - Math.PI / 2))) {
     				attr_dev(line, "x2", line_x__value_1);
     			}
 
-    			if (dirty & /*cy25, strokeLengthScale, circleScale*/ 8202 && line_y__value_1 !== (line_y__value_1 = /*cy25*/ ctx[13] + (/*smallR*/ ctx[18] + /*strokeLengthScale*/ ctx[3](/*circleScale*/ ctx[1].invert(/*smallR*/ ctx[18]))) * Math.sin(2 * Math.PI / /*strokeNum*/ ctx[19] * /*idx*/ ctx[24] - Math.PI / 2))) {
+    			if (dirty & /*cy25, strokeLengthScale, circleScale*/ 8202 && line_y__value_1 !== (line_y__value_1 = /*cy25*/ ctx[13] + (/*smallR*/ ctx[18] + /*strokeLengthScale*/ ctx[3](/*circleScale*/ ctx[1].invert(/*smallR*/ ctx[18]))) * Math.sin(2 * Math.PI / /*strokeNum*/ ctx[20] * /*idx*/ ctx[25] - Math.PI / 2))) {
     				attr_dev(line, "y2", line_y__value_1);
     			}
 
-    			if (dirty & /*ratingArr25, colorScheme*/ 32784 && line_stroke_value !== (line_stroke_value = /*val*/ ctx[22] === 1
+    			if (dirty & /*ratingArr25, colorScheme*/ 32784 && line_stroke_value !== (line_stroke_value = /*val*/ ctx[23] === 1
     			? /*colorScheme*/ ctx[4].StrokeFilled
     			: /*colorScheme*/ ctx[4].StrokeEmpty)) {
     				attr_dev(line, "stroke", line_stroke_value);
@@ -6129,14 +6129,14 @@ var app = (function () {
     		block,
     		id: create_each_block_2.name,
     		type: "each",
-    		source: "(194:4) {#each ratingArr25 as val, idx}",
+    		source: "(196:4) {#each ratingArr25 as val, idx}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (213:4) {#each ratingArr50 as val, idx}
+    // (215:4) {#each ratingArr50 as val, idx}
     function create_each_block_1(ctx) {
     	let line;
     	let line_x__value;
@@ -6149,40 +6149,40 @@ var app = (function () {
     	const block = {
     		c: function create() {
     			line = svg_element("line");
-    			attr_dev(line, "x1", line_x__value = /*cx50*/ ctx[11] + (/*smallR*/ ctx[18] + /*padding*/ ctx[20]) * Math.cos(2 * Math.PI / /*strokeNum*/ ctx[19] * /*idx*/ ctx[24] - Math.PI / 2));
-    			attr_dev(line, "y1", line_y__value = /*cy50*/ ctx[10] + (/*smallR*/ ctx[18] + /*padding*/ ctx[20]) * Math.sin(2 * Math.PI / /*strokeNum*/ ctx[19] * /*idx*/ ctx[24] - Math.PI / 2));
-    			attr_dev(line, "x2", line_x__value_1 = /*cx50*/ ctx[11] + (/*smallR*/ ctx[18] + /*strokeLengthScale*/ ctx[3](/*circleScale*/ ctx[1].invert(/*smallR*/ ctx[18]))) * Math.cos(2 * Math.PI / /*strokeNum*/ ctx[19] * /*idx*/ ctx[24] - Math.PI / 2));
-    			attr_dev(line, "y2", line_y__value_1 = /*cy50*/ ctx[10] + (/*smallR*/ ctx[18] + /*strokeLengthScale*/ ctx[3](/*circleScale*/ ctx[1].invert(/*smallR*/ ctx[18]))) * Math.sin(2 * Math.PI / /*strokeNum*/ ctx[19] * /*idx*/ ctx[24] - Math.PI / 2));
+    			attr_dev(line, "x1", line_x__value = /*cx50*/ ctx[11] + (/*smallR*/ ctx[18] + /*padding*/ ctx[21]) * Math.cos(2 * Math.PI / /*strokeNum*/ ctx[20] * /*idx*/ ctx[25] - Math.PI / 2));
+    			attr_dev(line, "y1", line_y__value = /*cy50*/ ctx[10] + (/*smallR*/ ctx[18] + /*padding*/ ctx[21]) * Math.sin(2 * Math.PI / /*strokeNum*/ ctx[20] * /*idx*/ ctx[25] - Math.PI / 2));
+    			attr_dev(line, "x2", line_x__value_1 = /*cx50*/ ctx[11] + (/*smallR*/ ctx[18] + /*strokeLengthScale*/ ctx[3](/*circleScale*/ ctx[1].invert(/*smallR*/ ctx[18]))) * Math.cos(2 * Math.PI / /*strokeNum*/ ctx[20] * /*idx*/ ctx[25] - Math.PI / 2));
+    			attr_dev(line, "y2", line_y__value_1 = /*cy50*/ ctx[10] + (/*smallR*/ ctx[18] + /*strokeLengthScale*/ ctx[3](/*circleScale*/ ctx[1].invert(/*smallR*/ ctx[18]))) * Math.sin(2 * Math.PI / /*strokeNum*/ ctx[20] * /*idx*/ ctx[25] - Math.PI / 2));
 
-    			attr_dev(line, "stroke", line_stroke_value = /*val*/ ctx[22] === 1
+    			attr_dev(line, "stroke", line_stroke_value = /*val*/ ctx[23] === 1
     			? /*colorScheme*/ ctx[4].StrokeFilled
     			: /*colorScheme*/ ctx[4].StrokeEmpty);
 
     			attr_dev(line, "stroke-width", line_stroke_width_value = /*strokeWidthScale*/ ctx[2](/*circleScale*/ ctx[1].invert(/*smallR*/ ctx[18])));
     			attr_dev(line, "stroke-linecap", "round");
-    			add_location(line, file$2, 213, 6, 6056);
+    			add_location(line, file$2, 215, 6, 6091);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, line, anchor);
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty & /*cx50*/ 2048 && line_x__value !== (line_x__value = /*cx50*/ ctx[11] + (/*smallR*/ ctx[18] + /*padding*/ ctx[20]) * Math.cos(2 * Math.PI / /*strokeNum*/ ctx[19] * /*idx*/ ctx[24] - Math.PI / 2))) {
+    			if (dirty & /*cx50*/ 2048 && line_x__value !== (line_x__value = /*cx50*/ ctx[11] + (/*smallR*/ ctx[18] + /*padding*/ ctx[21]) * Math.cos(2 * Math.PI / /*strokeNum*/ ctx[20] * /*idx*/ ctx[25] - Math.PI / 2))) {
     				attr_dev(line, "x1", line_x__value);
     			}
 
-    			if (dirty & /*cy50*/ 1024 && line_y__value !== (line_y__value = /*cy50*/ ctx[10] + (/*smallR*/ ctx[18] + /*padding*/ ctx[20]) * Math.sin(2 * Math.PI / /*strokeNum*/ ctx[19] * /*idx*/ ctx[24] - Math.PI / 2))) {
+    			if (dirty & /*cy50*/ 1024 && line_y__value !== (line_y__value = /*cy50*/ ctx[10] + (/*smallR*/ ctx[18] + /*padding*/ ctx[21]) * Math.sin(2 * Math.PI / /*strokeNum*/ ctx[20] * /*idx*/ ctx[25] - Math.PI / 2))) {
     				attr_dev(line, "y1", line_y__value);
     			}
 
-    			if (dirty & /*cx50, strokeLengthScale, circleScale*/ 2058 && line_x__value_1 !== (line_x__value_1 = /*cx50*/ ctx[11] + (/*smallR*/ ctx[18] + /*strokeLengthScale*/ ctx[3](/*circleScale*/ ctx[1].invert(/*smallR*/ ctx[18]))) * Math.cos(2 * Math.PI / /*strokeNum*/ ctx[19] * /*idx*/ ctx[24] - Math.PI / 2))) {
+    			if (dirty & /*cx50, strokeLengthScale, circleScale*/ 2058 && line_x__value_1 !== (line_x__value_1 = /*cx50*/ ctx[11] + (/*smallR*/ ctx[18] + /*strokeLengthScale*/ ctx[3](/*circleScale*/ ctx[1].invert(/*smallR*/ ctx[18]))) * Math.cos(2 * Math.PI / /*strokeNum*/ ctx[20] * /*idx*/ ctx[25] - Math.PI / 2))) {
     				attr_dev(line, "x2", line_x__value_1);
     			}
 
-    			if (dirty & /*cy50, strokeLengthScale, circleScale*/ 1034 && line_y__value_1 !== (line_y__value_1 = /*cy50*/ ctx[10] + (/*smallR*/ ctx[18] + /*strokeLengthScale*/ ctx[3](/*circleScale*/ ctx[1].invert(/*smallR*/ ctx[18]))) * Math.sin(2 * Math.PI / /*strokeNum*/ ctx[19] * /*idx*/ ctx[24] - Math.PI / 2))) {
+    			if (dirty & /*cy50, strokeLengthScale, circleScale*/ 1034 && line_y__value_1 !== (line_y__value_1 = /*cy50*/ ctx[10] + (/*smallR*/ ctx[18] + /*strokeLengthScale*/ ctx[3](/*circleScale*/ ctx[1].invert(/*smallR*/ ctx[18]))) * Math.sin(2 * Math.PI / /*strokeNum*/ ctx[20] * /*idx*/ ctx[25] - Math.PI / 2))) {
     				attr_dev(line, "y2", line_y__value_1);
     			}
 
-    			if (dirty & /*ratingArr50, colorScheme*/ 4112 && line_stroke_value !== (line_stroke_value = /*val*/ ctx[22] === 1
+    			if (dirty & /*ratingArr50, colorScheme*/ 4112 && line_stroke_value !== (line_stroke_value = /*val*/ ctx[23] === 1
     			? /*colorScheme*/ ctx[4].StrokeFilled
     			: /*colorScheme*/ ctx[4].StrokeEmpty)) {
     				attr_dev(line, "stroke", line_stroke_value);
@@ -6201,14 +6201,14 @@ var app = (function () {
     		block,
     		id: create_each_block_1.name,
     		type: "each",
-    		source: "(213:4) {#each ratingArr50 as val, idx}",
+    		source: "(215:4) {#each ratingArr50 as val, idx}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (232:4) {#each ratingArr75 as val, idx}
+    // (234:4) {#each ratingArr75 as val, idx}
     function create_each_block$1(ctx) {
     	let line;
     	let line_x__value;
@@ -6221,40 +6221,40 @@ var app = (function () {
     	const block = {
     		c: function create() {
     			line = svg_element("line");
-    			attr_dev(line, "x1", line_x__value = /*cx75*/ ctx[8] + (/*smallR*/ ctx[18] + /*padding*/ ctx[20]) * Math.cos(2 * Math.PI / /*strokeNum*/ ctx[19] * /*idx*/ ctx[24] - Math.PI / 2));
-    			attr_dev(line, "y1", line_y__value = /*cy75*/ ctx[7] + (/*smallR*/ ctx[18] + /*padding*/ ctx[20]) * Math.sin(2 * Math.PI / /*strokeNum*/ ctx[19] * /*idx*/ ctx[24] - Math.PI / 2));
-    			attr_dev(line, "x2", line_x__value_1 = /*cx75*/ ctx[8] + (/*smallR*/ ctx[18] + /*strokeLengthScale*/ ctx[3](/*circleScale*/ ctx[1].invert(/*smallR*/ ctx[18]))) * Math.cos(2 * Math.PI / /*strokeNum*/ ctx[19] * /*idx*/ ctx[24] - Math.PI / 2));
-    			attr_dev(line, "y2", line_y__value_1 = /*cy75*/ ctx[7] + (/*smallR*/ ctx[18] + /*strokeLengthScale*/ ctx[3](/*circleScale*/ ctx[1].invert(/*smallR*/ ctx[18]))) * Math.sin(2 * Math.PI / /*strokeNum*/ ctx[19] * /*idx*/ ctx[24] - Math.PI / 2));
+    			attr_dev(line, "x1", line_x__value = /*cx75*/ ctx[8] + (/*smallR*/ ctx[18] + /*padding*/ ctx[21]) * Math.cos(2 * Math.PI / /*strokeNum*/ ctx[20] * /*idx*/ ctx[25] - Math.PI / 2));
+    			attr_dev(line, "y1", line_y__value = /*cy75*/ ctx[7] + (/*smallR*/ ctx[18] + /*padding*/ ctx[21]) * Math.sin(2 * Math.PI / /*strokeNum*/ ctx[20] * /*idx*/ ctx[25] - Math.PI / 2));
+    			attr_dev(line, "x2", line_x__value_1 = /*cx75*/ ctx[8] + (/*smallR*/ ctx[18] + /*strokeLengthScale*/ ctx[3](/*circleScale*/ ctx[1].invert(/*smallR*/ ctx[18]))) * Math.cos(2 * Math.PI / /*strokeNum*/ ctx[20] * /*idx*/ ctx[25] - Math.PI / 2));
+    			attr_dev(line, "y2", line_y__value_1 = /*cy75*/ ctx[7] + (/*smallR*/ ctx[18] + /*strokeLengthScale*/ ctx[3](/*circleScale*/ ctx[1].invert(/*smallR*/ ctx[18]))) * Math.sin(2 * Math.PI / /*strokeNum*/ ctx[20] * /*idx*/ ctx[25] - Math.PI / 2));
 
-    			attr_dev(line, "stroke", line_stroke_value = /*val*/ ctx[22] === 1
+    			attr_dev(line, "stroke", line_stroke_value = /*val*/ ctx[23] === 1
     			? /*colorScheme*/ ctx[4].StrokeFilled
     			: /*colorScheme*/ ctx[4].StrokeEmpty);
 
     			attr_dev(line, "stroke-width", line_stroke_width_value = /*strokeWidthScale*/ ctx[2](/*circleScale*/ ctx[1].invert(/*smallR*/ ctx[18])));
     			attr_dev(line, "stroke-linecap", "round");
-    			add_location(line, file$2, 232, 6, 6864);
+    			add_location(line, file$2, 234, 6, 6899);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, line, anchor);
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty & /*cx75*/ 256 && line_x__value !== (line_x__value = /*cx75*/ ctx[8] + (/*smallR*/ ctx[18] + /*padding*/ ctx[20]) * Math.cos(2 * Math.PI / /*strokeNum*/ ctx[19] * /*idx*/ ctx[24] - Math.PI / 2))) {
+    			if (dirty & /*cx75*/ 256 && line_x__value !== (line_x__value = /*cx75*/ ctx[8] + (/*smallR*/ ctx[18] + /*padding*/ ctx[21]) * Math.cos(2 * Math.PI / /*strokeNum*/ ctx[20] * /*idx*/ ctx[25] - Math.PI / 2))) {
     				attr_dev(line, "x1", line_x__value);
     			}
 
-    			if (dirty & /*cy75*/ 128 && line_y__value !== (line_y__value = /*cy75*/ ctx[7] + (/*smallR*/ ctx[18] + /*padding*/ ctx[20]) * Math.sin(2 * Math.PI / /*strokeNum*/ ctx[19] * /*idx*/ ctx[24] - Math.PI / 2))) {
+    			if (dirty & /*cy75*/ 128 && line_y__value !== (line_y__value = /*cy75*/ ctx[7] + (/*smallR*/ ctx[18] + /*padding*/ ctx[21]) * Math.sin(2 * Math.PI / /*strokeNum*/ ctx[20] * /*idx*/ ctx[25] - Math.PI / 2))) {
     				attr_dev(line, "y1", line_y__value);
     			}
 
-    			if (dirty & /*cx75, strokeLengthScale, circleScale*/ 266 && line_x__value_1 !== (line_x__value_1 = /*cx75*/ ctx[8] + (/*smallR*/ ctx[18] + /*strokeLengthScale*/ ctx[3](/*circleScale*/ ctx[1].invert(/*smallR*/ ctx[18]))) * Math.cos(2 * Math.PI / /*strokeNum*/ ctx[19] * /*idx*/ ctx[24] - Math.PI / 2))) {
+    			if (dirty & /*cx75, strokeLengthScale, circleScale*/ 266 && line_x__value_1 !== (line_x__value_1 = /*cx75*/ ctx[8] + (/*smallR*/ ctx[18] + /*strokeLengthScale*/ ctx[3](/*circleScale*/ ctx[1].invert(/*smallR*/ ctx[18]))) * Math.cos(2 * Math.PI / /*strokeNum*/ ctx[20] * /*idx*/ ctx[25] - Math.PI / 2))) {
     				attr_dev(line, "x2", line_x__value_1);
     			}
 
-    			if (dirty & /*cy75, strokeLengthScale, circleScale*/ 138 && line_y__value_1 !== (line_y__value_1 = /*cy75*/ ctx[7] + (/*smallR*/ ctx[18] + /*strokeLengthScale*/ ctx[3](/*circleScale*/ ctx[1].invert(/*smallR*/ ctx[18]))) * Math.sin(2 * Math.PI / /*strokeNum*/ ctx[19] * /*idx*/ ctx[24] - Math.PI / 2))) {
+    			if (dirty & /*cy75, strokeLengthScale, circleScale*/ 138 && line_y__value_1 !== (line_y__value_1 = /*cy75*/ ctx[7] + (/*smallR*/ ctx[18] + /*strokeLengthScale*/ ctx[3](/*circleScale*/ ctx[1].invert(/*smallR*/ ctx[18]))) * Math.sin(2 * Math.PI / /*strokeNum*/ ctx[20] * /*idx*/ ctx[25] - Math.PI / 2))) {
     				attr_dev(line, "y2", line_y__value_1);
     			}
 
-    			if (dirty & /*ratingArr75, colorScheme*/ 528 && line_stroke_value !== (line_stroke_value = /*val*/ ctx[22] === 1
+    			if (dirty & /*ratingArr75, colorScheme*/ 528 && line_stroke_value !== (line_stroke_value = /*val*/ ctx[23] === 1
     			? /*colorScheme*/ ctx[4].StrokeFilled
     			: /*colorScheme*/ ctx[4].StrokeEmpty)) {
     				attr_dev(line, "stroke", line_stroke_value);
@@ -6273,7 +6273,7 @@ var app = (function () {
     		block,
     		id: create_each_block$1.name,
     		type: "each",
-    		source: "(232:4) {#each ratingArr75 as val, idx}",
+    		source: "(234:4) {#each ratingArr75 as val, idx}",
     		ctx
     	});
 
@@ -6484,140 +6484,140 @@ var app = (function () {
     			attr_dev(circle0, "cy", /*bigR*/ ctx[17] + /*smallR*/ ctx[18]);
     			attr_dev(circle0, "r", /*bigR*/ ctx[17]);
     			attr_dev(circle0, "fill", circle0_fill_value = /*colorScheme*/ ctx[4].Budget);
-    			add_location(circle0, file$2, 37, 4, 1434);
+    			add_location(circle0, file$2, 39, 4, 1469);
     			attr_dev(circle1, "cx", circle1_cx_value = (/*paddingLeft*/ ctx[0] - 80) / 2 - /*bigR*/ ctx[17] * 2);
     			attr_dev(circle1, "cy", 2 * /*bigR*/ ctx[17]);
     			attr_dev(circle1, "r", /*smallR*/ ctx[18]);
     			attr_dev(circle1, "fill", circle1_fill_value = /*colorScheme*/ ctx[4].BoxOff);
-    			add_location(circle1, file$2, 43, 4, 1570);
+    			add_location(circle1, file$2, 45, 4, 1605);
     			attr_dev(circle2, "cx", circle2_cx_value = (/*paddingLeft*/ ctx[0] - 80) / 2 + /*bigR*/ ctx[17] * 2);
     			attr_dev(circle2, "cy", /*bigR*/ ctx[17] + /*smallR*/ ctx[18]);
     			attr_dev(circle2, "r", /*bigR*/ ctx[17]);
     			attr_dev(circle2, "fill", circle2_fill_value = /*colorScheme*/ ctx[4].BoxOff);
-    			add_location(circle2, file$2, 49, 4, 1703);
+    			add_location(circle2, file$2, 51, 4, 1738);
     			attr_dev(circle3, "cx", circle3_cx_value = (/*paddingLeft*/ ctx[0] - 80) / 2 + /*bigR*/ ctx[17] * 2);
     			attr_dev(circle3, "cy", 2 * /*bigR*/ ctx[17]);
     			attr_dev(circle3, "r", /*smallR*/ ctx[18]);
     			attr_dev(circle3, "fill", circle3_fill_value = /*colorScheme*/ ctx[4].Budget);
-    			add_location(circle3, file$2, 55, 4, 1839);
-    			add_location(g0, file$2, 36, 2, 1426);
+    			add_location(circle3, file$2, 57, 4, 1874);
+    			add_location(g0, file$2, 38, 2, 1461);
     			attr_dev(text0, "x", text0_x_value = (/*paddingLeft*/ ctx[0] - 80) / 2 - /*bigR*/ ctx[17] * 3 - 20);
     			attr_dev(text0, "y", /*smallR*/ ctx[18] + 2);
     			attr_dev(text0, "text-anchor", "end");
     			attr_dev(text0, "font-size", "9");
-    			add_location(text0, file$2, 64, 4, 1986);
+    			add_location(text0, file$2, 66, 4, 2021);
     			attr_dev(text1, "x", text1_x_value = (/*paddingLeft*/ ctx[0] - 80) / 2 - /*bigR*/ ctx[17] * 3 - 20);
     			attr_dev(text1, "y", 2 * /*bigR*/ ctx[17] - /*smallR*/ ctx[18] + 2);
     			attr_dev(text1, "text-anchor", "end");
     			attr_dev(text1, "font-size", "9");
-    			add_location(text1, file$2, 70, 4, 2129);
+    			add_location(text1, file$2, 72, 4, 2164);
     			attr_dev(text2, "x", text2_x_value = (/*paddingLeft*/ ctx[0] - 80) / 2 - /*bigR*/ ctx[17] * 3 - 30);
     			attr_dev(text2, "y", (2 * /*bigR*/ ctx[17] + 4) / 2);
     			attr_dev(text2, "text-anchor", "end");
     			attr_dev(text2, "font-size", "10");
-    			add_location(text2, file$2, 76, 4, 2287);
+    			add_location(text2, file$2, 78, 4, 2322);
     			attr_dev(text3, "x", text3_x_value = (/*paddingLeft*/ ctx[0] - 80) / 2 + /*bigR*/ ctx[17] * 3 + 20);
     			attr_dev(text3, "y", /*smallR*/ ctx[18] + 2);
     			attr_dev(text3, "font-size", "9");
-    			add_location(text3, file$2, 82, 4, 2434);
+    			add_location(text3, file$2, 84, 4, 2469);
     			attr_dev(text4, "x", text4_x_value = (/*paddingLeft*/ ctx[0] - 80) / 2 + /*bigR*/ ctx[17] * 3 + 20);
     			attr_dev(text4, "y", 2 * /*bigR*/ ctx[17] - /*smallR*/ ctx[18] + 2);
     			attr_dev(text4, "font-size", "9");
-    			add_location(text4, file$2, 87, 4, 2557);
+    			add_location(text4, file$2, 89, 4, 2592);
     			attr_dev(text5, "x", text5_x_value = (/*paddingLeft*/ ctx[0] - 80) / 2 + /*bigR*/ ctx[17] * 3 + 30);
     			attr_dev(text5, "y", (2 * /*bigR*/ ctx[17] + 4) / 2);
     			attr_dev(text5, "font-size", "10");
-    			add_location(text5, file$2, 92, 4, 2687);
-    			add_location(g1, file$2, 63, 2, 1978);
+    			add_location(text5, file$2, 94, 4, 2722);
+    			add_location(g1, file$2, 65, 2, 2013);
     			attr_dev(line0, "x1", line0_x__value = (/*paddingLeft*/ ctx[0] - 80) / 2 - /*bigR*/ ctx[17] * 2);
     			attr_dev(line0, "y1", /*smallR*/ ctx[18]);
     			attr_dev(line0, "x2", line0_x__value_1 = (/*paddingLeft*/ ctx[0] - 80) / 2 - /*bigR*/ ctx[17] * 3 - 19);
     			attr_dev(line0, "y2", /*smallR*/ ctx[18]);
-    			add_location(line0, file$2, 100, 4, 2838);
+    			add_location(line0, file$2, 102, 4, 2873);
     			attr_dev(line1, "x1", line1_x__value = (/*paddingLeft*/ ctx[0] - 80) / 2 - /*bigR*/ ctx[17] * 2);
     			attr_dev(line1, "y1", 2 * /*bigR*/ ctx[17] - /*smallR*/ ctx[18]);
     			attr_dev(line1, "x2", line1_x__value_1 = (/*paddingLeft*/ ctx[0] - 80) / 2 - /*bigR*/ ctx[17] * 3 - 19);
     			attr_dev(line1, "y2", 2 * /*bigR*/ ctx[17] - /*smallR*/ ctx[18]);
-    			add_location(line1, file$2, 106, 4, 2986);
+    			add_location(line1, file$2, 108, 4, 3021);
     			attr_dev(line2, "x1", line2_x__value = (/*paddingLeft*/ ctx[0] - 80) / 2 + /*bigR*/ ctx[17] * 2);
     			attr_dev(line2, "y1", /*smallR*/ ctx[18]);
     			attr_dev(line2, "x2", line2_x__value_1 = (/*paddingLeft*/ ctx[0] - 80) / 2 + /*bigR*/ ctx[17] * 3 + 19);
     			attr_dev(line2, "y2", /*smallR*/ ctx[18]);
-    			add_location(line2, file$2, 112, 4, 3156);
+    			add_location(line2, file$2, 114, 4, 3191);
     			attr_dev(line3, "x1", line3_x__value = (/*paddingLeft*/ ctx[0] - 80) / 2 + /*bigR*/ ctx[17] * 2);
     			attr_dev(line3, "y1", 2 * /*bigR*/ ctx[17] - /*smallR*/ ctx[18]);
     			attr_dev(line3, "x2", line3_x__value_1 = (/*paddingLeft*/ ctx[0] - 80) / 2 + /*bigR*/ ctx[17] * 3 + 19);
     			attr_dev(line3, "y2", 2 * /*bigR*/ ctx[17] - /*smallR*/ ctx[18]);
-    			add_location(line3, file$2, 118, 4, 3304);
+    			add_location(line3, file$2, 120, 4, 3339);
     			attr_dev(g2, "class", "lines svelte-166hema");
-    			add_location(g2, file$2, 99, 2, 2816);
+    			add_location(g2, file$2, 101, 2, 2851);
     			attr_dev(circle4, "cx", circle4_cx_value = (/*paddingLeft*/ ctx[0] - 80) / 2);
     			attr_dev(circle4, "cy", circle4_cy_value = /*smallR*/ ctx[18] + 2 * /*bigR*/ ctx[17] + 2 * /*r3*/ ctx[5]);
     			attr_dev(circle4, "r", /*r3*/ ctx[5]);
-    			add_location(circle4, file$2, 126, 4, 3515);
+    			add_location(circle4, file$2, 128, 4, 3550);
     			attr_dev(circle5, "cx", circle5_cx_value = (/*paddingLeft*/ ctx[0] - 80) / 2);
     			attr_dev(circle5, "cy", circle5_cy_value = /*smallR*/ ctx[18] + 2 * /*bigR*/ ctx[17] + 2 * /*r3*/ ctx[5] - /*r2*/ ctx[6] + /*r3*/ ctx[5]);
     			attr_dev(circle5, "r", /*r2*/ ctx[6]);
-    			add_location(circle5, file$2, 131, 4, 3619);
+    			add_location(circle5, file$2, 133, 4, 3654);
     			attr_dev(circle6, "cx", circle6_cx_value = (/*paddingLeft*/ ctx[0] - 80) / 2);
     			attr_dev(circle6, "cy", circle6_cy_value = /*smallR*/ ctx[18] + 2 * /*bigR*/ ctx[17] + 2 * /*r3*/ ctx[5] - /*r1*/ ctx[16] + /*r3*/ ctx[5]);
     			attr_dev(circle6, "r", /*r1*/ ctx[16]);
-    			add_location(circle6, file$2, 136, 4, 3733);
+    			add_location(circle6, file$2, 138, 4, 3768);
     			attr_dev(g3, "class", "circles-size-legend svelte-166hema");
-    			add_location(g3, file$2, 125, 2, 3479);
+    			add_location(g3, file$2, 127, 2, 3514);
     			attr_dev(line4, "x1", line4_x__value = (/*paddingLeft*/ ctx[0] - 80) / 2);
     			attr_dev(line4, "y1", line4_y__value = /*smallR*/ ctx[18] + 2 * /*bigR*/ ctx[17] + 2 * /*r3*/ ctx[5] - /*r3*/ ctx[5]);
     			attr_dev(line4, "x2", line4_x__value_1 = (/*paddingLeft*/ ctx[0] - 80) / 2 + /*r3*/ ctx[5] + 40);
     			attr_dev(line4, "y2", line4_y__value_1 = /*smallR*/ ctx[18] + 2 * /*bigR*/ ctx[17] + 2 * /*r3*/ ctx[5] - /*r3*/ ctx[5]);
-    			add_location(line4, file$2, 144, 4, 3875);
+    			add_location(line4, file$2, 146, 4, 3910);
     			attr_dev(line5, "x1", line5_x__value = (/*paddingLeft*/ ctx[0] - 80) / 2);
     			attr_dev(line5, "y1", line5_y__value = /*smallR*/ ctx[18] + 2 * /*bigR*/ ctx[17] + 2 * /*r3*/ ctx[5] - 2 * /*r2*/ ctx[6] + /*r3*/ ctx[5]);
     			attr_dev(line5, "x2", line5_x__value_1 = (/*paddingLeft*/ ctx[0] - 80) / 2 + /*r3*/ ctx[5] + 40);
     			attr_dev(line5, "y2", line5_y__value_1 = /*smallR*/ ctx[18] + 2 * /*bigR*/ ctx[17] + 2 * /*r3*/ ctx[5] - 2 * /*r2*/ ctx[6] + /*r3*/ ctx[5]);
-    			add_location(line5, file$2, 150, 4, 4056);
+    			add_location(line5, file$2, 152, 4, 4091);
     			attr_dev(line6, "x1", line6_x__value = (/*paddingLeft*/ ctx[0] - 80) / 2);
     			attr_dev(line6, "y1", line6_y__value = /*smallR*/ ctx[18] + 2 * /*bigR*/ ctx[17] + 2 * /*r3*/ ctx[5] - 2 * /*r1*/ ctx[16] + /*r3*/ ctx[5]);
     			attr_dev(line6, "x2", line6_x__value_1 = (/*paddingLeft*/ ctx[0] - 80) / 2 + /*r3*/ ctx[5] + 40);
     			attr_dev(line6, "y2", line6_y__value_1 = /*smallR*/ ctx[18] + 2 * /*bigR*/ ctx[17] + 2 * /*r3*/ ctx[5] - 2 * /*r1*/ ctx[16] + /*r3*/ ctx[5]);
-    			add_location(line6, file$2, 156, 4, 4255);
+    			add_location(line6, file$2, 158, 4, 4290);
     			attr_dev(g4, "class", "lines svelte-166hema");
-    			add_location(g4, file$2, 143, 2, 3853);
+    			add_location(g4, file$2, 145, 2, 3888);
     			attr_dev(text6, "x", text6_x_value = (/*paddingLeft*/ ctx[0] - 80) / 2 + /*r3*/ ctx[5] + 40);
     			attr_dev(text6, "y", text6_y_value = /*smallR*/ ctx[18] + 2 * /*bigR*/ ctx[17] + 2 * /*r3*/ ctx[5] - /*r3*/ ctx[5] + 2);
-    			add_location(text6, file$2, 165, 4, 4488);
+    			add_location(text6, file$2, 167, 4, 4523);
     			attr_dev(text7, "x", text7_x_value = (/*paddingLeft*/ ctx[0] - 80) / 2 + /*r3*/ ctx[5] + 40);
     			attr_dev(text7, "y", text7_y_value = /*smallR*/ ctx[18] + 2 * /*bigR*/ ctx[17] + 2 * /*r3*/ ctx[5] - 2 * /*r2*/ ctx[6] + /*r3*/ ctx[5] + 2);
-    			add_location(text7, file$2, 170, 4, 4646);
+    			add_location(text7, file$2, 172, 4, 4681);
     			attr_dev(text8, "x", text8_x_value = (/*paddingLeft*/ ctx[0] - 80) / 2 + /*r3*/ ctx[5] + 40);
     			attr_dev(text8, "y", text8_y_value = /*smallR*/ ctx[18] + 2 * /*bigR*/ ctx[17] + 2 * /*r3*/ ctx[5] - 2 * /*r1*/ ctx[16] + /*r3*/ ctx[5] + 2);
-    			add_location(text8, file$2, 175, 4, 4813);
+    			add_location(text8, file$2, 177, 4, 4848);
     			attr_dev(g5, "class", "size-labels svelte-166hema");
-    			add_location(g5, file$2, 164, 2, 4460);
-    			add_location(div, file$2, 189, 4, 5115);
+    			add_location(g5, file$2, 166, 2, 4495);
+    			add_location(div, file$2, 191, 4, 5150);
     			attr_dev(foreignObject, "x", "0");
     			attr_dev(foreignObject, "y", foreignObject_y_value = /*cy25*/ ctx[13] - /*smallR*/ ctx[18] * 3.5);
     			attr_dev(foreignObject, "width", foreignObject_width_value = /*paddingLeft*/ ctx[0] - 80);
     			attr_dev(foreignObject, "height", "100%");
     			attr_dev(foreignObject, "font-size", "10px");
-    			add_location(foreignObject, file$2, 182, 2, 4986);
-    			add_location(g6, file$2, 192, 2, 5202);
-    			attr_dev(text9, "x", text9_x_value = /*cx25*/ ctx[14] + /*smallR*/ ctx[18] + /*strokeLengthScale*/ ctx[3](/*circleScale*/ ctx[1].invert(/*smallR*/ ctx[18])) + /*padding*/ ctx[20]);
+    			add_location(foreignObject, file$2, 184, 2, 5021);
+    			add_location(g6, file$2, 194, 2, 5237);
+    			attr_dev(text9, "x", text9_x_value = /*cx25*/ ctx[14] + /*smallR*/ ctx[18] + /*strokeLengthScale*/ ctx[3](/*circleScale*/ ctx[1].invert(/*smallR*/ ctx[18])) + /*padding*/ ctx[21]);
     			attr_dev(text9, "y", /*cy25*/ ctx[13]);
-    			add_location(text9, file$2, 253, 4, 7668);
+    			add_location(text9, file$2, 255, 4, 7703);
     			attr_dev(text10, "x", /*cx50*/ ctx[11]);
-    			attr_dev(text10, "y", text10_y_value = /*cy50*/ ctx[10] + /*smallR*/ ctx[18] + /*strokeLengthScale*/ ctx[3](/*circleScale*/ ctx[1].invert(/*smallR*/ ctx[18])) + /*padding*/ ctx[20] * 3);
+    			attr_dev(text10, "y", text10_y_value = /*cy50*/ ctx[10] + /*smallR*/ ctx[18] + /*strokeLengthScale*/ ctx[3](/*circleScale*/ ctx[1].invert(/*smallR*/ ctx[18])) + /*padding*/ ctx[21] * 3);
     			attr_dev(text10, "text-anchor", "middle");
-    			add_location(text10, file$2, 260, 4, 7815);
-    			attr_dev(text11, "x", text11_x_value = /*cx75*/ ctx[8] - /*smallR*/ ctx[18] - /*strokeLengthScale*/ ctx[3](/*circleScale*/ ctx[1].invert(/*smallR*/ ctx[18])) - /*padding*/ ctx[20]);
+    			add_location(text10, file$2, 262, 4, 7850);
+    			attr_dev(text11, "x", text11_x_value = /*cx75*/ ctx[8] - /*smallR*/ ctx[18] - /*strokeLengthScale*/ ctx[3](/*circleScale*/ ctx[1].invert(/*smallR*/ ctx[18])) - /*padding*/ ctx[21]);
     			attr_dev(text11, "y", /*cy75*/ ctx[7]);
     			attr_dev(text11, "text-anchor", "end");
-    			add_location(text11, file$2, 268, 4, 7993);
+    			add_location(text11, file$2, 270, 4, 8028);
     			attr_dev(g7, "class", "size-labels svelte-166hema");
-    			add_location(g7, file$2, 252, 2, 7640);
+    			add_location(g7, file$2, 254, 2, 7675);
     			attr_dev(svg, "width", svg_width_value = /*paddingLeft*/ ctx[0] - 80);
-    			attr_dev(svg, "height", "100%");
+    			attr_dev(svg, "height", /*legendHeight*/ ctx[19]);
     			attr_dev(svg, "overflow", "visible");
-    			add_location(svg, file$2, 35, 0, 1360);
+    			add_location(svg, file$2, 37, 0, 1387);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -6901,7 +6901,7 @@ var app = (function () {
     				attr_dev(foreignObject, "width", foreignObject_width_value);
     			}
 
-    			if (dirty & /*cx25, smallR, padding, Math, strokeNum, cy25, strokeLengthScale, circleScale, ratingArr25, colorScheme, strokeWidthScale*/ 1892382) {
+    			if (dirty & /*cx25, smallR, padding, Math, strokeNum, cy25, strokeLengthScale, circleScale, ratingArr25, colorScheme, strokeWidthScale*/ 3465246) {
     				each_value_2 = /*ratingArr25*/ ctx[15];
     				validate_each_argument(each_value_2);
     				let i;
@@ -6925,7 +6925,7 @@ var app = (function () {
     				each_blocks_2.length = each_value_2.length;
     			}
 
-    			if (dirty & /*cx50, smallR, padding, Math, strokeNum, cy50, strokeLengthScale, circleScale, ratingArr50, colorScheme, strokeWidthScale*/ 1842206) {
+    			if (dirty & /*cx50, smallR, padding, Math, strokeNum, cy50, strokeLengthScale, circleScale, ratingArr50, colorScheme, strokeWidthScale*/ 3415070) {
     				each_value_1 = /*ratingArr50*/ ctx[12];
     				validate_each_argument(each_value_1);
     				let i;
@@ -6949,7 +6949,7 @@ var app = (function () {
     				each_blocks_1.length = each_value_1.length;
     			}
 
-    			if (dirty & /*cx75, smallR, padding, Math, strokeNum, cy75, strokeLengthScale, circleScale, ratingArr75, colorScheme, strokeWidthScale*/ 1835934) {
+    			if (dirty & /*cx75, smallR, padding, Math, strokeNum, cy75, strokeLengthScale, circleScale, ratingArr75, colorScheme, strokeWidthScale*/ 3408798) {
     				each_value = /*ratingArr75*/ ctx[9];
     				validate_each_argument(each_value);
     				let i;
@@ -6973,7 +6973,7 @@ var app = (function () {
     				each_blocks.length = each_value.length;
     			}
 
-    			if (dirty & /*cx25, strokeLengthScale, circleScale*/ 16394 && text9_x_value !== (text9_x_value = /*cx25*/ ctx[14] + /*smallR*/ ctx[18] + /*strokeLengthScale*/ ctx[3](/*circleScale*/ ctx[1].invert(/*smallR*/ ctx[18])) + /*padding*/ ctx[20])) {
+    			if (dirty & /*cx25, strokeLengthScale, circleScale*/ 16394 && text9_x_value !== (text9_x_value = /*cx25*/ ctx[14] + /*smallR*/ ctx[18] + /*strokeLengthScale*/ ctx[3](/*circleScale*/ ctx[1].invert(/*smallR*/ ctx[18])) + /*padding*/ ctx[21])) {
     				attr_dev(text9, "x", text9_x_value);
     			}
 
@@ -6985,11 +6985,11 @@ var app = (function () {
     				attr_dev(text10, "x", /*cx50*/ ctx[11]);
     			}
 
-    			if (dirty & /*cy50, strokeLengthScale, circleScale*/ 1034 && text10_y_value !== (text10_y_value = /*cy50*/ ctx[10] + /*smallR*/ ctx[18] + /*strokeLengthScale*/ ctx[3](/*circleScale*/ ctx[1].invert(/*smallR*/ ctx[18])) + /*padding*/ ctx[20] * 3)) {
+    			if (dirty & /*cy50, strokeLengthScale, circleScale*/ 1034 && text10_y_value !== (text10_y_value = /*cy50*/ ctx[10] + /*smallR*/ ctx[18] + /*strokeLengthScale*/ ctx[3](/*circleScale*/ ctx[1].invert(/*smallR*/ ctx[18])) + /*padding*/ ctx[21] * 3)) {
     				attr_dev(text10, "y", text10_y_value);
     			}
 
-    			if (dirty & /*cx75, strokeLengthScale, circleScale*/ 266 && text11_x_value !== (text11_x_value = /*cx75*/ ctx[8] - /*smallR*/ ctx[18] - /*strokeLengthScale*/ ctx[3](/*circleScale*/ ctx[1].invert(/*smallR*/ ctx[18])) - /*padding*/ ctx[20])) {
+    			if (dirty & /*cx75, strokeLengthScale, circleScale*/ 266 && text11_x_value !== (text11_x_value = /*cx75*/ ctx[8] - /*smallR*/ ctx[18] - /*strokeLengthScale*/ ctx[3](/*circleScale*/ ctx[1].invert(/*smallR*/ ctx[18])) - /*padding*/ ctx[21])) {
     				attr_dev(text11, "x", text11_x_value);
     			}
 
@@ -7044,6 +7044,7 @@ var app = (function () {
     	let { colorScheme } = $$props;
     	let bigR = 23;
     	let smallR = 11;
+    	let legendHeight = 280;
     	let niceDomain = circleScale.nice().domain();
     	let strokeNum = 40;
     	let padding = 4;
@@ -7077,6 +7078,7 @@ var app = (function () {
     		colorScheme,
     		bigR,
     		smallR,
+    		legendHeight,
     		niceDomain,
     		strokeNum,
     		padding,
@@ -7102,9 +7104,10 @@ var app = (function () {
     		if ('colorScheme' in $$props) $$invalidate(4, colorScheme = $$props.colorScheme);
     		if ('bigR' in $$props) $$invalidate(17, bigR = $$props.bigR);
     		if ('smallR' in $$props) $$invalidate(18, smallR = $$props.smallR);
-    		if ('niceDomain' in $$props) $$invalidate(21, niceDomain = $$props.niceDomain);
-    		if ('strokeNum' in $$props) $$invalidate(19, strokeNum = $$props.strokeNum);
-    		if ('padding' in $$props) $$invalidate(20, padding = $$props.padding);
+    		if ('legendHeight' in $$props) $$invalidate(19, legendHeight = $$props.legendHeight);
+    		if ('niceDomain' in $$props) $$invalidate(22, niceDomain = $$props.niceDomain);
+    		if ('strokeNum' in $$props) $$invalidate(20, strokeNum = $$props.strokeNum);
+    		if ('padding' in $$props) $$invalidate(21, padding = $$props.padding);
     		if ('r3' in $$props) $$invalidate(5, r3 = $$props.r3);
     		if ('cy75' in $$props) $$invalidate(7, cy75 = $$props.cy75);
     		if ('cx75' in $$props) $$invalidate(8, cx75 = $$props.cx75);
@@ -7185,6 +7188,7 @@ var app = (function () {
     		r1,
     		bigR,
     		smallR,
+    		legendHeight,
     		strokeNum,
     		padding
     	];
@@ -7350,10 +7354,12 @@ var app = (function () {
     			attr_dev(foreignObject, "x", "10");
     			attr_dev(foreignObject, "y", "10");
     			attr_dev(foreignObject, "width", foreignObject_width_value = /*paddingLeft*/ ctx[6] - 80);
-    			attr_dev(foreignObject, "height", "100%");
+    			attr_dev(foreignObject, "height", /*height*/ ctx[2]);
+    			attr_dev(foreignObject, "class", "left-menu svelte-l86ri4");
     			add_location(foreignObject, file$1, 116, 6, 4181);
     			attr_dev(svg, "width", /*width*/ ctx[1]);
     			attr_dev(svg, "height", /*height*/ ctx[2]);
+    			attr_dev(svg, "class", "svelte-l86ri4");
     			add_location(svg, file$1, 114, 4, 4046);
     		},
     		m: function mount(target, anchor) {
@@ -7380,6 +7386,10 @@ var app = (function () {
 
     			if (!current || dirty[0] & /*paddingLeft*/ 64 && foreignObject_width_value !== (foreignObject_width_value = /*paddingLeft*/ ctx[6] - 80)) {
     				attr_dev(foreignObject, "width", foreignObject_width_value);
+    			}
+
+    			if (!current || dirty[0] & /*height*/ 4) {
+    				attr_dev(foreignObject, "height", /*height*/ ctx[2]);
     			}
 
     			const timelinehorizontal_changes = {};
@@ -7469,7 +7479,7 @@ var app = (function () {
     	return block;
     }
 
-    // (128:6) {#each renderedData as { movie, x, y, budget, boxoffice, rating, strokeWidth, strokeLength, year }}
+    // (134:6) {#each renderedData as { movie, x, y, budget, boxoffice, rating, strokeWidth, strokeLength, year }}
     function create_each_block(ctx) {
     	let bubble_1;
     	let updating_state;
@@ -7547,7 +7557,7 @@ var app = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(128:6) {#each renderedData as { movie, x, y, budget, boxoffice, rating, strokeWidth, strokeLength, year }}",
+    		source: "(134:6) {#each renderedData as { movie, x, y, budget, boxoffice, rating, strokeWidth, strokeLength, year }}",
     		ctx
     	});
 
@@ -7564,7 +7574,7 @@ var app = (function () {
     		c: function create() {
     			div = element("div");
     			if (if_block) if_block.c();
-    			attr_dev(div, "class", "chart svelte-1g3bi5v");
+    			attr_dev(div, "class", "chart svelte-l86ri4");
     			add_render_callback(() => /*div_elementresize_handler*/ ctx[25].call(div));
     			add_location(div, file$1, 112, 0, 3946);
     		},
@@ -8150,7 +8160,7 @@ var app = (function () {
     		c: function create() {
     			div = element("div");
     			if_block.c();
-    			attr_dev(div, "class", div_class_value = "wrapper " + `wrapper${/*imgNum*/ ctx[3]}` + " svelte-zofniq");
+    			attr_dev(div, "class", div_class_value = "wrapper " + `wrapper${/*imgNum*/ ctx[3]}` + " svelte-1y5kb8h");
     			add_render_callback(() => /*div_elementresize_handler*/ ctx[9].call(div));
     			add_location(div, file, 16, 0, 341);
     		},
@@ -8190,7 +8200,7 @@ var app = (function () {
     				if_block.m(div, null);
     			}
 
-    			if (!current || dirty & /*imgNum*/ 8 && div_class_value !== (div_class_value = "wrapper " + `wrapper${/*imgNum*/ ctx[3]}` + " svelte-zofniq")) {
+    			if (!current || dirty & /*imgNum*/ 8 && div_class_value !== (div_class_value = "wrapper " + `wrapper${/*imgNum*/ ctx[3]}` + " svelte-1y5kb8h")) {
     				attr_dev(div, "class", div_class_value);
     			}
     		},
