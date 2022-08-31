@@ -108,6 +108,7 @@
     };
   });
   let minYear = min(years);
+  let maxYear = max(years);
 </script>
 
 <div class="chart" bind:clientWidth={width} bind:clientHeight={height}>
@@ -144,6 +145,7 @@
           {strokeLength}
           {year}
           {minYear}
+          {maxYear}
           {colorScheme}
         />
       {/each}
@@ -160,6 +162,7 @@
 
   .left-menu {
     overflow-y: auto;
+    background: ghostwhite;
   }
   ::-webkit-scrollbar {
     width: 11px;

@@ -5,8 +5,8 @@
   Instagram accounts, analyses and articles on his own inspirations. <br />
   <br />
   This timeline of his movies shows each one's reception - both critical (Rotten
-  Tomatoes score) and financial (budget and box office numbers). In only two occasions
-  has his budget exceeded the box office amount reaped - his first movie,
+  Tomatoes score) and financial (box office amount relative to budget). In only two
+  occasions has his budget exceeded the box office amount reaped - his first movie,
   <em>Bottle Rocket</em>, and <em>The Life Aquatic with Steve Zissou</em>.
   <br />
   <br /> This ode to the director also celebrates his skillful use of color -
@@ -17,11 +17,13 @@
 
 <style>
   .title {
-    font-size: 20px;
-    margin-right: 12px;
+    font-size: 23px;
+    margin: 8px 12px auto;
+    text-align: center;
+    font-family: "Snell Roundhand", cursive;
   }
 
   .text {
-    margin-right: 12px;
+    margin: auto 12px auto 8px;
   }
 </style>

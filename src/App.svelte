@@ -58,6 +58,8 @@
     width: 100%;
     height: 100%;
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 13px;
+    /* background-color: #f8f8ff; */
   }
 
   .wrapper::before {

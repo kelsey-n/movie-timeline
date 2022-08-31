@@ -12,6 +12,7 @@
   export let strokeLength;
   export let year;
   export let minYear;
+  export let maxYear;
 
   export let state;
   export let colorScheme;
@@ -20,6 +21,7 @@
 
   let strokeNum = 40;
   let padding = 4;
+  const fontSize = strokeLength + 1;
 
   let defaultMovie = "Default";
 
@@ -115,7 +117,7 @@
     <!-- white background for text - so timeline doesn't seem to pass through text -->
     <text
       dy="-3"
-      font-size={strokeLength}
+      font-size={fontSize}
       stroke="white"
       fill="white"
       stroke-width="5"
@@ -127,7 +129,7 @@
         text-anchor="middle">{movie}</textPath
       >
     </text>
-    <text dy="-3" font-size={strokeLength} fill={colorScheme.Timeline}>
+    <text dy="-3" font-size={fontSize} fill={colorScheme.Timeline}>
       <textPath
         xlink:href={`#bubble-${movie}`}
         startOffset="50%"
@@ -135,7 +137,7 @@
       >
     </text></g
   >
-  {#if year === minYear}
+  {#if year === minYear || year === maxYear}
     <text
       {x}
       y={y + max([budget, boxoffice]) * 2 + padding + strokeLength}
