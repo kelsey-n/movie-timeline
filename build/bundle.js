@@ -2733,12 +2733,12 @@ var app = (function () {
 
     function get_each_context$5(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[20] = list[i];
-    	child_ctx[22] = i;
+    	child_ctx[22] = list[i];
+    	child_ctx[24] = i;
     	return child_ctx;
     }
 
-    // (75:4) {:else}
+    // (77:4) {:else}
     function create_else_block$1(ctx) {
     	let circle0;
     	let circle0_fill_value;
@@ -2754,14 +2754,14 @@ var app = (function () {
     			attr_dev(circle0, "cx", /*x*/ ctx[1]);
     			attr_dev(circle0, "cy", /*y*/ ctx[2]);
     			attr_dev(circle0, "r", /*boxoffice*/ ctx[4]);
-    			attr_dev(circle0, "fill", circle0_fill_value = /*colorScheme*/ ctx[9].BoxOff);
-    			add_location(circle0, file$7, 75, 6, 1671);
+    			attr_dev(circle0, "fill", circle0_fill_value = /*colorScheme*/ ctx[10].BoxOff);
+    			add_location(circle0, file$7, 77, 6, 1730);
     			attr_dev(circle1, "class", "budget-circle");
     			attr_dev(circle1, "cx", /*x*/ ctx[1]);
     			attr_dev(circle1, "cy", circle1_cy_value = /*y*/ ctx[2] - /*budget*/ ctx[3] + /*boxoffice*/ ctx[4]);
     			attr_dev(circle1, "r", /*budget*/ ctx[3]);
-    			attr_dev(circle1, "fill", circle1_fill_value = /*colorScheme*/ ctx[9].Budget);
-    			add_location(circle1, file$7, 82, 6, 1813);
+    			attr_dev(circle1, "fill", circle1_fill_value = /*colorScheme*/ ctx[10].Budget);
+    			add_location(circle1, file$7, 84, 6, 1872);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, circle0, anchor);
@@ -2780,7 +2780,7 @@ var app = (function () {
     				attr_dev(circle0, "r", /*boxoffice*/ ctx[4]);
     			}
 
-    			if (dirty & /*colorScheme*/ 512 && circle0_fill_value !== (circle0_fill_value = /*colorScheme*/ ctx[9].BoxOff)) {
+    			if (dirty & /*colorScheme*/ 1024 && circle0_fill_value !== (circle0_fill_value = /*colorScheme*/ ctx[10].BoxOff)) {
     				attr_dev(circle0, "fill", circle0_fill_value);
     			}
 
@@ -2796,7 +2796,7 @@ var app = (function () {
     				attr_dev(circle1, "r", /*budget*/ ctx[3]);
     			}
 
-    			if (dirty & /*colorScheme*/ 512 && circle1_fill_value !== (circle1_fill_value = /*colorScheme*/ ctx[9].Budget)) {
+    			if (dirty & /*colorScheme*/ 1024 && circle1_fill_value !== (circle1_fill_value = /*colorScheme*/ ctx[10].Budget)) {
     				attr_dev(circle1, "fill", circle1_fill_value);
     			}
     		},
@@ -2810,14 +2810,14 @@ var app = (function () {
     		block,
     		id: create_else_block$1.name,
     		type: "else",
-    		source: "(75:4) {:else}",
+    		source: "(77:4) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (60:4) {#if budget > boxoffice}
+    // (62:4) {#if budget > boxoffice}
     function create_if_block_1(ctx) {
     	let circle0;
     	let circle0_fill_value;
@@ -2833,14 +2833,14 @@ var app = (function () {
     			attr_dev(circle0, "cx", /*x*/ ctx[1]);
     			attr_dev(circle0, "cy", /*y*/ ctx[2]);
     			attr_dev(circle0, "r", /*budget*/ ctx[3]);
-    			attr_dev(circle0, "fill", circle0_fill_value = /*colorScheme*/ ctx[9].Budget);
-    			add_location(circle0, file$7, 60, 6, 1360);
+    			attr_dev(circle0, "fill", circle0_fill_value = /*colorScheme*/ ctx[10].Budget);
+    			add_location(circle0, file$7, 62, 6, 1419);
     			attr_dev(circle1, "class", "boxoffice-circle");
     			attr_dev(circle1, "cx", /*x*/ ctx[1]);
     			attr_dev(circle1, "cy", circle1_cy_value = /*y*/ ctx[2] - /*boxoffice*/ ctx[4] + /*budget*/ ctx[3]);
     			attr_dev(circle1, "r", /*boxoffice*/ ctx[4]);
-    			attr_dev(circle1, "fill", circle1_fill_value = /*colorScheme*/ ctx[9].BoxOff);
-    			add_location(circle1, file$7, 67, 6, 1496);
+    			attr_dev(circle1, "fill", circle1_fill_value = /*colorScheme*/ ctx[10].BoxOff);
+    			add_location(circle1, file$7, 69, 6, 1555);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, circle0, anchor);
@@ -2859,7 +2859,7 @@ var app = (function () {
     				attr_dev(circle0, "r", /*budget*/ ctx[3]);
     			}
 
-    			if (dirty & /*colorScheme*/ 512 && circle0_fill_value !== (circle0_fill_value = /*colorScheme*/ ctx[9].Budget)) {
+    			if (dirty & /*colorScheme*/ 1024 && circle0_fill_value !== (circle0_fill_value = /*colorScheme*/ ctx[10].Budget)) {
     				attr_dev(circle0, "fill", circle0_fill_value);
     			}
 
@@ -2875,7 +2875,7 @@ var app = (function () {
     				attr_dev(circle1, "r", /*boxoffice*/ ctx[4]);
     			}
 
-    			if (dirty & /*colorScheme*/ 512 && circle1_fill_value !== (circle1_fill_value = /*colorScheme*/ ctx[9].BoxOff)) {
+    			if (dirty & /*colorScheme*/ 1024 && circle1_fill_value !== (circle1_fill_value = /*colorScheme*/ ctx[10].BoxOff)) {
     				attr_dev(circle1, "fill", circle1_fill_value);
     			}
     		},
@@ -2889,14 +2889,14 @@ var app = (function () {
     		block,
     		id: create_if_block_1.name,
     		type: "if",
-    		source: "(60:4) {#if budget > boxoffice}",
+    		source: "(62:4) {#if budget > boxoffice}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (91:4) {#each ratingArr as val, idx}
+    // (93:4) {#each ratingArr as val, idx}
     function create_each_block$5(ctx) {
     	let line;
     	let line_x__value;
@@ -2908,42 +2908,42 @@ var app = (function () {
     	const block = {
     		c: function create() {
     			line = svg_element("line");
-    			attr_dev(line, "x1", line_x__value = /*x*/ ctx[1] + (max$1([/*budget*/ ctx[3], /*boxoffice*/ ctx[4]]) + /*padding*/ ctx[13]) * Math.cos(2 * Math.PI / /*strokeNum*/ ctx[12] * /*idx*/ ctx[22] - Math.PI / 2));
-    			attr_dev(line, "y1", line_y__value = /*y*/ ctx[2] + (max$1([/*budget*/ ctx[3], /*boxoffice*/ ctx[4]]) + /*padding*/ ctx[13]) * Math.sin(2 * Math.PI / /*strokeNum*/ ctx[12] * /*idx*/ ctx[22] - Math.PI / 2));
-    			attr_dev(line, "x2", line_x__value_1 = /*x*/ ctx[1] + (max$1([/*budget*/ ctx[3], /*boxoffice*/ ctx[4]]) + /*strokeLength*/ ctx[6]) * Math.cos(2 * Math.PI / /*strokeNum*/ ctx[12] * /*idx*/ ctx[22] - Math.PI / 2));
-    			attr_dev(line, "y2", line_y__value_1 = /*y*/ ctx[2] + (max$1([/*budget*/ ctx[3], /*boxoffice*/ ctx[4]]) + /*strokeLength*/ ctx[6]) * Math.sin(2 * Math.PI / /*strokeNum*/ ctx[12] * /*idx*/ ctx[22] - Math.PI / 2));
+    			attr_dev(line, "x1", line_x__value = /*x*/ ctx[1] + (max$1([/*budget*/ ctx[3], /*boxoffice*/ ctx[4]]) + /*padding*/ ctx[14]) * Math.cos(2 * Math.PI / /*strokeNum*/ ctx[13] * /*idx*/ ctx[24] - Math.PI / 2));
+    			attr_dev(line, "y1", line_y__value = /*y*/ ctx[2] + (max$1([/*budget*/ ctx[3], /*boxoffice*/ ctx[4]]) + /*padding*/ ctx[14]) * Math.sin(2 * Math.PI / /*strokeNum*/ ctx[13] * /*idx*/ ctx[24] - Math.PI / 2));
+    			attr_dev(line, "x2", line_x__value_1 = /*x*/ ctx[1] + (max$1([/*budget*/ ctx[3], /*boxoffice*/ ctx[4]]) + /*strokeLength*/ ctx[6]) * Math.cos(2 * Math.PI / /*strokeNum*/ ctx[13] * /*idx*/ ctx[24] - Math.PI / 2));
+    			attr_dev(line, "y2", line_y__value_1 = /*y*/ ctx[2] + (max$1([/*budget*/ ctx[3], /*boxoffice*/ ctx[4]]) + /*strokeLength*/ ctx[6]) * Math.sin(2 * Math.PI / /*strokeNum*/ ctx[13] * /*idx*/ ctx[24] - Math.PI / 2));
 
-    			attr_dev(line, "stroke", line_stroke_value = /*val*/ ctx[20] === 1
-    			? /*colorScheme*/ ctx[9].StrokeFilled
-    			: /*colorScheme*/ ctx[9].StrokeEmpty);
+    			attr_dev(line, "stroke", line_stroke_value = /*val*/ ctx[22] === 1
+    			? /*colorScheme*/ ctx[10].StrokeFilled
+    			: /*colorScheme*/ ctx[10].StrokeEmpty);
 
     			attr_dev(line, "stroke-width", /*strokeWidth*/ ctx[5]);
     			attr_dev(line, "stroke-linecap", "round");
-    			add_location(line, file$7, 91, 6, 2014);
+    			add_location(line, file$7, 93, 6, 2073);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, line, anchor);
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty & /*x, budget, boxoffice*/ 26 && line_x__value !== (line_x__value = /*x*/ ctx[1] + (max$1([/*budget*/ ctx[3], /*boxoffice*/ ctx[4]]) + /*padding*/ ctx[13]) * Math.cos(2 * Math.PI / /*strokeNum*/ ctx[12] * /*idx*/ ctx[22] - Math.PI / 2))) {
+    			if (dirty & /*x, budget, boxoffice*/ 26 && line_x__value !== (line_x__value = /*x*/ ctx[1] + (max$1([/*budget*/ ctx[3], /*boxoffice*/ ctx[4]]) + /*padding*/ ctx[14]) * Math.cos(2 * Math.PI / /*strokeNum*/ ctx[13] * /*idx*/ ctx[24] - Math.PI / 2))) {
     				attr_dev(line, "x1", line_x__value);
     			}
 
-    			if (dirty & /*y, budget, boxoffice*/ 28 && line_y__value !== (line_y__value = /*y*/ ctx[2] + (max$1([/*budget*/ ctx[3], /*boxoffice*/ ctx[4]]) + /*padding*/ ctx[13]) * Math.sin(2 * Math.PI / /*strokeNum*/ ctx[12] * /*idx*/ ctx[22] - Math.PI / 2))) {
+    			if (dirty & /*y, budget, boxoffice*/ 28 && line_y__value !== (line_y__value = /*y*/ ctx[2] + (max$1([/*budget*/ ctx[3], /*boxoffice*/ ctx[4]]) + /*padding*/ ctx[14]) * Math.sin(2 * Math.PI / /*strokeNum*/ ctx[13] * /*idx*/ ctx[24] - Math.PI / 2))) {
     				attr_dev(line, "y1", line_y__value);
     			}
 
-    			if (dirty & /*x, budget, boxoffice, strokeLength*/ 90 && line_x__value_1 !== (line_x__value_1 = /*x*/ ctx[1] + (max$1([/*budget*/ ctx[3], /*boxoffice*/ ctx[4]]) + /*strokeLength*/ ctx[6]) * Math.cos(2 * Math.PI / /*strokeNum*/ ctx[12] * /*idx*/ ctx[22] - Math.PI / 2))) {
+    			if (dirty & /*x, budget, boxoffice, strokeLength*/ 90 && line_x__value_1 !== (line_x__value_1 = /*x*/ ctx[1] + (max$1([/*budget*/ ctx[3], /*boxoffice*/ ctx[4]]) + /*strokeLength*/ ctx[6]) * Math.cos(2 * Math.PI / /*strokeNum*/ ctx[13] * /*idx*/ ctx[24] - Math.PI / 2))) {
     				attr_dev(line, "x2", line_x__value_1);
     			}
 
-    			if (dirty & /*y, budget, boxoffice, strokeLength*/ 92 && line_y__value_1 !== (line_y__value_1 = /*y*/ ctx[2] + (max$1([/*budget*/ ctx[3], /*boxoffice*/ ctx[4]]) + /*strokeLength*/ ctx[6]) * Math.sin(2 * Math.PI / /*strokeNum*/ ctx[12] * /*idx*/ ctx[22] - Math.PI / 2))) {
+    			if (dirty & /*y, budget, boxoffice, strokeLength*/ 92 && line_y__value_1 !== (line_y__value_1 = /*y*/ ctx[2] + (max$1([/*budget*/ ctx[3], /*boxoffice*/ ctx[4]]) + /*strokeLength*/ ctx[6]) * Math.sin(2 * Math.PI / /*strokeNum*/ ctx[13] * /*idx*/ ctx[24] - Math.PI / 2))) {
     				attr_dev(line, "y2", line_y__value_1);
     			}
 
-    			if (dirty & /*ratingArr, colorScheme*/ 2560 && line_stroke_value !== (line_stroke_value = /*val*/ ctx[20] === 1
-    			? /*colorScheme*/ ctx[9].StrokeFilled
-    			: /*colorScheme*/ ctx[9].StrokeEmpty)) {
+    			if (dirty & /*ratingArr, colorScheme*/ 5120 && line_stroke_value !== (line_stroke_value = /*val*/ ctx[22] === 1
+    			? /*colorScheme*/ ctx[10].StrokeFilled
+    			: /*colorScheme*/ ctx[10].StrokeEmpty)) {
     				attr_dev(line, "stroke", line_stroke_value);
     			}
 
@@ -2960,14 +2960,14 @@ var app = (function () {
     		block,
     		id: create_each_block$5.name,
     		type: "each",
-    		source: "(91:4) {#each ratingArr as val, idx}",
+    		source: "(93:4) {#each ratingArr as val, idx}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (138:2) {#if year === minYear}
+    // (140:2) {#if year === minYear || year === maxYear}
     function create_if_block$5(ctx) {
     	let text_1;
     	let t;
@@ -2979,11 +2979,11 @@ var app = (function () {
     			text_1 = svg_element("text");
     			t = text(/*year*/ ctx[7]);
     			attr_dev(text_1, "x", /*x*/ ctx[1]);
-    			attr_dev(text_1, "y", text_1_y_value = /*y*/ ctx[2] + max$1([/*budget*/ ctx[3], /*boxoffice*/ ctx[4]]) * 2 + /*padding*/ ctx[13] + /*strokeLength*/ ctx[6]);
+    			attr_dev(text_1, "y", text_1_y_value = /*y*/ ctx[2] + max$1([/*budget*/ ctx[3], /*boxoffice*/ ctx[4]]) * 2 + /*padding*/ ctx[14] + /*strokeLength*/ ctx[6]);
     			attr_dev(text_1, "text-anchor", "middle");
-    			attr_dev(text_1, "fill", text_1_fill_value = /*colorScheme*/ ctx[9].Timeline);
+    			attr_dev(text_1, "fill", text_1_fill_value = /*colorScheme*/ ctx[10].Timeline);
     			attr_dev(text_1, "class", "year-text svelte-1m8a2bh");
-    			add_location(text_1, file$7, 138, 4, 3601);
+    			add_location(text_1, file$7, 140, 4, 3672);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, text_1, anchor);
@@ -2996,11 +2996,11 @@ var app = (function () {
     				attr_dev(text_1, "x", /*x*/ ctx[1]);
     			}
 
-    			if (dirty & /*y, budget, boxoffice, strokeLength*/ 92 && text_1_y_value !== (text_1_y_value = /*y*/ ctx[2] + max$1([/*budget*/ ctx[3], /*boxoffice*/ ctx[4]]) * 2 + /*padding*/ ctx[13] + /*strokeLength*/ ctx[6])) {
+    			if (dirty & /*y, budget, boxoffice, strokeLength*/ 92 && text_1_y_value !== (text_1_y_value = /*y*/ ctx[2] + max$1([/*budget*/ ctx[3], /*boxoffice*/ ctx[4]]) * 2 + /*padding*/ ctx[14] + /*strokeLength*/ ctx[6])) {
     				attr_dev(text_1, "y", text_1_y_value);
     			}
 
-    			if (dirty & /*colorScheme*/ 512 && text_1_fill_value !== (text_1_fill_value = /*colorScheme*/ ctx[9].Timeline)) {
+    			if (dirty & /*colorScheme*/ 1024 && text_1_fill_value !== (text_1_fill_value = /*colorScheme*/ ctx[10].Timeline)) {
     				attr_dev(text_1, "fill", text_1_fill_value);
     			}
     		},
@@ -3013,7 +3013,7 @@ var app = (function () {
     		block,
     		id: create_if_block$5.name,
     		type: "if",
-    		source: "(138:2) {#if year === minYear}",
+    		source: "(140:2) {#if year === minYear || year === maxYear}",
     		ctx
     	});
 
@@ -3050,7 +3050,7 @@ var app = (function () {
 
     	let current_block_type = select_block_type(ctx);
     	let if_block0 = current_block_type(ctx);
-    	let each_value = /*ratingArr*/ ctx[11];
+    	let each_value = /*ratingArr*/ ctx[12];
     	validate_each_argument(each_value);
     	let each_blocks = [];
 
@@ -3058,7 +3058,7 @@ var app = (function () {
     		each_blocks[i] = create_each_block$5(get_each_context$5(ctx, each_value, i));
     	}
 
-    	let if_block1 = /*year*/ ctx[7] === /*minYear*/ ctx[8] && create_if_block$5(ctx);
+    	let if_block1 = (/*year*/ ctx[7] === /*minYear*/ ctx[8] || /*year*/ ctx[7] === /*maxYear*/ ctx[9]) && create_if_block$5(ctx);
 
     	const block = {
     		c: function create() {
@@ -3083,38 +3083,38 @@ var app = (function () {
     			if (if_block1) if_block1.c();
     			attr_dev(circle, "cx", /*x*/ ctx[1]);
     			attr_dev(circle, "cy", /*y*/ ctx[2]);
-    			attr_dev(circle, "r", circle_r_value = max$1([/*budget*/ ctx[3], /*boxoffice*/ ctx[4]]) + /*padding*/ ctx[13] + /*strokeLength*/ ctx[6]);
+    			attr_dev(circle, "r", circle_r_value = max$1([/*budget*/ ctx[3], /*boxoffice*/ ctx[4]]) + /*padding*/ ctx[14] + /*strokeLength*/ ctx[6]);
     			attr_dev(circle, "fill", "white");
-    			add_location(circle, file$7, 52, 4, 1155);
-    			add_location(g0, file$7, 50, 2, 995);
-    			attr_dev(path, "d", path_d_value = /*arcGenerator*/ ctx[10](/*x*/ ctx[1]));
+    			add_location(circle, file$7, 54, 4, 1214);
+    			add_location(g0, file$7, 52, 2, 1054);
+    			attr_dev(path, "d", path_d_value = /*arcGenerator*/ ctx[11](/*x*/ ctx[1]));
     			attr_dev(path, "fill", "none");
     			attr_dev(path, "id", path_id_value = `bubble-${/*movie*/ ctx[0]}`);
-    			add_location(path, file$7, 113, 4, 2890);
+    			add_location(path, file$7, 115, 4, 2949);
     			xlink_attr(textPath0, "xlink:href", textPath0_xlink_href_value = `#bubble-${/*movie*/ ctx[0]}`);
     			attr_dev(textPath0, "startOffset", "50%");
     			attr_dev(textPath0, "text-anchor", "middle");
-    			add_location(textPath0, file$7, 123, 6, 3201);
+    			add_location(textPath0, file$7, 125, 6, 3256);
     			attr_dev(text0, "dy", "-3");
-    			attr_dev(text0, "font-size", /*strokeLength*/ ctx[6]);
+    			attr_dev(text0, "font-size", /*fontSize*/ ctx[15]);
     			attr_dev(text0, "stroke", "white");
     			attr_dev(text0, "fill", "white");
     			attr_dev(text0, "stroke-width", "5");
     			attr_dev(text0, "stroke-linejoin", "round");
     			attr_dev(text0, "class", "svelte-1m8a2bh");
-    			add_location(text0, file$7, 115, 4, 3045);
+    			add_location(text0, file$7, 117, 4, 3104);
     			xlink_attr(textPath1, "xlink:href", textPath1_xlink_href_value = `#bubble-${/*movie*/ ctx[0]}`);
     			attr_dev(textPath1, "startOffset", "50%");
     			attr_dev(textPath1, "text-anchor", "middle");
-    			add_location(textPath1, file$7, 130, 6, 3422);
+    			add_location(textPath1, file$7, 132, 6, 3473);
     			attr_dev(text1, "dy", "-3");
-    			attr_dev(text1, "font-size", /*strokeLength*/ ctx[6]);
-    			attr_dev(text1, "fill", text1_fill_value = /*colorScheme*/ ctx[9].Timeline);
+    			attr_dev(text1, "font-size", /*fontSize*/ ctx[15]);
+    			attr_dev(text1, "fill", text1_fill_value = /*colorScheme*/ ctx[10].Timeline);
     			attr_dev(text1, "class", "svelte-1m8a2bh");
-    			add_location(text1, file$7, 129, 4, 3348);
+    			add_location(text1, file$7, 131, 4, 3403);
     			attr_dev(g1, "transform", g1_transform_value = `translate(${/*x*/ ctx[1]},${/*y*/ ctx[2]})`);
-    			add_location(g1, file$7, 111, 2, 2782);
-    			add_location(g2, file$7, 49, 0, 989);
+    			add_location(g1, file$7, 113, 2, 2841);
+    			add_location(g2, file$7, 51, 0, 1048);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -3142,8 +3142,8 @@ var app = (function () {
 
     			if (!mounted) {
     				dispose = [
-    					listen_dev(g0, "mouseenter", /*enter*/ ctx[14], false, false, false),
-    					listen_dev(g0, "mouseleave", /*leave*/ ctx[15], false, false, false)
+    					listen_dev(g0, "mouseenter", /*enter*/ ctx[16], false, false, false),
+    					listen_dev(g0, "mouseleave", /*leave*/ ctx[17], false, false, false)
     				];
 
     				mounted = true;
@@ -3158,7 +3158,7 @@ var app = (function () {
     				attr_dev(circle, "cy", /*y*/ ctx[2]);
     			}
 
-    			if (dirty & /*budget, boxoffice, strokeLength*/ 88 && circle_r_value !== (circle_r_value = max$1([/*budget*/ ctx[3], /*boxoffice*/ ctx[4]]) + /*padding*/ ctx[13] + /*strokeLength*/ ctx[6])) {
+    			if (dirty & /*budget, boxoffice, strokeLength*/ 88 && circle_r_value !== (circle_r_value = max$1([/*budget*/ ctx[3], /*boxoffice*/ ctx[4]]) + /*padding*/ ctx[14] + /*strokeLength*/ ctx[6])) {
     				attr_dev(circle, "r", circle_r_value);
     			}
 
@@ -3174,8 +3174,8 @@ var app = (function () {
     				}
     			}
 
-    			if (dirty & /*x, max, budget, boxoffice, padding, Math, strokeNum, y, strokeLength, ratingArr, colorScheme, strokeWidth*/ 14974) {
-    				each_value = /*ratingArr*/ ctx[11];
+    			if (dirty & /*x, max, budget, boxoffice, padding, Math, strokeNum, y, strokeLength, ratingArr, colorScheme, strokeWidth*/ 29822) {
+    				each_value = /*ratingArr*/ ctx[12];
     				validate_each_argument(each_value);
     				let i;
 
@@ -3198,7 +3198,7 @@ var app = (function () {
     				each_blocks.length = each_value.length;
     			}
 
-    			if (dirty & /*arcGenerator, x*/ 1026 && path_d_value !== (path_d_value = /*arcGenerator*/ ctx[10](/*x*/ ctx[1]))) {
+    			if (dirty & /*arcGenerator, x*/ 2050 && path_d_value !== (path_d_value = /*arcGenerator*/ ctx[11](/*x*/ ctx[1]))) {
     				attr_dev(path, "d", path_d_value);
     			}
 
@@ -3212,21 +3212,13 @@ var app = (function () {
     				xlink_attr(textPath0, "xlink:href", textPath0_xlink_href_value);
     			}
 
-    			if (dirty & /*strokeLength*/ 64) {
-    				attr_dev(text0, "font-size", /*strokeLength*/ ctx[6]);
-    			}
-
     			if (dirty & /*movie*/ 1) set_data_dev(t1, /*movie*/ ctx[0]);
 
     			if (dirty & /*movie*/ 1 && textPath1_xlink_href_value !== (textPath1_xlink_href_value = `#bubble-${/*movie*/ ctx[0]}`)) {
     				xlink_attr(textPath1, "xlink:href", textPath1_xlink_href_value);
     			}
 
-    			if (dirty & /*strokeLength*/ 64) {
-    				attr_dev(text1, "font-size", /*strokeLength*/ ctx[6]);
-    			}
-
-    			if (dirty & /*colorScheme*/ 512 && text1_fill_value !== (text1_fill_value = /*colorScheme*/ ctx[9].Timeline)) {
+    			if (dirty & /*colorScheme*/ 1024 && text1_fill_value !== (text1_fill_value = /*colorScheme*/ ctx[10].Timeline)) {
     				attr_dev(text1, "fill", text1_fill_value);
     			}
 
@@ -3234,7 +3226,7 @@ var app = (function () {
     				attr_dev(g1, "transform", g1_transform_value);
     			}
 
-    			if (/*year*/ ctx[7] === /*minYear*/ ctx[8]) {
+    			if (/*year*/ ctx[7] === /*minYear*/ ctx[8] || /*year*/ ctx[7] === /*maxYear*/ ctx[9]) {
     				if (if_block1) {
     					if_block1.p(ctx, dirty);
     				} else {
@@ -3285,21 +3277,23 @@ var app = (function () {
     	let { strokeLength } = $$props;
     	let { year } = $$props;
     	let { minYear } = $$props;
+    	let { maxYear } = $$props;
     	let { state } = $$props;
     	let { colorScheme } = $$props;
     	let hovering;
     	let strokeNum = 40;
     	let padding = 4;
+    	const fontSize = strokeLength + 1;
     	let defaultMovie = "Default";
 
     	function enter() {
     		hovering = true;
-    		$$invalidate(16, state = movie);
+    		$$invalidate(18, state = movie);
     	}
 
     	function leave() {
     		hovering = false;
-    		$$invalidate(16, state = defaultMovie);
+    		$$invalidate(18, state = defaultMovie);
     	}
 
     	const writable_props = [
@@ -3313,6 +3307,7 @@ var app = (function () {
     		'strokeLength',
     		'year',
     		'minYear',
+    		'maxYear',
     		'state',
     		'colorScheme'
     	];
@@ -3327,13 +3322,14 @@ var app = (function () {
     		if ('y' in $$props) $$invalidate(2, y = $$props.y);
     		if ('budget' in $$props) $$invalidate(3, budget = $$props.budget);
     		if ('boxoffice' in $$props) $$invalidate(4, boxoffice = $$props.boxoffice);
-    		if ('rating' in $$props) $$invalidate(17, rating = $$props.rating);
+    		if ('rating' in $$props) $$invalidate(19, rating = $$props.rating);
     		if ('strokeWidth' in $$props) $$invalidate(5, strokeWidth = $$props.strokeWidth);
     		if ('strokeLength' in $$props) $$invalidate(6, strokeLength = $$props.strokeLength);
     		if ('year' in $$props) $$invalidate(7, year = $$props.year);
     		if ('minYear' in $$props) $$invalidate(8, minYear = $$props.minYear);
-    		if ('state' in $$props) $$invalidate(16, state = $$props.state);
-    		if ('colorScheme' in $$props) $$invalidate(9, colorScheme = $$props.colorScheme);
+    		if ('maxYear' in $$props) $$invalidate(9, maxYear = $$props.maxYear);
+    		if ('state' in $$props) $$invalidate(18, state = $$props.state);
+    		if ('colorScheme' in $$props) $$invalidate(10, colorScheme = $$props.colorScheme);
     	};
 
     	$$self.$capture_state = () => ({
@@ -3350,11 +3346,13 @@ var app = (function () {
     		strokeLength,
     		year,
     		minYear,
+    		maxYear,
     		state,
     		colorScheme,
     		hovering,
     		strokeNum,
     		padding,
+    		fontSize,
     		defaultMovie,
     		enter,
     		leave,
@@ -3368,19 +3366,20 @@ var app = (function () {
     		if ('y' in $$props) $$invalidate(2, y = $$props.y);
     		if ('budget' in $$props) $$invalidate(3, budget = $$props.budget);
     		if ('boxoffice' in $$props) $$invalidate(4, boxoffice = $$props.boxoffice);
-    		if ('rating' in $$props) $$invalidate(17, rating = $$props.rating);
+    		if ('rating' in $$props) $$invalidate(19, rating = $$props.rating);
     		if ('strokeWidth' in $$props) $$invalidate(5, strokeWidth = $$props.strokeWidth);
     		if ('strokeLength' in $$props) $$invalidate(6, strokeLength = $$props.strokeLength);
     		if ('year' in $$props) $$invalidate(7, year = $$props.year);
     		if ('minYear' in $$props) $$invalidate(8, minYear = $$props.minYear);
-    		if ('state' in $$props) $$invalidate(16, state = $$props.state);
-    		if ('colorScheme' in $$props) $$invalidate(9, colorScheme = $$props.colorScheme);
+    		if ('maxYear' in $$props) $$invalidate(9, maxYear = $$props.maxYear);
+    		if ('state' in $$props) $$invalidate(18, state = $$props.state);
+    		if ('colorScheme' in $$props) $$invalidate(10, colorScheme = $$props.colorScheme);
     		if ('hovering' in $$props) hovering = $$props.hovering;
-    		if ('strokeNum' in $$props) $$invalidate(12, strokeNum = $$props.strokeNum);
-    		if ('padding' in $$props) $$invalidate(13, padding = $$props.padding);
+    		if ('strokeNum' in $$props) $$invalidate(13, strokeNum = $$props.strokeNum);
+    		if ('padding' in $$props) $$invalidate(14, padding = $$props.padding);
     		if ('defaultMovie' in $$props) defaultMovie = $$props.defaultMovie;
-    		if ('arcGenerator' in $$props) $$invalidate(10, arcGenerator = $$props.arcGenerator);
-    		if ('ratingArr' in $$props) $$invalidate(11, ratingArr = $$props.ratingArr);
+    		if ('arcGenerator' in $$props) $$invalidate(11, arcGenerator = $$props.arcGenerator);
+    		if ('ratingArr' in $$props) $$invalidate(12, ratingArr = $$props.ratingArr);
     	};
 
     	if ($$props && "$$inject" in $$props) {
@@ -3388,13 +3387,13 @@ var app = (function () {
     	}
 
     	$$self.$$.update = () => {
-    		if ($$self.$$.dirty & /*rating*/ 131072) {
-    			$$invalidate(11, ratingArr = [...Array(Math.round(rating / 100 * strokeNum)).fill(1)].concat([...Array(strokeNum - Math.round(rating / 100 * strokeNum)).fill(0)]));
+    		if ($$self.$$.dirty & /*rating*/ 524288) {
+    			$$invalidate(12, ratingArr = [...Array(Math.round(rating / 100 * strokeNum)).fill(1)].concat([...Array(strokeNum - Math.round(rating / 100 * strokeNum)).fill(0)]));
     		}
 
     		if ($$self.$$.dirty & /*budget, boxoffice, strokeLength*/ 88) {
     			// arc generator to draw circle textPath for movie names
-    			$$invalidate(10, arcGenerator = arc().innerRadius(0).outerRadius(max$1([budget, boxoffice]) + padding + strokeLength).startAngle(-Math.PI).endAngle(2 * Math.PI));
+    			$$invalidate(11, arcGenerator = arc().innerRadius(0).outerRadius(max$1([budget, boxoffice]) + padding + strokeLength).startAngle(-Math.PI).endAngle(2 * Math.PI));
     		}
     	};
 
@@ -3408,11 +3407,13 @@ var app = (function () {
     		strokeLength,
     		year,
     		minYear,
+    		maxYear,
     		colorScheme,
     		arcGenerator,
     		ratingArr,
     		strokeNum,
     		padding,
+    		fontSize,
     		enter,
     		leave,
     		state,
@@ -3430,13 +3431,14 @@ var app = (function () {
     			y: 2,
     			budget: 3,
     			boxoffice: 4,
-    			rating: 17,
+    			rating: 19,
     			strokeWidth: 5,
     			strokeLength: 6,
     			year: 7,
     			minYear: 8,
-    			state: 16,
-    			colorScheme: 9
+    			maxYear: 9,
+    			state: 18,
+    			colorScheme: 10
     		});
 
     		dispatch_dev("SvelteRegisterComponent", {
@@ -3469,7 +3471,7 @@ var app = (function () {
     			console.warn("<Bubble> was created without expected prop 'boxoffice'");
     		}
 
-    		if (/*rating*/ ctx[17] === undefined && !('rating' in props)) {
+    		if (/*rating*/ ctx[19] === undefined && !('rating' in props)) {
     			console.warn("<Bubble> was created without expected prop 'rating'");
     		}
 
@@ -3489,11 +3491,15 @@ var app = (function () {
     			console.warn("<Bubble> was created without expected prop 'minYear'");
     		}
 
-    		if (/*state*/ ctx[16] === undefined && !('state' in props)) {
+    		if (/*maxYear*/ ctx[9] === undefined && !('maxYear' in props)) {
+    			console.warn("<Bubble> was created without expected prop 'maxYear'");
+    		}
+
+    		if (/*state*/ ctx[18] === undefined && !('state' in props)) {
     			console.warn("<Bubble> was created without expected prop 'state'");
     		}
 
-    		if (/*colorScheme*/ ctx[9] === undefined && !('colorScheme' in props)) {
+    		if (/*colorScheme*/ ctx[10] === undefined && !('colorScheme' in props)) {
     			console.warn("<Bubble> was created without expected prop 'colorScheme'");
     		}
     	}
@@ -3575,6 +3581,14 @@ var app = (function () {
     	}
 
     	set minYear(value) {
+    		throw new Error("<Bubble>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get maxYear() {
+    		throw new Error("<Bubble>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set maxYear(value) {
     		throw new Error("<Bubble>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
 
@@ -5408,87 +5422,80 @@ var app = (function () {
     var movieColors = {
       // default colors are those for grand budapest hotel
       Default: {
-        StrokeFilled: "#4f718d", //"#BF2E21",
-        Budget: "#e57291", //"#7F4667", //"#73436B",
-        BoxOff: "#edc1c2", //"#D98FB1",
-        StrokeEmpty: "#4f718d40",
+        StrokeFilled: "#4f718d",
+        Budget: "#e57291",
+        BoxOff: "#edc1c2",
+        StrokeEmpty: "#4f718d20",
         Timeline: "#603a47",
       },
       "Bottle Rocket": {
         Budget: "#a77520",
         BoxOff: "#f8d75c",
-        StrokeFilled: "#3c496d",
-        StrokeEmpty: "#3c496d40",
+        StrokeFilled: "#010404",
+        StrokeEmpty: "#01040415",
         Timeline: "#8e3d24",
       },
-      // Rushmore: {
-      //   Budget: "#11C5D9",
-      //   BoxOff: "#FFD145", //"#F2C641",
-      //   StrokeFilled: "#B02624",
-      //   StrokeEmpty: "#B0262440",
-      //   Timeline: "#2484BF",
-      // },
       Rushmore: {
-        Budget: "#4675b9", // "#3c5a3e",
-        BoxOff: "#9cc6e3", // "#9ba493", //"#F2C641",
-        StrokeFilled: "#99938d",
-        StrokeEmpty: "#99938d40",
-        Timeline: "#826451",
+        Budget: "#4675b9",
+        BoxOff: "#9cc6e3",
+        StrokeFilled: "#b30707",
+        StrokeEmpty: "#b3070720",
+        Timeline: "#000000",
       },
       "The Royal Tenenbaums": {
         Budget: "#7d2312",
         BoxOff: "#d98e5a",
-        StrokeFilled: "#c99365",
-        StrokeEmpty: "#c9936540",
+        StrokeFilled: "#930201",
+        StrokeEmpty: "#93020120",
         Timeline: "#64351c",
       },
       "The Life Aquatic with Steve Zissou": {
-        Budget: "#106970", //"#38619a",
-        BoxOff: "#86bac8", //"#73b9a8", // "#c0b0cc",
-        StrokeFilled: "#865536",
-        StrokeEmpty: "#86553640",
-        Timeline: "#d13b22",
+        Budget: "#004d57",
+        BoxOff: "#66a0a7",
+        StrokeFilled: "#7a6831",
+        StrokeEmpty: "#7a683120",
+        Timeline: "#000000",
       },
       "The Darjeeling Limited": {
-        Budget: "#34664c", //"#0a3c56", //"#F2C53D",
-        BoxOff: "#82ae99", //"#608b87",
+        Budget: "#34664c",
+        BoxOff: "#82ae99",
         StrokeFilled: "#958217",
-        StrokeEmpty: "#95821740",
+        StrokeEmpty: "#95821720",
         Timeline: "#7a3f01",
       },
       "Fantastic Mr. Fox": {
         Budget: "#b5591c",
         BoxOff: "#eebe77",
         StrokeFilled: "#842b2e",
-        StrokeEmpty: "#842b2e40", //"#F2832250",
+        StrokeEmpty: "#842b2e20",
         Timeline: "#7f4520",
       },
       "Moonrise Kingdom": {
-        StrokeFilled: "#a37100", //"#BF2E21",
-        Budget: "#5c5a14", //"#7F4667", //"#73436B",
-        BoxOff: "#baa766", //"#D98FB1",
-        StrokeEmpty: "#a3710040",
+        StrokeFilled: "#a37100",
+        Budget: "#5c5a14",
+        BoxOff: "#baa766",
+        StrokeEmpty: "#a3710020",
         Timeline: "#874901",
       },
       "The Grand Budapest Hotel": {
-        StrokeFilled: "#4f718d", //"#BF2E21",
-        Budget: "#e57291", //"#7F4667", //"#73436B",
-        BoxOff: "#edc1c2", //"#D98FB1",
-        StrokeEmpty: "#4f718d40",
+        StrokeFilled: "#4f718d",
+        Budget: "#e57291",
+        BoxOff: "#edc1c2",
+        StrokeEmpty: "#4f718d20",
         Timeline: "#603a47",
       },
       "Isle of Dogs": {
-        Budget: "#941a18", //"#631300",
-        BoxOff: "#ec3e3c", // "#e36313",
-        StrokeFilled: "#a8571f", //"#db7328",
-        StrokeEmpty: "#db732840",
+        Budget: "#941a18",
+        BoxOff: "#ec3e3c",
+        StrokeFilled: "#a8571f",
+        StrokeEmpty: "#db732820",
         Timeline: "#100302",
       },
       "The French Dispatch": {
         Budget: "#F7c61f",
         BoxOff: "#F5e9c0",
-        StrokeFilled: "#57755d",
-        StrokeEmpty: "#57755d40",
+        StrokeFilled: "#2f7070",
+        StrokeEmpty: "#2f707020",
         Timeline: "#754d29",
       },
     };
@@ -5928,7 +5935,7 @@ var app = (function () {
     			br2 = element("br");
     			t3 = space();
     			br3 = element("br");
-    			t4 = text("\n  This timeline of his movies shows each one's reception - both critical (Rotten\n  Tomatoes score) and financial (budget and box office numbers). In only two occasions\n  has his budget exceeded the box office amount reaped - his first movie,\n  ");
+    			t4 = text("\n  This timeline of his movies shows each one's reception - both critical (Rotten\n  Tomatoes score) and financial (box office amount relative to budget). In only two\n  occasions has his budget exceeded the box office amount reaped - his first movie,\n  ");
     			em0 = element("em");
     			em0.textContent = "Bottle Rocket";
     			t6 = text(", and ");
@@ -5947,20 +5954,20 @@ var app = (function () {
     			br8 = element("br");
     			add_location(br0, file$3, 0, 54, 54);
     			add_location(br1, file$3, 0, 60, 60);
-    			attr_dev(div0, "class", "title svelte-aucz7u");
+    			attr_dev(div0, "class", "title svelte-c80o5a");
     			add_location(div0, file$3, 0, 0, 0);
     			add_location(br2, file$3, 4, 69, 314);
     			add_location(br3, file$3, 5, 2, 323);
-    			add_location(em0, file$3, 9, 2, 574);
-    			add_location(em1, file$3, 9, 30, 602);
-    			add_location(br4, file$3, 10, 2, 649);
-    			add_location(br5, file$3, 11, 2, 658);
-    			add_location(br6, file$3, 13, 2, 772);
-    			add_location(br7, file$3, 13, 9, 779);
-    			attr_dev(div1, "class", "text svelte-aucz7u");
+    			add_location(em0, file$3, 9, 2, 581);
+    			add_location(em1, file$3, 9, 30, 609);
+    			add_location(br4, file$3, 10, 2, 656);
+    			add_location(br5, file$3, 11, 2, 665);
+    			add_location(br6, file$3, 13, 2, 779);
+    			add_location(br7, file$3, 13, 9, 786);
+    			attr_dev(div1, "class", "text svelte-c80o5a");
     			add_location(div1, file$3, 1, 0, 73);
-    			add_location(br8, file$3, 15, 5, 798);
-    			add_location(div2, file$3, 15, 0, 793);
+    			add_location(br8, file$3, 15, 5, 805);
+    			add_location(div2, file$3, 15, 0, 800);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -7284,19 +7291,19 @@ var app = (function () {
 
     function get_each_context(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[30] = list[i].movie;
-    	child_ctx[31] = list[i].x;
-    	child_ctx[32] = list[i].y;
-    	child_ctx[33] = list[i].budget;
-    	child_ctx[34] = list[i].boxoffice;
-    	child_ctx[35] = list[i].rating;
-    	child_ctx[36] = list[i].strokeWidth;
-    	child_ctx[37] = list[i].strokeLength;
-    	child_ctx[38] = list[i].year;
+    	child_ctx[31] = list[i].movie;
+    	child_ctx[32] = list[i].x;
+    	child_ctx[33] = list[i].y;
+    	child_ctx[34] = list[i].budget;
+    	child_ctx[35] = list[i].boxoffice;
+    	child_ctx[36] = list[i].rating;
+    	child_ctx[37] = list[i].strokeWidth;
+    	child_ctx[38] = list[i].strokeLength;
+    	child_ctx[39] = list[i].year;
     	return child_ctx;
     }
 
-    // (114:2) {#if width && height}
+    // (115:2) {#if width && height}
     function create_if_block$1(ctx) {
     	let svg;
     	let foreignObject;
@@ -7356,12 +7363,12 @@ var app = (function () {
     			attr_dev(foreignObject, "y", "10");
     			attr_dev(foreignObject, "width", foreignObject_width_value = /*paddingLeft*/ ctx[6] - 80);
     			attr_dev(foreignObject, "height", /*height*/ ctx[2]);
-    			attr_dev(foreignObject, "class", "left-menu svelte-9mvhgf");
-    			add_location(foreignObject, file$1, 116, 6, 4164);
+    			attr_dev(foreignObject, "class", "left-menu svelte-d3k7cc");
+    			add_location(foreignObject, file$1, 117, 6, 4192);
     			attr_dev(svg, "width", /*width*/ ctx[1]);
     			attr_dev(svg, "height", /*height*/ ctx[2]);
-    			attr_dev(svg, "class", "svelte-9mvhgf");
-    			add_location(svg, file$1, 114, 4, 4029);
+    			attr_dev(svg, "class", "svelte-d3k7cc");
+    			add_location(svg, file$1, 115, 4, 4057);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, svg, anchor);
@@ -7400,7 +7407,7 @@ var app = (function () {
     			if (dirty[0] & /*colorScheme*/ 512) timelinehorizontal_changes.colorScheme = /*colorScheme*/ ctx[9];
     			timelinehorizontal.$set(timelinehorizontal_changes);
 
-    			if (dirty[0] & /*renderedData, minYear, colorScheme, state*/ 1793) {
+    			if (dirty[0] & /*renderedData, minYear, maxYear, colorScheme, state*/ 3841) {
     				each_value = /*renderedData*/ ctx[8];
     				validate_each_argument(each_value);
     				let i;
@@ -7473,34 +7480,35 @@ var app = (function () {
     		block,
     		id: create_if_block$1.name,
     		type: "if",
-    		source: "(114:2) {#if width && height}",
+    		source: "(115:2) {#if width && height}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (134:6) {#each renderedData as { movie, x, y, budget, boxoffice, rating, strokeWidth, strokeLength, year }}
+    // (135:6) {#each renderedData as { movie, x, y, budget, boxoffice, rating, strokeWidth, strokeLength, year }}
     function create_each_block(ctx) {
     	let bubble_1;
     	let updating_state;
     	let current;
 
     	function bubble_1_state_binding(value) {
-    		/*bubble_1_state_binding*/ ctx[24](value);
+    		/*bubble_1_state_binding*/ ctx[25](value);
     	}
 
     	let bubble_1_props = {
-    		movie: /*movie*/ ctx[30],
-    		x: /*x*/ ctx[31],
-    		y: /*y*/ ctx[32],
-    		budget: /*budget*/ ctx[33],
-    		boxoffice: /*boxoffice*/ ctx[34],
-    		rating: /*rating*/ ctx[35],
-    		strokeWidth: /*strokeWidth*/ ctx[36],
-    		strokeLength: /*strokeLength*/ ctx[37],
-    		year: /*year*/ ctx[38],
+    		movie: /*movie*/ ctx[31],
+    		x: /*x*/ ctx[32],
+    		y: /*y*/ ctx[33],
+    		budget: /*budget*/ ctx[34],
+    		boxoffice: /*boxoffice*/ ctx[35],
+    		rating: /*rating*/ ctx[36],
+    		strokeWidth: /*strokeWidth*/ ctx[37],
+    		strokeLength: /*strokeLength*/ ctx[38],
+    		year: /*year*/ ctx[39],
     		minYear: /*minYear*/ ctx[10],
+    		maxYear: /*maxYear*/ ctx[11],
     		colorScheme: /*colorScheme*/ ctx[9]
     	};
 
@@ -7521,15 +7529,15 @@ var app = (function () {
     		},
     		p: function update(ctx, dirty) {
     			const bubble_1_changes = {};
-    			if (dirty[0] & /*renderedData*/ 256) bubble_1_changes.movie = /*movie*/ ctx[30];
-    			if (dirty[0] & /*renderedData*/ 256) bubble_1_changes.x = /*x*/ ctx[31];
-    			if (dirty[0] & /*renderedData*/ 256) bubble_1_changes.y = /*y*/ ctx[32];
-    			if (dirty[0] & /*renderedData*/ 256) bubble_1_changes.budget = /*budget*/ ctx[33];
-    			if (dirty[0] & /*renderedData*/ 256) bubble_1_changes.boxoffice = /*boxoffice*/ ctx[34];
-    			if (dirty[0] & /*renderedData*/ 256) bubble_1_changes.rating = /*rating*/ ctx[35];
-    			if (dirty[0] & /*renderedData*/ 256) bubble_1_changes.strokeWidth = /*strokeWidth*/ ctx[36];
-    			if (dirty[0] & /*renderedData*/ 256) bubble_1_changes.strokeLength = /*strokeLength*/ ctx[37];
-    			if (dirty[0] & /*renderedData*/ 256) bubble_1_changes.year = /*year*/ ctx[38];
+    			if (dirty[0] & /*renderedData*/ 256) bubble_1_changes.movie = /*movie*/ ctx[31];
+    			if (dirty[0] & /*renderedData*/ 256) bubble_1_changes.x = /*x*/ ctx[32];
+    			if (dirty[0] & /*renderedData*/ 256) bubble_1_changes.y = /*y*/ ctx[33];
+    			if (dirty[0] & /*renderedData*/ 256) bubble_1_changes.budget = /*budget*/ ctx[34];
+    			if (dirty[0] & /*renderedData*/ 256) bubble_1_changes.boxoffice = /*boxoffice*/ ctx[35];
+    			if (dirty[0] & /*renderedData*/ 256) bubble_1_changes.rating = /*rating*/ ctx[36];
+    			if (dirty[0] & /*renderedData*/ 256) bubble_1_changes.strokeWidth = /*strokeWidth*/ ctx[37];
+    			if (dirty[0] & /*renderedData*/ 256) bubble_1_changes.strokeLength = /*strokeLength*/ ctx[38];
+    			if (dirty[0] & /*renderedData*/ 256) bubble_1_changes.year = /*year*/ ctx[39];
     			if (dirty[0] & /*colorScheme*/ 512) bubble_1_changes.colorScheme = /*colorScheme*/ ctx[9];
 
     			if (!updating_state && dirty[0] & /*state*/ 1) {
@@ -7558,7 +7566,7 @@ var app = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(134:6) {#each renderedData as { movie, x, y, budget, boxoffice, rating, strokeWidth, strokeLength, year }}",
+    		source: "(135:6) {#each renderedData as { movie, x, y, budget, boxoffice, rating, strokeWidth, strokeLength, year }}",
     		ctx
     	});
 
@@ -7575,9 +7583,9 @@ var app = (function () {
     		c: function create() {
     			div = element("div");
     			if (if_block) if_block.c();
-    			attr_dev(div, "class", "chart svelte-9mvhgf");
-    			add_render_callback(() => /*div_elementresize_handler*/ ctx[25].call(div));
-    			add_location(div, file$1, 112, 0, 3929);
+    			attr_dev(div, "class", "chart svelte-d3k7cc");
+    			add_render_callback(() => /*div_elementresize_handler*/ ctx[26].call(div));
+    			add_location(div, file$1, 113, 0, 3957);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -7585,7 +7593,7 @@ var app = (function () {
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
     			if (if_block) if_block.m(div, null);
-    			div_resize_listener = add_resize_listener(div, /*div_elementresize_handler*/ ctx[25].bind(div));
+    			div_resize_listener = add_resize_listener(div, /*div_elementresize_handler*/ ctx[26].bind(div));
     			current = true;
     		},
     		p: function update(ctx, dirty) {
@@ -7674,6 +7682,7 @@ var app = (function () {
 
     	let allYears = [];
     	let minYear = min$1(years);
+    	let maxYear = max$1(years);
     	const writable_props = ['data', 'xRange', 'yRange', 'circleDomain', 'stateWrapper'];
 
     	Object.keys($$props).forEach(key => {
@@ -7693,11 +7702,11 @@ var app = (function () {
     	}
 
     	$$self.$$set = $$props => {
-    		if ('data' in $$props) $$invalidate(12, data = $$props.data);
-    		if ('xRange' in $$props) $$invalidate(13, xRange = $$props.xRange);
-    		if ('yRange' in $$props) $$invalidate(14, yRange = $$props.yRange);
-    		if ('circleDomain' in $$props) $$invalidate(15, circleDomain = $$props.circleDomain);
-    		if ('stateWrapper' in $$props) $$invalidate(11, stateWrapper = $$props.stateWrapper);
+    		if ('data' in $$props) $$invalidate(13, data = $$props.data);
+    		if ('xRange' in $$props) $$invalidate(14, xRange = $$props.xRange);
+    		if ('yRange' in $$props) $$invalidate(15, yRange = $$props.yRange);
+    		if ('circleDomain' in $$props) $$invalidate(16, circleDomain = $$props.circleDomain);
+    		if ('stateWrapper' in $$props) $$invalidate(12, stateWrapper = $$props.stateWrapper);
     	};
 
     	$$self.$capture_state = () => ({
@@ -7722,6 +7731,7 @@ var app = (function () {
     		years,
     		allYears,
     		minYear,
+    		maxYear,
     		yScale,
     		xScale,
     		timelineData,
@@ -7743,29 +7753,30 @@ var app = (function () {
 
     	$$self.$inject_state = $$props => {
     		if ('state' in $$props) $$invalidate(0, state = $$props.state);
-    		if ('data' in $$props) $$invalidate(12, data = $$props.data);
-    		if ('xRange' in $$props) $$invalidate(13, xRange = $$props.xRange);
-    		if ('yRange' in $$props) $$invalidate(14, yRange = $$props.yRange);
-    		if ('circleDomain' in $$props) $$invalidate(15, circleDomain = $$props.circleDomain);
-    		if ('stateWrapper' in $$props) $$invalidate(11, stateWrapper = $$props.stateWrapper);
+    		if ('data' in $$props) $$invalidate(13, data = $$props.data);
+    		if ('xRange' in $$props) $$invalidate(14, xRange = $$props.xRange);
+    		if ('yRange' in $$props) $$invalidate(15, yRange = $$props.yRange);
+    		if ('circleDomain' in $$props) $$invalidate(16, circleDomain = $$props.circleDomain);
+    		if ('stateWrapper' in $$props) $$invalidate(12, stateWrapper = $$props.stateWrapper);
     		if ('width' in $$props) $$invalidate(1, width = $$props.width);
     		if ('height' in $$props) $$invalidate(2, height = $$props.height);
-    		if ('allYears' in $$props) $$invalidate(29, allYears = $$props.allYears);
+    		if ('allYears' in $$props) $$invalidate(30, allYears = $$props.allYears);
     		if ('minYear' in $$props) $$invalidate(10, minYear = $$props.minYear);
-    		if ('yScale' in $$props) $$invalidate(16, yScale = $$props.yScale);
-    		if ('xScale' in $$props) $$invalidate(17, xScale = $$props.xScale);
+    		if ('maxYear' in $$props) $$invalidate(11, maxYear = $$props.maxYear);
+    		if ('yScale' in $$props) $$invalidate(17, yScale = $$props.yScale);
+    		if ('xScale' in $$props) $$invalidate(18, xScale = $$props.xScale);
     		if ('timelineData' in $$props) $$invalidate(7, timelineData = $$props.timelineData);
     		if ('strokeLengthScale' in $$props) $$invalidate(3, strokeLengthScale = $$props.strokeLengthScale);
     		if ('strokeWidthScale' in $$props) $$invalidate(4, strokeWidthScale = $$props.strokeWidthScale);
     		if ('circleScale' in $$props) $$invalidate(5, circleScale = $$props.circleScale);
     		if ('renderedData' in $$props) $$invalidate(8, renderedData = $$props.renderedData);
     		if ('strokeNumScale' in $$props) strokeNumScale = $$props.strokeNumScale;
-    		if ('innerWidth' in $$props) $$invalidate(18, innerWidth = $$props.innerWidth);
-    		if ('yearsDiff' in $$props) $$invalidate(19, yearsDiff = $$props.yearsDiff);
-    		if ('yearsArr' in $$props) $$invalidate(20, yearsArr = $$props.yearsArr);
-    		if ('paddingBottom' in $$props) $$invalidate(21, paddingBottom = $$props.paddingBottom);
-    		if ('paddingTop' in $$props) $$invalidate(22, paddingTop = $$props.paddingTop);
-    		if ('paddingRight' in $$props) $$invalidate(23, paddingRight = $$props.paddingRight);
+    		if ('innerWidth' in $$props) $$invalidate(19, innerWidth = $$props.innerWidth);
+    		if ('yearsDiff' in $$props) $$invalidate(20, yearsDiff = $$props.yearsDiff);
+    		if ('yearsArr' in $$props) $$invalidate(21, yearsArr = $$props.yearsArr);
+    		if ('paddingBottom' in $$props) $$invalidate(22, paddingBottom = $$props.paddingBottom);
+    		if ('paddingTop' in $$props) $$invalidate(23, paddingTop = $$props.paddingTop);
+    		if ('paddingRight' in $$props) $$invalidate(24, paddingRight = $$props.paddingRight);
     		if ('paddingLeft' in $$props) $$invalidate(6, paddingLeft = $$props.paddingLeft);
     		if ('innerHeight' in $$props) innerHeight = $$props.innerHeight;
     		if ('colorScheme' in $$props) $$invalidate(9, colorScheme = $$props.colorScheme);
@@ -7781,15 +7792,15 @@ var app = (function () {
     		}
 
     		if ($$self.$$.dirty[0] & /*state*/ 1) {
-    			$$invalidate(11, stateWrapper = state);
+    			$$invalidate(12, stateWrapper = state);
     		}
 
     		if ($$self.$$.dirty[0] & /*height*/ 4) {
-    			$$invalidate(22, paddingTop = height / 10); //TODO: make dynamic based on window dimensions
+    			$$invalidate(23, paddingTop = height / 10); //TODO: make dynamic based on window dimensions
     		}
 
     		if ($$self.$$.dirty[0] & /*height*/ 4) {
-    			$$invalidate(21, paddingBottom = height / 10);
+    			$$invalidate(22, paddingBottom = height / 10);
     		}
 
     		if ($$self.$$.dirty[0] & /*width*/ 2) {
@@ -7797,53 +7808,53 @@ var app = (function () {
     		}
 
     		if ($$self.$$.dirty[0] & /*height*/ 4) {
-    			$$invalidate(23, paddingRight = height / 10);
+    			$$invalidate(24, paddingRight = height / 10);
     		}
 
-    		if ($$self.$$.dirty[0] & /*width, paddingLeft, paddingRight*/ 8388674) {
-    			$$invalidate(18, innerWidth = width - paddingLeft - paddingRight);
+    		if ($$self.$$.dirty[0] & /*width, paddingLeft, paddingRight*/ 16777282) {
+    			$$invalidate(19, innerWidth = width - paddingLeft - paddingRight);
     		}
 
-    		if ($$self.$$.dirty[0] & /*height, paddingTop, paddingBottom*/ 6291460) {
+    		if ($$self.$$.dirty[0] & /*height, paddingTop, paddingBottom*/ 12582916) {
     			innerHeight = height - paddingTop - paddingBottom;
     		}
 
-    		if ($$self.$$.dirty[0] & /*xRange, paddingLeft, width, paddingRight*/ 8396866) {
-    			$$invalidate(17, xScale = linear().domain(xRange).range([paddingLeft, width - paddingRight]));
+    		if ($$self.$$.dirty[0] & /*xRange, paddingLeft, width, paddingRight*/ 16793666) {
+    			$$invalidate(18, xScale = linear().domain(xRange).range([paddingLeft, width - paddingRight]));
     		}
 
-    		if ($$self.$$.dirty[0] & /*yRange, paddingTop, height, paddingBottom*/ 6307844) {
-    			$$invalidate(16, yScale = linear().domain(yRange).range([paddingTop, height - paddingBottom]));
+    		if ($$self.$$.dirty[0] & /*yRange, paddingTop, height, paddingBottom*/ 12615684) {
+    			$$invalidate(17, yScale = linear().domain(yRange).range([paddingTop, height - paddingBottom]));
     		}
 
-    		if ($$self.$$.dirty[0] & /*yearsArr, yearsDiff*/ 1572864) {
+    		if ($$self.$$.dirty[0] & /*yearsArr, yearsDiff*/ 3145728) {
     			yearsArr.forEach((year, idx) => {
     				if (yearsArr[idx - 1]) yearsDiff.push(yearsArr[idx] - yearsArr[idx - 1]);
     			});
     		}
 
-    		if ($$self.$$.dirty[0] & /*circleDomain, yearsDiff, innerWidth*/ 819200) {
+    		if ($$self.$$.dirty[0] & /*circleDomain, yearsDiff, innerWidth*/ 1638400) {
     			$$invalidate(5, circleScale = sqrt$1().domain(circleDomain).range(min$1(yearsDiff) < 2
     			? [1, (innerWidth / 10 - 11 * 2) / 2]
     			: [1, innerWidth / 10 / 2]));
     		}
 
-    		if ($$self.$$.dirty[0] & /*circleDomain*/ 32768) {
+    		if ($$self.$$.dirty[0] & /*circleDomain*/ 65536) {
     			// create scales to map radius to number of strokes, stroke width and stroke length
     			// scaleQuantize maps a continuous domain to a discrete range
     			strokeNumScale = quantize().domain(circleDomain).range([30, 40]); //currently not using
     		}
 
-    		if ($$self.$$.dirty[0] & /*circleDomain*/ 32768) {
+    		if ($$self.$$.dirty[0] & /*circleDomain*/ 65536) {
     			$$invalidate(4, strokeWidthScale = linear().domain(circleDomain).range([1.5, 3]));
     		}
 
-    		if ($$self.$$.dirty[0] & /*circleDomain*/ 32768) {
+    		if ($$self.$$.dirty[0] & /*circleDomain*/ 65536) {
     			// $: strokeLengthScale = scaleLinear().domain(circleDomain).range([9, 14]);
     			$$invalidate(3, strokeLengthScale = linear().domain(circleDomain).range([7, 11]));
     		}
 
-    		if ($$self.$$.dirty[0] & /*data, xScale, yScale, circleScale, strokeWidthScale, strokeLengthScale*/ 200760) {
+    		if ($$self.$$.dirty[0] & /*data, xScale, yScale, circleScale, strokeWidthScale, strokeLengthScale*/ 401464) {
     			$$invalidate(8, renderedData = data.map(d => {
     				return {
     					movie: d.Movie,
@@ -7863,7 +7874,7 @@ var app = (function () {
     			}));
     		}
 
-    		if ($$self.$$.dirty[0] & /*data, xScale, yScale*/ 200704) {
+    		if ($$self.$$.dirty[0] & /*data, xScale, yScale*/ 401408) {
     			$$invalidate(7, timelineData = allYears.map(d => {
     				return {
     					year: d.Year,
@@ -7877,8 +7888,8 @@ var app = (function () {
     		}
     	};
 
-    	$$invalidate(20, yearsArr = [...years]);
-    	$$invalidate(19, yearsDiff = []);
+    	$$invalidate(21, yearsArr = [...years]);
+    	$$invalidate(20, yearsDiff = []);
 
     	for (let currYear = min$1(years); currYear <= max$1(years); currYear++) {
     		allYears.push({ Year: currYear });
@@ -7896,6 +7907,7 @@ var app = (function () {
     		renderedData,
     		colorScheme,
     		minYear,
+    		maxYear,
     		stateWrapper,
     		data,
     		xRange,
@@ -7925,11 +7937,11 @@ var app = (function () {
     			create_fragment$1,
     			safe_not_equal,
     			{
-    				data: 12,
-    				xRange: 13,
-    				yRange: 14,
-    				circleDomain: 15,
-    				stateWrapper: 11
+    				data: 13,
+    				xRange: 14,
+    				yRange: 15,
+    				circleDomain: 16,
+    				stateWrapper: 12
     			},
     			null,
     			[-1, -1]
@@ -7945,23 +7957,23 @@ var app = (function () {
     		const { ctx } = this.$$;
     		const props = options.props || {};
 
-    		if (/*data*/ ctx[12] === undefined && !('data' in props)) {
+    		if (/*data*/ ctx[13] === undefined && !('data' in props)) {
     			console.warn("<ChartHorizontal> was created without expected prop 'data'");
     		}
 
-    		if (/*xRange*/ ctx[13] === undefined && !('xRange' in props)) {
+    		if (/*xRange*/ ctx[14] === undefined && !('xRange' in props)) {
     			console.warn("<ChartHorizontal> was created without expected prop 'xRange'");
     		}
 
-    		if (/*yRange*/ ctx[14] === undefined && !('yRange' in props)) {
+    		if (/*yRange*/ ctx[15] === undefined && !('yRange' in props)) {
     			console.warn("<ChartHorizontal> was created without expected prop 'yRange'");
     		}
 
-    		if (/*circleDomain*/ ctx[15] === undefined && !('circleDomain' in props)) {
+    		if (/*circleDomain*/ ctx[16] === undefined && !('circleDomain' in props)) {
     			console.warn("<ChartHorizontal> was created without expected prop 'circleDomain'");
     		}
 
-    		if (/*stateWrapper*/ ctx[11] === undefined && !('stateWrapper' in props)) {
+    		if (/*stateWrapper*/ ctx[12] === undefined && !('stateWrapper' in props)) {
     			console.warn("<ChartHorizontal> was created without expected prop 'stateWrapper'");
     		}
     	}
@@ -8161,7 +8173,7 @@ var app = (function () {
     		c: function create() {
     			div = element("div");
     			if_block.c();
-    			attr_dev(div, "class", div_class_value = "wrapper " + `wrapper${/*imgNum*/ ctx[3]}` + " svelte-jnu4kx");
+    			attr_dev(div, "class", div_class_value = "wrapper " + `wrapper${/*imgNum*/ ctx[3]}` + " svelte-rda9cl");
     			add_render_callback(() => /*div_elementresize_handler*/ ctx[9].call(div));
     			add_location(div, file, 16, 0, 341);
     		},
@@ -8201,7 +8213,7 @@ var app = (function () {
     				if_block.m(div, null);
     			}
 
-    			if (!current || dirty & /*imgNum*/ 8 && div_class_value !== (div_class_value = "wrapper " + `wrapper${/*imgNum*/ ctx[3]}` + " svelte-jnu4kx")) {
+    			if (!current || dirty & /*imgNum*/ 8 && div_class_value !== (div_class_value = "wrapper " + `wrapper${/*imgNum*/ ctx[3]}` + " svelte-rda9cl")) {
     				attr_dev(div, "class", div_class_value);
     			}
     		},
