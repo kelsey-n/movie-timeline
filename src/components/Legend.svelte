@@ -77,10 +77,10 @@
       font-size="9">Box Office</text
     >
     <text
-      x={(paddingLeft - 80) / 2 - bigR * 3 - 30}
+      x={(paddingLeft - 80) / 2 - bigR * 3 - 20}
       y={(2 * bigR + 4) / 2}
       text-anchor="end"
-      font-size="10">></text
+      font-size="8">(is greater than)</text
     >
     <text
       x={(paddingLeft - 80) / 2 + bigR * 3 + 20}
@@ -93,9 +93,9 @@
       font-size="9">Budget</text
     >
     <text
-      x={(paddingLeft - 80) / 2 + bigR * 3 + 30}
+      x={(paddingLeft - 80) / 2 + bigR * 3 + 20}
       y={(2 * bigR + 4) / 2}
-      font-size="10">></text
+      font-size="8">(is greater than)</text
     >
   </g>
 

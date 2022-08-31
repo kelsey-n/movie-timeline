@@ -22,6 +22,7 @@
   let strokeNum = 40;
   let padding = 4;
   const fontSize = strokeLength + 1;
+  const yearFontSize = fontSize + 2;
 
   let defaultMovie = "Default";
 
@@ -137,15 +138,20 @@
       >
     </text></g
   >
-  {#if year === minYear || year === maxYear}
-    <text
-      {x}
-      y={y + max([budget, boxoffice]) * 2 + padding + strokeLength}
-      text-anchor="middle"
-      fill={colorScheme.Timeline}
-      class="year-text">{year}</text
-    >
-  {/if}
+  <!-- {#if year === minYear || year === maxYear} -->
+  <text
+    {x}
+    y={y + max([budget, boxoffice]) + padding + strokeLength + yearFontSize}
+    font-size={yearFontSize}
+    text-anchor="middle"
+    fill={colorScheme.Timeline}
+    stroke="white"
+    stroke-width="5"
+    stroke-linejoin="round"
+    paint-order="stroke"
+    class="year-text">{year}</text
+  >
+  <!-- {/if} -->
 </g>
 
 <style>

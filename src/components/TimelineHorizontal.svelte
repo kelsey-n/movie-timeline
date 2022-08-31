@@ -63,6 +63,17 @@
         xlink:href={`#timeline${idx}`}
         text-anchor="middle"
         startOffset={x > width / 2 ? "25%" : "75%"}
+        stroke="white"
+        fill="white"
+        stroke-width="5"
+        stroke-linejoin="round">{year}</textPath
+      >
+    </text>
+    <text dy="-5">
+      <textPath
+        xlink:href={`#timeline${idx}`}
+        text-anchor="middle"
+        startOffset={x > width / 2 ? "25%" : "75%"}
         fill={colorScheme.Timeline}>{year}</textPath
       >
     </text>
