@@ -72,6 +72,23 @@ var app = (function () {
     function append(target, node) {
         target.appendChild(node);
     }
+    function get_root_for_style(node) {
+        if (!node)
+            return document;
+        const root = node.getRootNode ? node.getRootNode() : node.ownerDocument;
+        if (root && root.host) {
+            return root;
+        }
+        return node.ownerDocument;
+    }
+    function append_empty_stylesheet(node) {
+        const style_element = element('style');
+        append_stylesheet(get_root_for_style(node), style_element);
+        return style_element.sheet;
+    }
+    function append_stylesheet(node, style) {
+        append(node.head || node, style);
+    }
     function insert(target, node, anchor) {
         target.insertBefore(node, anchor || null);
     }
@@ -174,6 +191,72 @@ var app = (function () {
         return e;
     }
 
+    // we need to store the information for multiple documents because a Svelte application could also contain iframes
+    // https://github.com/sveltejs/svelte/issues/3624
+    const managed_styles = new Map();
+    let active = 0;
+    // https://github.com/darkskyapp/string-hash/blob/master/index.js
+    function hash(str) {
+        let hash = 5381;
+        let i = str.length;
+        while (i--)
+            hash = ((hash << 5) - hash) ^ str.charCodeAt(i);
+        return hash >>> 0;
+    }
+    function create_style_information(doc, node) {
+        const info = { stylesheet: append_empty_stylesheet(node), rules: {} };
+        managed_styles.set(doc, info);
+        return info;
+    }
+    function create_rule(node, a, b, duration, delay, ease, fn, uid = 0) {
+        const step = 16.666 / duration;
+        let keyframes = '{\n';
+        for (let p = 0; p <= 1; p += step) {
+            const t = a + (b - a) * ease(p);
+            keyframes += p * 100 + `%{${fn(t, 1 - t)}}\n`;
+        }
+        const rule = keyframes + `100% {${fn(b, 1 - b)}}\n}`;
+        const name = `__svelte_${hash(rule)}_${uid}`;
+        const doc = get_root_for_style(node);
+        const { stylesheet, rules } = managed_styles.get(doc) || create_style_information(doc, node);
+        if (!rules[name]) {
+            rules[name] = true;
+            stylesheet.insertRule(`@keyframes ${name} ${rule}`, stylesheet.cssRules.length);
+        }
+        const animation = node.style.animation || '';
+        node.style.animation = `${animation ? `${animation}, ` : ''}${name} ${duration}ms linear ${delay}ms 1 both`;
+        active += 1;
+        return name;
+    }
+    function delete_rule(node, name) {
+        const previous = (node.style.animation || '').split(', ');
+        const next = previous.filter(name
+            ? anim => anim.indexOf(name) < 0 // remove specific animation
+            : anim => anim.indexOf('__svelte') === -1 // remove all Svelte animations
+        );
+        const deleted = previous.length - next.length;
+        if (deleted) {
+            node.style.animation = next.join(', ');
+            active -= deleted;
+            if (!active)
+                clear_rules();
+        }
+    }
+    function clear_rules() {
+        raf(() => {
+            if (active)
+                return;
+            managed_styles.forEach(info => {
+                const { stylesheet } = info;
+                let i = stylesheet.cssRules.length;
+                while (i--)
+                    stylesheet.deleteRule(i);
+                info.rules = {};
+            });
+            managed_styles.clear();
+        });
+    }
+
     let current_component;
     function set_current_component(component) {
         current_component = component;
@@ -263,6 +346,20 @@ var app = (function () {
             $$.after_update.forEach(add_render_callback);
         }
     }
+
+    let promise;
+    function wait() {
+        if (!promise) {
+            promise = Promise.resolve();
+            promise.then(() => {
+                promise = null;
+            });
+        }
+        return promise;
+    }
+    function dispatch(node, direction, kind) {
+        node.dispatchEvent(custom_event(`${direction ? 'intro' : 'outro'}${kind}`));
+    }
     const outroing = new Set();
     let outros;
     function group_outros() {
@@ -302,6 +399,70 @@ var app = (function () {
         else if (callback) {
             callback();
         }
+    }
+    const null_transition = { duration: 0 };
+    function create_in_transition(node, fn, params) {
+        let config = fn(node, params);
+        let running = false;
+        let animation_name;
+        let task;
+        let uid = 0;
+        function cleanup() {
+            if (animation_name)
+                delete_rule(node, animation_name);
+        }
+        function go() {
+            const { delay = 0, duration = 300, easing = identity$2, tick = noop, css } = config || null_transition;
+            if (css)
+                animation_name = create_rule(node, 0, 1, duration, delay, easing, css, uid++);
+            tick(0, 1);
+            const start_time = now() + delay;
+            const end_time = start_time + duration;
+            if (task)
+                task.abort();
+            running = true;
+            add_render_callback(() => dispatch(node, true, 'start'));
+            task = loop(now => {
+                if (running) {
+                    if (now >= end_time) {
+                        tick(1, 0);
+                        dispatch(node, true, 'end');
+                        cleanup();
+                        return running = false;
+                    }
+                    if (now >= start_time) {
+                        const t = easing((now - start_time) / duration);
+                        tick(t, 1 - t);
+                    }
+                }
+                return running;
+            });
+        }
+        let started = false;
+        return {
+            start() {
+                if (started)
+                    return;
+                started = true;
+                delete_rule(node);
+                if (is_function(config)) {
+                    config = config();
+                    wait().then(go);
+                }
+                else {
+                    go();
+                }
+            },
+            invalidate() {
+                started = false;
+            },
+            end() {
+                if (running) {
+                    cleanup();
+                    running = false;
+                }
+            }
+        };
     }
 
     function bind(component, name, callback) {
@@ -688,6 +849,18 @@ var app = (function () {
         }
       }
       return min;
+    }
+
+    function filter(values, test) {
+      if (typeof test !== "function") throw new TypeError("test is not a function");
+      const array = [];
+      let index = -1;
+      for (const value of values) {
+        if (test(value, ++index, values)) {
+          array.push(value);
+        }
+      }
+      return array;
     }
 
     function define(constructor, factory, prototype) {
@@ -2739,7 +2912,7 @@ var app = (function () {
     }
 
     // (78:4) {:else}
-    function create_else_block$1(ctx) {
+    function create_else_block$2(ctx) {
     	let circle0;
     	let circle0_fill_value;
     	let circle1;
@@ -2808,7 +2981,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_else_block$1.name,
+    		id: create_else_block$2.name,
     		type: "else",
     		source: "(78:4) {:else}",
     		ctx
@@ -2996,7 +3169,7 @@ var app = (function () {
 
     	function select_block_type(ctx, dirty) {
     		if (/*budget*/ ctx[3] > /*boxoffice*/ ctx[4]) return create_if_block$5;
-    		return create_else_block$1;
+    		return create_else_block$2;
     	}
 
     	let current_block_type = select_block_type(ctx);
@@ -3622,9 +3795,15 @@ var app = (function () {
         return { set, update, subscribe };
     }
 
+    function cubicInOut(t) {
+        return t < 0.5 ? 4.0 * t * t * t : 0.5 * Math.pow(2.0 * t - 2.0, 3.0) + 1.0;
+    }
     function cubicOut(t) {
         const f = t - 1.0;
         return f * f * f + 1.0;
+    }
+    function quintOut(t) {
+        return --t * t * t * t * t + 1;
     }
 
     function is_date(obj) {
@@ -5465,32 +5644,192 @@ var app = (function () {
       },
     };
 
+    function draw(node, { delay = 0, speed, duration, easing = cubicInOut } = {}) {
+        let len = node.getTotalLength();
+        const style = getComputedStyle(node);
+        if (style.strokeLinecap !== 'butt') {
+            len += parseInt(style.strokeWidth);
+        }
+        if (duration === undefined) {
+            if (speed === undefined) {
+                duration = 800;
+            }
+            else {
+                duration = len / speed;
+            }
+        }
+        else if (typeof duration === 'function') {
+            duration = duration(len);
+        }
+        return {
+            delay,
+            duration,
+            easing,
+            css: (t, u) => `stroke-dasharray: ${t * len} ${u * len}`
+        };
+    }
+
     /* src/components/TimelineHorizontal.svelte generated by Svelte v3.49.0 */
     const file$4 = "src/components/TimelineHorizontal.svelte";
 
     function get_each_context$2(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[6] = list[i].x;
-    	child_ctx[7] = list[i].y;
-    	child_ctx[8] = list[i].year;
-    	child_ctx[10] = i;
+    	child_ctx[10] = list[i].x;
+    	child_ctx[11] = list[i].y;
+    	child_ctx[12] = list[i].year;
+    	child_ctx[14] = i;
     	return child_ctx;
     }
 
-    // (41:2) {#if year % 10 === 0 && year !== 0 && idx !== 0}
+    // (63:0) {:else}
+    function create_else_block$1(ctx) {
+    	let path;
+    	let path_stroke_value;
+    	let path_intro;
+
+    	const block = {
+    		c: function create() {
+    			path = svg_element("path");
+    			attr_dev(path, "class", "line svelte-des1j5");
+    			attr_dev(path, "stroke", path_stroke_value = /*colorScheme*/ ctx[2].Timeline);
+    			attr_dev(path, "d", /*linePath*/ ctx[6]);
+    			add_location(path, file$4, 63, 2, 1699);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, path, anchor);
+    		},
+    		p: function update(new_ctx, dirty) {
+    			ctx = new_ctx;
+
+    			if (dirty & /*colorScheme*/ 4 && path_stroke_value !== (path_stroke_value = /*colorScheme*/ ctx[2].Timeline)) {
+    				attr_dev(path, "stroke", path_stroke_value);
+    			}
+
+    			if (dirty & /*linePath*/ 64) {
+    				attr_dev(path, "d", /*linePath*/ ctx[6]);
+    			}
+    		},
+    		i: function intro(local) {
+    			if (!path_intro) {
+    				add_render_callback(() => {
+    					path_intro = create_in_transition(path, draw, { tLinePath: /*tLinePath*/ ctx[8] });
+    					path_intro.start();
+    				});
+    			}
+    		},
+    		o: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(path);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_else_block$1.name,
+    		type: "else",
+    		source: "(63:0) {:else}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (50:0) {#if hoveredYear}
+    function create_if_block_1(ctx) {
+    	let path0;
+    	let path0_stroke_value;
+    	let path0_intro;
+    	let t;
+    	let path1;
+    	let path1_stroke_value;
+    	let path1_intro;
+
+    	const block = {
+    		c: function create() {
+    			path0 = svg_element("path");
+    			t = space();
+    			path1 = svg_element("path");
+    			attr_dev(path0, "class", "line svelte-des1j5");
+    			attr_dev(path0, "stroke", path0_stroke_value = /*colorScheme*/ ctx[2].Timeline);
+    			attr_dev(path0, "d", /*linePath1*/ ctx[5]);
+    			add_location(path0, file$4, 50, 2, 1479);
+    			attr_dev(path1, "class", "line svelte-des1j5");
+    			attr_dev(path1, "stroke", path1_stroke_value = /*colorScheme*/ ctx[2].Timeline);
+    			attr_dev(path1, "d", /*linePath2*/ ctx[4]);
+    			add_location(path1, file$4, 56, 2, 1585);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, path0, anchor);
+    			insert_dev(target, t, anchor);
+    			insert_dev(target, path1, anchor);
+    		},
+    		p: function update(new_ctx, dirty) {
+    			ctx = new_ctx;
+
+    			if (dirty & /*colorScheme*/ 4 && path0_stroke_value !== (path0_stroke_value = /*colorScheme*/ ctx[2].Timeline)) {
+    				attr_dev(path0, "stroke", path0_stroke_value);
+    			}
+
+    			if (dirty & /*linePath1*/ 32) {
+    				attr_dev(path0, "d", /*linePath1*/ ctx[5]);
+    			}
+
+    			if (dirty & /*colorScheme*/ 4 && path1_stroke_value !== (path1_stroke_value = /*colorScheme*/ ctx[2].Timeline)) {
+    				attr_dev(path1, "stroke", path1_stroke_value);
+    			}
+
+    			if (dirty & /*linePath2*/ 16) {
+    				attr_dev(path1, "d", /*linePath2*/ ctx[4]);
+    			}
+    		},
+    		i: function intro(local) {
+    			if (!path0_intro) {
+    				add_render_callback(() => {
+    					path0_intro = create_in_transition(path0, draw, /*tLinePath*/ ctx[8]);
+    					path0_intro.start();
+    				});
+    			}
+
+    			if (!path1_intro) {
+    				add_render_callback(() => {
+    					path1_intro = create_in_transition(path1, draw, /*tLinePath*/ ctx[8]);
+    					path1_intro.start();
+    				});
+    			}
+    		},
+    		o: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(path0);
+    			if (detaching) detach_dev(t);
+    			if (detaching) detach_dev(path1);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block_1.name,
+    		type: "if",
+    		source: "(50:0) {#if hoveredYear}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (72:2) {#if year % 10 === 0 && year !== 0 && idx !== 0}
     function create_if_block$2(ctx) {
     	let path;
     	let path_d_value;
     	let t0;
     	let text0;
     	let textPath0;
-    	let t1_value = /*year*/ ctx[8] + "";
+    	let t1_value = /*year*/ ctx[12] + "";
     	let t1;
     	let textPath0_startOffset_value;
     	let t2;
     	let text1;
     	let textPath1;
-    	let t3_value = /*year*/ ctx[8] + "";
+    	let t3_value = /*year*/ ctx[12] + "";
     	let t3;
     	let textPath1_startOffset_value;
     	let textPath1_fill_value;
@@ -5507,42 +5846,42 @@ var app = (function () {
     			textPath1 = svg_element("textPath");
     			t3 = text(t3_value);
 
-    			attr_dev(path, "d", path_d_value = /*x*/ ctx[6] > /*width*/ ctx[1] / 2
-    			? /*lineGenerator*/ ctx[4]([
-    					/*timelineData*/ ctx[0][/*idx*/ ctx[10] + 1],
-    					/*timelineData*/ ctx[0][/*idx*/ ctx[10]],
-    					/*timelineData*/ ctx[0][/*idx*/ ctx[10] - 1],
-    					/*timelineData*/ ctx[0][/*idx*/ ctx[10] - 2],
-    					/*timelineData*/ ctx[0][/*idx*/ ctx[10] - 3]
+    			attr_dev(path, "d", path_d_value = /*x*/ ctx[10] > /*width*/ ctx[1] / 2
+    			? /*lineGenerator*/ ctx[7]([
+    					/*timelineData*/ ctx[0][/*idx*/ ctx[14] + 1],
+    					/*timelineData*/ ctx[0][/*idx*/ ctx[14]],
+    					/*timelineData*/ ctx[0][/*idx*/ ctx[14] - 1],
+    					/*timelineData*/ ctx[0][/*idx*/ ctx[14] - 2],
+    					/*timelineData*/ ctx[0][/*idx*/ ctx[14] - 3]
     				])
-    			: /*lineGenerator*/ ctx[4]([
-    					/*timelineData*/ ctx[0][/*idx*/ ctx[10] - 3],
-    					/*timelineData*/ ctx[0][/*idx*/ ctx[10] - 2],
-    					/*timelineData*/ ctx[0][/*idx*/ ctx[10] - 1],
-    					/*timelineData*/ ctx[0][/*idx*/ ctx[10]],
-    					/*timelineData*/ ctx[0][/*idx*/ ctx[10] + 1]
+    			: /*lineGenerator*/ ctx[7]([
+    					/*timelineData*/ ctx[0][/*idx*/ ctx[14] - 3],
+    					/*timelineData*/ ctx[0][/*idx*/ ctx[14] - 2],
+    					/*timelineData*/ ctx[0][/*idx*/ ctx[14] - 1],
+    					/*timelineData*/ ctx[0][/*idx*/ ctx[14]],
+    					/*timelineData*/ ctx[0][/*idx*/ ctx[14] + 1]
     				]));
 
-    			attr_dev(path, "id", `timeline${/*idx*/ ctx[10]}`);
+    			attr_dev(path, "id", `timeline${/*idx*/ ctx[14]}`);
     			attr_dev(path, "fill", "none");
-    			add_location(path, file$4, 41, 4, 1146);
-    			xlink_attr(textPath0, "xlink:href", `#timeline${/*idx*/ ctx[10]}`);
+    			add_location(path, file$4, 72, 4, 1911);
+    			xlink_attr(textPath0, "xlink:href", `#timeline${/*idx*/ ctx[14]}`);
     			attr_dev(textPath0, "text-anchor", "middle");
-    			attr_dev(textPath0, "startOffset", textPath0_startOffset_value = /*x*/ ctx[6] > /*width*/ ctx[1] / 2 ? "25%" : "75%");
+    			attr_dev(textPath0, "startOffset", textPath0_startOffset_value = /*x*/ ctx[10] > /*width*/ ctx[1] / 2 ? "25%" : "75%");
     			attr_dev(textPath0, "stroke", "white");
     			attr_dev(textPath0, "fill", "white");
     			attr_dev(textPath0, "stroke-width", "5");
     			attr_dev(textPath0, "stroke-linejoin", "round");
-    			add_location(textPath0, file$4, 61, 6, 1674);
+    			add_location(textPath0, file$4, 92, 6, 2439);
     			attr_dev(text0, "dy", "-5");
-    			add_location(text0, file$4, 60, 4, 1653);
-    			xlink_attr(textPath1, "xlink:href", `#timeline${/*idx*/ ctx[10]}`);
+    			add_location(text0, file$4, 91, 4, 2418);
+    			xlink_attr(textPath1, "xlink:href", `#timeline${/*idx*/ ctx[14]}`);
     			attr_dev(textPath1, "text-anchor", "middle");
-    			attr_dev(textPath1, "startOffset", textPath1_startOffset_value = /*x*/ ctx[6] > /*width*/ ctx[1] / 2 ? "25%" : "75%");
+    			attr_dev(textPath1, "startOffset", textPath1_startOffset_value = /*x*/ ctx[10] > /*width*/ ctx[1] / 2 ? "25%" : "75%");
     			attr_dev(textPath1, "fill", textPath1_fill_value = /*colorScheme*/ ctx[2].Timeline);
-    			add_location(textPath1, file$4, 72, 6, 1967);
+    			add_location(textPath1, file$4, 103, 6, 2732);
     			attr_dev(text1, "dy", "-5");
-    			add_location(text1, file$4, 71, 4, 1946);
+    			add_location(text1, file$4, 102, 4, 2711);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, path, anchor);
@@ -5556,33 +5895,33 @@ var app = (function () {
     			append_dev(textPath1, t3);
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty & /*timelineData, width*/ 3 && path_d_value !== (path_d_value = /*x*/ ctx[6] > /*width*/ ctx[1] / 2
-    			? /*lineGenerator*/ ctx[4]([
-    					/*timelineData*/ ctx[0][/*idx*/ ctx[10] + 1],
-    					/*timelineData*/ ctx[0][/*idx*/ ctx[10]],
-    					/*timelineData*/ ctx[0][/*idx*/ ctx[10] - 1],
-    					/*timelineData*/ ctx[0][/*idx*/ ctx[10] - 2],
-    					/*timelineData*/ ctx[0][/*idx*/ ctx[10] - 3]
+    			if (dirty & /*timelineData, width*/ 3 && path_d_value !== (path_d_value = /*x*/ ctx[10] > /*width*/ ctx[1] / 2
+    			? /*lineGenerator*/ ctx[7]([
+    					/*timelineData*/ ctx[0][/*idx*/ ctx[14] + 1],
+    					/*timelineData*/ ctx[0][/*idx*/ ctx[14]],
+    					/*timelineData*/ ctx[0][/*idx*/ ctx[14] - 1],
+    					/*timelineData*/ ctx[0][/*idx*/ ctx[14] - 2],
+    					/*timelineData*/ ctx[0][/*idx*/ ctx[14] - 3]
     				])
-    			: /*lineGenerator*/ ctx[4]([
-    					/*timelineData*/ ctx[0][/*idx*/ ctx[10] - 3],
-    					/*timelineData*/ ctx[0][/*idx*/ ctx[10] - 2],
-    					/*timelineData*/ ctx[0][/*idx*/ ctx[10] - 1],
-    					/*timelineData*/ ctx[0][/*idx*/ ctx[10]],
-    					/*timelineData*/ ctx[0][/*idx*/ ctx[10] + 1]
+    			: /*lineGenerator*/ ctx[7]([
+    					/*timelineData*/ ctx[0][/*idx*/ ctx[14] - 3],
+    					/*timelineData*/ ctx[0][/*idx*/ ctx[14] - 2],
+    					/*timelineData*/ ctx[0][/*idx*/ ctx[14] - 1],
+    					/*timelineData*/ ctx[0][/*idx*/ ctx[14]],
+    					/*timelineData*/ ctx[0][/*idx*/ ctx[14] + 1]
     				]))) {
     				attr_dev(path, "d", path_d_value);
     			}
 
-    			if (dirty & /*timelineData*/ 1 && t1_value !== (t1_value = /*year*/ ctx[8] + "")) set_data_dev(t1, t1_value);
+    			if (dirty & /*timelineData*/ 1 && t1_value !== (t1_value = /*year*/ ctx[12] + "")) set_data_dev(t1, t1_value);
 
-    			if (dirty & /*timelineData, width*/ 3 && textPath0_startOffset_value !== (textPath0_startOffset_value = /*x*/ ctx[6] > /*width*/ ctx[1] / 2 ? "25%" : "75%")) {
+    			if (dirty & /*timelineData, width*/ 3 && textPath0_startOffset_value !== (textPath0_startOffset_value = /*x*/ ctx[10] > /*width*/ ctx[1] / 2 ? "25%" : "75%")) {
     				attr_dev(textPath0, "startOffset", textPath0_startOffset_value);
     			}
 
-    			if (dirty & /*timelineData*/ 1 && t3_value !== (t3_value = /*year*/ ctx[8] + "")) set_data_dev(t3, t3_value);
+    			if (dirty & /*timelineData*/ 1 && t3_value !== (t3_value = /*year*/ ctx[12] + "")) set_data_dev(t3, t3_value);
 
-    			if (dirty & /*timelineData, width*/ 3 && textPath1_startOffset_value !== (textPath1_startOffset_value = /*x*/ ctx[6] > /*width*/ ctx[1] / 2 ? "25%" : "75%")) {
+    			if (dirty & /*timelineData, width*/ 3 && textPath1_startOffset_value !== (textPath1_startOffset_value = /*x*/ ctx[10] > /*width*/ ctx[1] / 2 ? "25%" : "75%")) {
     				attr_dev(textPath1, "startOffset", textPath1_startOffset_value);
     			}
 
@@ -5603,17 +5942,17 @@ var app = (function () {
     		block,
     		id: create_if_block$2.name,
     		type: "if",
-    		source: "(41:2) {#if year % 10 === 0 && year !== 0 && idx !== 0}",
+    		source: "(72:2) {#if year % 10 === 0 && year !== 0 && idx !== 0}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (40:0) {#each timelineData as { x, y, year }
+    // (71:0) {#each timelineData as { x, y, year }
     function create_each_block$2(ctx) {
     	let if_block_anchor;
-    	let if_block = /*year*/ ctx[8] % 10 === 0 && /*year*/ ctx[8] !== 0 && /*idx*/ ctx[10] !== 0 && create_if_block$2(ctx);
+    	let if_block = /*year*/ ctx[12] % 10 === 0 && /*year*/ ctx[12] !== 0 && /*idx*/ ctx[14] !== 0 && create_if_block$2(ctx);
 
     	const block = {
     		c: function create() {
@@ -5625,7 +5964,7 @@ var app = (function () {
     			insert_dev(target, if_block_anchor, anchor);
     		},
     		p: function update(ctx, dirty) {
-    			if (/*year*/ ctx[8] % 10 === 0 && /*year*/ ctx[8] !== 0 && /*idx*/ ctx[10] !== 0) {
+    			if (/*year*/ ctx[12] % 10 === 0 && /*year*/ ctx[12] !== 0 && /*idx*/ ctx[14] !== 0) {
     				if (if_block) {
     					if_block.p(ctx, dirty);
     				} else {
@@ -5648,7 +5987,7 @@ var app = (function () {
     		block,
     		id: create_each_block$2.name,
     		type: "each",
-    		source: "(40:0) {#each timelineData as { x, y, year }",
+    		source: "(71:0) {#each timelineData as { x, y, year }",
     		ctx
     	});
 
@@ -5656,10 +5995,16 @@ var app = (function () {
     }
 
     function create_fragment$4(ctx) {
-    	let path;
-    	let path_stroke_value;
     	let t;
     	let each_1_anchor;
+
+    	function select_block_type(ctx, dirty) {
+    		if (/*hoveredYear*/ ctx[3]) return create_if_block_1;
+    		return create_else_block$1;
+    	}
+
+    	let current_block_type = select_block_type(ctx);
+    	let if_block = current_block_type(ctx);
     	let each_value = /*timelineData*/ ctx[0];
     	validate_each_argument(each_value);
     	let each_blocks = [];
@@ -5670,7 +6015,7 @@ var app = (function () {
 
     	const block = {
     		c: function create() {
-    			path = svg_element("path");
+    			if_block.c();
     			t = space();
 
     			for (let i = 0; i < each_blocks.length; i += 1) {
@@ -5678,16 +6023,12 @@ var app = (function () {
     			}
 
     			each_1_anchor = empty();
-    			attr_dev(path, "class", "line svelte-des1j5");
-    			attr_dev(path, "stroke", path_stroke_value = /*colorScheme*/ ctx[2].Timeline);
-    			attr_dev(path, "d", /*linePath*/ ctx[3]);
-    			add_location(path, file$4, 38, 0, 982);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
     		m: function mount(target, anchor) {
-    			insert_dev(target, path, anchor);
+    			if_block.m(target, anchor);
     			insert_dev(target, t, anchor);
 
     			for (let i = 0; i < each_blocks.length; i += 1) {
@@ -5697,15 +6038,20 @@ var app = (function () {
     			insert_dev(target, each_1_anchor, anchor);
     		},
     		p: function update(ctx, [dirty]) {
-    			if (dirty & /*colorScheme*/ 4 && path_stroke_value !== (path_stroke_value = /*colorScheme*/ ctx[2].Timeline)) {
-    				attr_dev(path, "stroke", path_stroke_value);
+    			if (current_block_type === (current_block_type = select_block_type(ctx)) && if_block) {
+    				if_block.p(ctx, dirty);
+    			} else {
+    				if_block.d(1);
+    				if_block = current_block_type(ctx);
+
+    				if (if_block) {
+    					if_block.c();
+    					transition_in(if_block, 1);
+    					if_block.m(t.parentNode, t);
+    				}
     			}
 
-    			if (dirty & /*linePath*/ 8) {
-    				attr_dev(path, "d", /*linePath*/ ctx[3]);
-    			}
-
-    			if (dirty & /*timelineData, width, colorScheme, lineGenerator*/ 23) {
+    			if (dirty & /*timelineData, width, colorScheme, lineGenerator*/ 135) {
     				each_value = /*timelineData*/ ctx[0];
     				validate_each_argument(each_value);
     				let i;
@@ -5729,10 +6075,12 @@ var app = (function () {
     				each_blocks.length = each_value.length;
     			}
     		},
-    		i: noop,
+    		i: function intro(local) {
+    			transition_in(if_block);
+    		},
     		o: noop,
     		d: function destroy(detaching) {
-    			if (detaching) detach_dev(path);
+    			if_block.d(detaching);
     			if (detaching) detach_dev(t);
     			destroy_each(each_blocks, detaching);
     			if (detaching) detach_dev(each_1_anchor);
@@ -5751,21 +6099,19 @@ var app = (function () {
     }
 
     function instance$4($$self, $$props, $$invalidate) {
+    	let hoveredYearIndex;
     	let linePath;
+    	let linePath1;
+    	let linePath2;
     	let { $$slots: slots = {}, $$scope } = $$props;
     	validate_slots('TimelineHorizontal', slots, []);
     	let { timelineData } = $$props;
     	let { width } = $$props;
     	let { colorScheme } = $$props;
+    	let { hoveredYear } = $$props;
     	const lineGenerator = line().x(d => d.x).y(d => d.y).curve(curveBasis);
-
-    	const tLinePath = tweened(null, {
-    		duration: 400,
-    		// easing: cubicOut,
-    		interpolate: interpolatePath
-    	});
-
-    	const writable_props = ['timelineData', 'width', 'colorScheme'];
+    	const tLinePath = tweened(null, { duration: 1500, easing: quintOut }); // interpolate: interpolatePath,
+    	const writable_props = ['timelineData', 'width', 'colorScheme', 'hoveredYear'];
 
     	Object.keys($$props).forEach(key => {
     		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== '$$' && key !== 'slot') console.warn(`<TimelineHorizontal> was created with unknown prop '${key}'`);
@@ -5775,11 +6121,14 @@ var app = (function () {
     		if ('timelineData' in $$props) $$invalidate(0, timelineData = $$props.timelineData);
     		if ('width' in $$props) $$invalidate(1, width = $$props.width);
     		if ('colorScheme' in $$props) $$invalidate(2, colorScheme = $$props.colorScheme);
+    		if ('hoveredYear' in $$props) $$invalidate(3, hoveredYear = $$props.hoveredYear);
     	};
 
     	$$self.$capture_state = () => ({
     		tweened,
     		cubicOut,
+    		quintOut,
+    		draw,
     		line,
     		curveBasis,
     		min: min$1,
@@ -5788,8 +6137,12 @@ var app = (function () {
     		timelineData,
     		width,
     		colorScheme,
+    		hoveredYear,
     		lineGenerator,
     		tLinePath,
+    		hoveredYearIndex,
+    		linePath2,
+    		linePath1,
     		linePath
     	});
 
@@ -5797,7 +6150,11 @@ var app = (function () {
     		if ('timelineData' in $$props) $$invalidate(0, timelineData = $$props.timelineData);
     		if ('width' in $$props) $$invalidate(1, width = $$props.width);
     		if ('colorScheme' in $$props) $$invalidate(2, colorScheme = $$props.colorScheme);
-    		if ('linePath' in $$props) $$invalidate(3, linePath = $$props.linePath);
+    		if ('hoveredYear' in $$props) $$invalidate(3, hoveredYear = $$props.hoveredYear);
+    		if ('hoveredYearIndex' in $$props) $$invalidate(9, hoveredYearIndex = $$props.hoveredYearIndex);
+    		if ('linePath2' in $$props) $$invalidate(4, linePath2 = $$props.linePath2);
+    		if ('linePath1' in $$props) $$invalidate(5, linePath1 = $$props.linePath1);
+    		if ('linePath' in $$props) $$invalidate(6, linePath = $$props.linePath);
     	};
 
     	if ($$props && "$$inject" in $$props) {
@@ -5819,16 +6176,37 @@ var app = (function () {
     			}
     		}
 
-    		if ($$self.$$.dirty & /*timelineData*/ 1) {
-    			$$invalidate(3, linePath = lineGenerator(timelineData));
+    		if ($$self.$$.dirty & /*timelineData, hoveredYear*/ 9) {
+    			// create two line paths - for timeline data before/after the hovered year
+    			// each will have its own transition upon hovering on a movie
+    			$$invalidate(9, hoveredYearIndex = timelineData.findIndex(d => d.year === hoveredYear) + 1);
     		}
 
-    		if ($$self.$$.dirty & /*linePath*/ 8) {
-    			tLinePath.set(linePath);
+    		if ($$self.$$.dirty & /*timelineData*/ 1) {
+    			$$invalidate(6, linePath = lineGenerator(timelineData));
+    		}
+
+    		if ($$self.$$.dirty & /*timelineData, hoveredYearIndex*/ 513) {
+    			$$invalidate(5, linePath1 = lineGenerator(timelineData.slice(0, hoveredYearIndex).reverse()));
+    		}
+
+    		if ($$self.$$.dirty & /*timelineData, hoveredYearIndex*/ 513) {
+    			$$invalidate(4, linePath2 = lineGenerator(timelineData.slice(-(timelineData.length - hoveredYearIndex + 1))));
     		}
     	};
 
-    	return [timelineData, width, colorScheme, linePath, lineGenerator];
+    	return [
+    		timelineData,
+    		width,
+    		colorScheme,
+    		hoveredYear,
+    		linePath2,
+    		linePath1,
+    		linePath,
+    		lineGenerator,
+    		tLinePath,
+    		hoveredYearIndex
+    	];
     }
 
     class TimelineHorizontal extends SvelteComponentDev {
@@ -5838,7 +6216,8 @@ var app = (function () {
     		init(this, options, instance$4, create_fragment$4, safe_not_equal, {
     			timelineData: 0,
     			width: 1,
-    			colorScheme: 2
+    			colorScheme: 2,
+    			hoveredYear: 3
     		});
 
     		dispatch_dev("SvelteRegisterComponent", {
@@ -5861,6 +6240,10 @@ var app = (function () {
 
     		if (/*colorScheme*/ ctx[2] === undefined && !('colorScheme' in props)) {
     			console.warn("<TimelineHorizontal> was created without expected prop 'colorScheme'");
+    		}
+
+    		if (/*hoveredYear*/ ctx[3] === undefined && !('hoveredYear' in props)) {
+    			console.warn("<TimelineHorizontal> was created without expected prop 'hoveredYear'");
     		}
     	}
 
@@ -5885,6 +6268,14 @@ var app = (function () {
     	}
 
     	set colorScheme(value) {
+    		throw new Error("<TimelineHorizontal>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get hoveredYear() {
+    		throw new Error("<TimelineHorizontal>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set hoveredYear(value) {
     		throw new Error("<TimelineHorizontal>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
     }
@@ -7288,19 +7679,19 @@ var app = (function () {
 
     function get_each_context(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[31] = list[i].movie;
-    	child_ctx[32] = list[i].x;
-    	child_ctx[33] = list[i].y;
-    	child_ctx[34] = list[i].budget;
-    	child_ctx[35] = list[i].boxoffice;
-    	child_ctx[36] = list[i].rating;
-    	child_ctx[37] = list[i].strokeWidth;
-    	child_ctx[38] = list[i].strokeLength;
-    	child_ctx[39] = list[i].year;
+    	child_ctx[32] = list[i].movie;
+    	child_ctx[33] = list[i].x;
+    	child_ctx[34] = list[i].y;
+    	child_ctx[35] = list[i].budget;
+    	child_ctx[36] = list[i].boxoffice;
+    	child_ctx[37] = list[i].rating;
+    	child_ctx[38] = list[i].strokeWidth;
+    	child_ctx[39] = list[i].strokeLength;
+    	child_ctx[40] = list[i].year;
     	return child_ctx;
     }
 
-    // (115:2) {#if width && height}
+    // (118:2) {#if width && height}
     function create_if_block$1(ctx) {
     	let svg;
     	let foreignObject;
@@ -7313,26 +7704,27 @@ var app = (function () {
 
     	legend = new Legend({
     			props: {
-    				paddingLeft: /*paddingLeft*/ ctx[6],
-    				circleScale: /*circleScale*/ ctx[5],
-    				strokeWidthScale: /*strokeWidthScale*/ ctx[4],
-    				strokeLengthScale: /*strokeLengthScale*/ ctx[3],
-    				colorScheme: /*colorScheme*/ ctx[9]
+    				paddingLeft: /*paddingLeft*/ ctx[7],
+    				circleScale: /*circleScale*/ ctx[6],
+    				strokeWidthScale: /*strokeWidthScale*/ ctx[5],
+    				strokeLengthScale: /*strokeLengthScale*/ ctx[4],
+    				colorScheme: /*colorScheme*/ ctx[10]
     			},
     			$$inline: true
     		});
 
     	timelinehorizontal = new TimelineHorizontal({
     			props: {
-    				timelineData: /*timelineData*/ ctx[7],
+    				timelineData: /*timelineData*/ ctx[9],
     				height: /*height*/ ctx[2],
     				width: /*width*/ ctx[1],
-    				colorScheme: /*colorScheme*/ ctx[9]
+    				colorScheme: /*colorScheme*/ ctx[10],
+    				hoveredYear: /*hoveredYear*/ ctx[8]
     			},
     			$$inline: true
     		});
 
-    	let each_value = /*renderedData*/ ctx[8];
+    	let each_value = /*renderedData*/ ctx[3];
     	validate_each_argument(each_value);
     	let each_blocks = [];
 
@@ -7358,14 +7750,14 @@ var app = (function () {
 
     			attr_dev(foreignObject, "x", "10");
     			attr_dev(foreignObject, "y", "10");
-    			attr_dev(foreignObject, "width", foreignObject_width_value = /*paddingLeft*/ ctx[6] - 80);
+    			attr_dev(foreignObject, "width", foreignObject_width_value = /*paddingLeft*/ ctx[7] - 80);
     			attr_dev(foreignObject, "height", /*height*/ ctx[2]);
     			attr_dev(foreignObject, "class", "left-menu svelte-d3k7cc");
-    			add_location(foreignObject, file$1, 117, 6, 4192);
+    			add_location(foreignObject, file$1, 120, 6, 4290);
     			attr_dev(svg, "width", /*width*/ ctx[1]);
     			attr_dev(svg, "height", /*height*/ ctx[2]);
     			attr_dev(svg, "class", "svelte-d3k7cc");
-    			add_location(svg, file$1, 115, 4, 4057);
+    			add_location(svg, file$1, 118, 4, 4155);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, svg, anchor);
@@ -7382,14 +7774,14 @@ var app = (function () {
     		},
     		p: function update(ctx, dirty) {
     			const legend_changes = {};
-    			if (dirty[0] & /*paddingLeft*/ 64) legend_changes.paddingLeft = /*paddingLeft*/ ctx[6];
-    			if (dirty[0] & /*circleScale*/ 32) legend_changes.circleScale = /*circleScale*/ ctx[5];
-    			if (dirty[0] & /*strokeWidthScale*/ 16) legend_changes.strokeWidthScale = /*strokeWidthScale*/ ctx[4];
-    			if (dirty[0] & /*strokeLengthScale*/ 8) legend_changes.strokeLengthScale = /*strokeLengthScale*/ ctx[3];
-    			if (dirty[0] & /*colorScheme*/ 512) legend_changes.colorScheme = /*colorScheme*/ ctx[9];
+    			if (dirty[0] & /*paddingLeft*/ 128) legend_changes.paddingLeft = /*paddingLeft*/ ctx[7];
+    			if (dirty[0] & /*circleScale*/ 64) legend_changes.circleScale = /*circleScale*/ ctx[6];
+    			if (dirty[0] & /*strokeWidthScale*/ 32) legend_changes.strokeWidthScale = /*strokeWidthScale*/ ctx[5];
+    			if (dirty[0] & /*strokeLengthScale*/ 16) legend_changes.strokeLengthScale = /*strokeLengthScale*/ ctx[4];
+    			if (dirty[0] & /*colorScheme*/ 1024) legend_changes.colorScheme = /*colorScheme*/ ctx[10];
     			legend.$set(legend_changes);
 
-    			if (!current || dirty[0] & /*paddingLeft*/ 64 && foreignObject_width_value !== (foreignObject_width_value = /*paddingLeft*/ ctx[6] - 80)) {
+    			if (!current || dirty[0] & /*paddingLeft*/ 128 && foreignObject_width_value !== (foreignObject_width_value = /*paddingLeft*/ ctx[7] - 80)) {
     				attr_dev(foreignObject, "width", foreignObject_width_value);
     			}
 
@@ -7398,14 +7790,15 @@ var app = (function () {
     			}
 
     			const timelinehorizontal_changes = {};
-    			if (dirty[0] & /*timelineData*/ 128) timelinehorizontal_changes.timelineData = /*timelineData*/ ctx[7];
+    			if (dirty[0] & /*timelineData*/ 512) timelinehorizontal_changes.timelineData = /*timelineData*/ ctx[9];
     			if (dirty[0] & /*height*/ 4) timelinehorizontal_changes.height = /*height*/ ctx[2];
     			if (dirty[0] & /*width*/ 2) timelinehorizontal_changes.width = /*width*/ ctx[1];
-    			if (dirty[0] & /*colorScheme*/ 512) timelinehorizontal_changes.colorScheme = /*colorScheme*/ ctx[9];
+    			if (dirty[0] & /*colorScheme*/ 1024) timelinehorizontal_changes.colorScheme = /*colorScheme*/ ctx[10];
+    			if (dirty[0] & /*hoveredYear*/ 256) timelinehorizontal_changes.hoveredYear = /*hoveredYear*/ ctx[8];
     			timelinehorizontal.$set(timelinehorizontal_changes);
 
-    			if (dirty[0] & /*renderedData, minYear, maxYear, colorScheme, state*/ 3841) {
-    				each_value = /*renderedData*/ ctx[8];
+    			if (dirty[0] & /*renderedData, minYear, maxYear, colorScheme, state*/ 7177) {
+    				each_value = /*renderedData*/ ctx[3];
     				validate_each_argument(each_value);
     				let i;
 
@@ -7477,36 +7870,36 @@ var app = (function () {
     		block,
     		id: create_if_block$1.name,
     		type: "if",
-    		source: "(115:2) {#if width && height}",
+    		source: "(118:2) {#if width && height}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (135:6) {#each renderedData as { movie, x, y, budget, boxoffice, rating, strokeWidth, strokeLength, year }}
+    // (144:6) {#each renderedData as { movie, x, y, budget, boxoffice, rating, strokeWidth, strokeLength, year }}
     function create_each_block(ctx) {
     	let bubble_1;
     	let updating_state;
     	let current;
 
     	function bubble_1_state_binding(value) {
-    		/*bubble_1_state_binding*/ ctx[25](value);
+    		/*bubble_1_state_binding*/ ctx[26](value);
     	}
 
     	let bubble_1_props = {
-    		movie: /*movie*/ ctx[31],
-    		x: /*x*/ ctx[32],
-    		y: /*y*/ ctx[33],
-    		budget: /*budget*/ ctx[34],
-    		boxoffice: /*boxoffice*/ ctx[35],
-    		rating: /*rating*/ ctx[36],
-    		strokeWidth: /*strokeWidth*/ ctx[37],
-    		strokeLength: /*strokeLength*/ ctx[38],
-    		year: /*year*/ ctx[39],
-    		minYear: /*minYear*/ ctx[10],
-    		maxYear: /*maxYear*/ ctx[11],
-    		colorScheme: /*colorScheme*/ ctx[9]
+    		movie: /*movie*/ ctx[32],
+    		x: /*x*/ ctx[33],
+    		y: /*y*/ ctx[34],
+    		budget: /*budget*/ ctx[35],
+    		boxoffice: /*boxoffice*/ ctx[36],
+    		rating: /*rating*/ ctx[37],
+    		strokeWidth: /*strokeWidth*/ ctx[38],
+    		strokeLength: /*strokeLength*/ ctx[39],
+    		year: /*year*/ ctx[40],
+    		minYear: /*minYear*/ ctx[11],
+    		maxYear: /*maxYear*/ ctx[12],
+    		colorScheme: /*colorScheme*/ ctx[10]
     	};
 
     	if (/*state*/ ctx[0] !== void 0) {
@@ -7526,16 +7919,16 @@ var app = (function () {
     		},
     		p: function update(ctx, dirty) {
     			const bubble_1_changes = {};
-    			if (dirty[0] & /*renderedData*/ 256) bubble_1_changes.movie = /*movie*/ ctx[31];
-    			if (dirty[0] & /*renderedData*/ 256) bubble_1_changes.x = /*x*/ ctx[32];
-    			if (dirty[0] & /*renderedData*/ 256) bubble_1_changes.y = /*y*/ ctx[33];
-    			if (dirty[0] & /*renderedData*/ 256) bubble_1_changes.budget = /*budget*/ ctx[34];
-    			if (dirty[0] & /*renderedData*/ 256) bubble_1_changes.boxoffice = /*boxoffice*/ ctx[35];
-    			if (dirty[0] & /*renderedData*/ 256) bubble_1_changes.rating = /*rating*/ ctx[36];
-    			if (dirty[0] & /*renderedData*/ 256) bubble_1_changes.strokeWidth = /*strokeWidth*/ ctx[37];
-    			if (dirty[0] & /*renderedData*/ 256) bubble_1_changes.strokeLength = /*strokeLength*/ ctx[38];
-    			if (dirty[0] & /*renderedData*/ 256) bubble_1_changes.year = /*year*/ ctx[39];
-    			if (dirty[0] & /*colorScheme*/ 512) bubble_1_changes.colorScheme = /*colorScheme*/ ctx[9];
+    			if (dirty[0] & /*renderedData*/ 8) bubble_1_changes.movie = /*movie*/ ctx[32];
+    			if (dirty[0] & /*renderedData*/ 8) bubble_1_changes.x = /*x*/ ctx[33];
+    			if (dirty[0] & /*renderedData*/ 8) bubble_1_changes.y = /*y*/ ctx[34];
+    			if (dirty[0] & /*renderedData*/ 8) bubble_1_changes.budget = /*budget*/ ctx[35];
+    			if (dirty[0] & /*renderedData*/ 8) bubble_1_changes.boxoffice = /*boxoffice*/ ctx[36];
+    			if (dirty[0] & /*renderedData*/ 8) bubble_1_changes.rating = /*rating*/ ctx[37];
+    			if (dirty[0] & /*renderedData*/ 8) bubble_1_changes.strokeWidth = /*strokeWidth*/ ctx[38];
+    			if (dirty[0] & /*renderedData*/ 8) bubble_1_changes.strokeLength = /*strokeLength*/ ctx[39];
+    			if (dirty[0] & /*renderedData*/ 8) bubble_1_changes.year = /*year*/ ctx[40];
+    			if (dirty[0] & /*colorScheme*/ 1024) bubble_1_changes.colorScheme = /*colorScheme*/ ctx[10];
 
     			if (!updating_state && dirty[0] & /*state*/ 1) {
     				updating_state = true;
@@ -7563,7 +7956,7 @@ var app = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(135:6) {#each renderedData as { movie, x, y, budget, boxoffice, rating, strokeWidth, strokeLength, year }}",
+    		source: "(144:6) {#each renderedData as { movie, x, y, budget, boxoffice, rating, strokeWidth, strokeLength, year }}",
     		ctx
     	});
 
@@ -7581,8 +7974,8 @@ var app = (function () {
     			div = element("div");
     			if (if_block) if_block.c();
     			attr_dev(div, "class", "chart svelte-d3k7cc");
-    			add_render_callback(() => /*div_elementresize_handler*/ ctx[26].call(div));
-    			add_location(div, file$1, 113, 0, 3957);
+    			add_render_callback(() => /*div_elementresize_handler*/ ctx[27].call(div));
+    			add_location(div, file$1, 116, 0, 4055);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -7590,7 +7983,7 @@ var app = (function () {
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
     			if (if_block) if_block.m(div, null);
-    			div_resize_listener = add_resize_listener(div, /*div_elementresize_handler*/ ctx[26].bind(div));
+    			div_resize_listener = add_resize_listener(div, /*div_elementresize_handler*/ ctx[27].bind(div));
     			current = true;
     		},
     		p: function update(ctx, dirty) {
@@ -7662,6 +8055,7 @@ var app = (function () {
     	let strokeLengthScale;
     	let renderedData;
     	let timelineData;
+    	let hoveredYear;
     	let { $$slots: slots = {}, $$scope } = $$props;
     	validate_slots('ChartHorizontal', slots, []);
     	let state = "Default"; //controls the current hovered movie in order to change the color scheme. defaults to grand budapest
@@ -7674,7 +8068,7 @@ var app = (function () {
     	let height;
 
     	// create dataset of points for every year between the min and max to draw our timeline
-    	// this is so that we ensure we show the transition between the first & last years in every decade
+    	// this is to ensure we show the transition between the first & last years in every decade
     	const years = new Set(data.map(d => d.Year));
 
     	let allYears = [];
@@ -7699,11 +8093,11 @@ var app = (function () {
     	}
 
     	$$self.$$set = $$props => {
-    		if ('data' in $$props) $$invalidate(13, data = $$props.data);
-    		if ('xRange' in $$props) $$invalidate(14, xRange = $$props.xRange);
-    		if ('yRange' in $$props) $$invalidate(15, yRange = $$props.yRange);
-    		if ('circleDomain' in $$props) $$invalidate(16, circleDomain = $$props.circleDomain);
-    		if ('stateWrapper' in $$props) $$invalidate(12, stateWrapper = $$props.stateWrapper);
+    		if ('data' in $$props) $$invalidate(14, data = $$props.data);
+    		if ('xRange' in $$props) $$invalidate(15, xRange = $$props.xRange);
+    		if ('yRange' in $$props) $$invalidate(16, yRange = $$props.yRange);
+    		if ('circleDomain' in $$props) $$invalidate(17, circleDomain = $$props.circleDomain);
+    		if ('stateWrapper' in $$props) $$invalidate(13, stateWrapper = $$props.stateWrapper);
     	};
 
     	$$self.$capture_state = () => ({
@@ -7712,6 +8106,7 @@ var app = (function () {
     		scaleLinear: linear,
     		scaleSqrt: sqrt$1,
     		scaleQuantize: quantize,
+    		filter,
     		movieColors,
     		Bubble,
     		TimeLineHorizontal: TimelineHorizontal,
@@ -7729,13 +8124,14 @@ var app = (function () {
     		allYears,
     		minYear,
     		maxYear,
+    		renderedData,
+    		hoveredYear,
     		yScale,
     		xScale,
     		timelineData,
     		strokeLengthScale,
     		strokeWidthScale,
     		circleScale,
-    		renderedData,
     		strokeNumScale,
     		innerWidth,
     		yearsDiff,
@@ -7750,33 +8146,34 @@ var app = (function () {
 
     	$$self.$inject_state = $$props => {
     		if ('state' in $$props) $$invalidate(0, state = $$props.state);
-    		if ('data' in $$props) $$invalidate(13, data = $$props.data);
-    		if ('xRange' in $$props) $$invalidate(14, xRange = $$props.xRange);
-    		if ('yRange' in $$props) $$invalidate(15, yRange = $$props.yRange);
-    		if ('circleDomain' in $$props) $$invalidate(16, circleDomain = $$props.circleDomain);
-    		if ('stateWrapper' in $$props) $$invalidate(12, stateWrapper = $$props.stateWrapper);
+    		if ('data' in $$props) $$invalidate(14, data = $$props.data);
+    		if ('xRange' in $$props) $$invalidate(15, xRange = $$props.xRange);
+    		if ('yRange' in $$props) $$invalidate(16, yRange = $$props.yRange);
+    		if ('circleDomain' in $$props) $$invalidate(17, circleDomain = $$props.circleDomain);
+    		if ('stateWrapper' in $$props) $$invalidate(13, stateWrapper = $$props.stateWrapper);
     		if ('width' in $$props) $$invalidate(1, width = $$props.width);
     		if ('height' in $$props) $$invalidate(2, height = $$props.height);
-    		if ('allYears' in $$props) $$invalidate(30, allYears = $$props.allYears);
-    		if ('minYear' in $$props) $$invalidate(10, minYear = $$props.minYear);
-    		if ('maxYear' in $$props) $$invalidate(11, maxYear = $$props.maxYear);
-    		if ('yScale' in $$props) $$invalidate(17, yScale = $$props.yScale);
-    		if ('xScale' in $$props) $$invalidate(18, xScale = $$props.xScale);
-    		if ('timelineData' in $$props) $$invalidate(7, timelineData = $$props.timelineData);
-    		if ('strokeLengthScale' in $$props) $$invalidate(3, strokeLengthScale = $$props.strokeLengthScale);
-    		if ('strokeWidthScale' in $$props) $$invalidate(4, strokeWidthScale = $$props.strokeWidthScale);
-    		if ('circleScale' in $$props) $$invalidate(5, circleScale = $$props.circleScale);
-    		if ('renderedData' in $$props) $$invalidate(8, renderedData = $$props.renderedData);
+    		if ('allYears' in $$props) $$invalidate(31, allYears = $$props.allYears);
+    		if ('minYear' in $$props) $$invalidate(11, minYear = $$props.minYear);
+    		if ('maxYear' in $$props) $$invalidate(12, maxYear = $$props.maxYear);
+    		if ('renderedData' in $$props) $$invalidate(3, renderedData = $$props.renderedData);
+    		if ('hoveredYear' in $$props) $$invalidate(8, hoveredYear = $$props.hoveredYear);
+    		if ('yScale' in $$props) $$invalidate(18, yScale = $$props.yScale);
+    		if ('xScale' in $$props) $$invalidate(19, xScale = $$props.xScale);
+    		if ('timelineData' in $$props) $$invalidate(9, timelineData = $$props.timelineData);
+    		if ('strokeLengthScale' in $$props) $$invalidate(4, strokeLengthScale = $$props.strokeLengthScale);
+    		if ('strokeWidthScale' in $$props) $$invalidate(5, strokeWidthScale = $$props.strokeWidthScale);
+    		if ('circleScale' in $$props) $$invalidate(6, circleScale = $$props.circleScale);
     		if ('strokeNumScale' in $$props) strokeNumScale = $$props.strokeNumScale;
-    		if ('innerWidth' in $$props) $$invalidate(19, innerWidth = $$props.innerWidth);
-    		if ('yearsDiff' in $$props) $$invalidate(20, yearsDiff = $$props.yearsDiff);
-    		if ('yearsArr' in $$props) $$invalidate(21, yearsArr = $$props.yearsArr);
-    		if ('paddingBottom' in $$props) $$invalidate(22, paddingBottom = $$props.paddingBottom);
-    		if ('paddingTop' in $$props) $$invalidate(23, paddingTop = $$props.paddingTop);
-    		if ('paddingRight' in $$props) $$invalidate(24, paddingRight = $$props.paddingRight);
-    		if ('paddingLeft' in $$props) $$invalidate(6, paddingLeft = $$props.paddingLeft);
+    		if ('innerWidth' in $$props) $$invalidate(20, innerWidth = $$props.innerWidth);
+    		if ('yearsDiff' in $$props) $$invalidate(21, yearsDiff = $$props.yearsDiff);
+    		if ('yearsArr' in $$props) $$invalidate(22, yearsArr = $$props.yearsArr);
+    		if ('paddingBottom' in $$props) $$invalidate(23, paddingBottom = $$props.paddingBottom);
+    		if ('paddingTop' in $$props) $$invalidate(24, paddingTop = $$props.paddingTop);
+    		if ('paddingRight' in $$props) $$invalidate(25, paddingRight = $$props.paddingRight);
+    		if ('paddingLeft' in $$props) $$invalidate(7, paddingLeft = $$props.paddingLeft);
     		if ('innerHeight' in $$props) innerHeight = $$props.innerHeight;
-    		if ('colorScheme' in $$props) $$invalidate(9, colorScheme = $$props.colorScheme);
+    		if ('colorScheme' in $$props) $$invalidate(10, colorScheme = $$props.colorScheme);
     	};
 
     	if ($$props && "$$inject" in $$props) {
@@ -7785,74 +8182,74 @@ var app = (function () {
 
     	$$self.$$.update = () => {
     		if ($$self.$$.dirty[0] & /*state*/ 1) {
-    			$$invalidate(9, colorScheme = movieColors[state]);
+    			$$invalidate(10, colorScheme = movieColors[state]);
     		}
 
     		if ($$self.$$.dirty[0] & /*state*/ 1) {
-    			$$invalidate(12, stateWrapper = state);
+    			$$invalidate(13, stateWrapper = state);
     		}
 
     		if ($$self.$$.dirty[0] & /*height*/ 4) {
-    			$$invalidate(23, paddingTop = height / 10); //TODO: make dynamic based on window dimensions
+    			$$invalidate(24, paddingTop = height / 10); //TODO: make dynamic based on window dimensions
     		}
 
     		if ($$self.$$.dirty[0] & /*height*/ 4) {
-    			$$invalidate(22, paddingBottom = height / 10);
+    			$$invalidate(23, paddingBottom = height / 10);
     		}
 
     		if ($$self.$$.dirty[0] & /*width*/ 2) {
-    			$$invalidate(6, paddingLeft = width / 3);
+    			$$invalidate(7, paddingLeft = width / 3);
     		}
 
     		if ($$self.$$.dirty[0] & /*height*/ 4) {
-    			$$invalidate(24, paddingRight = height / 10);
+    			$$invalidate(25, paddingRight = height / 10);
     		}
 
-    		if ($$self.$$.dirty[0] & /*width, paddingLeft, paddingRight*/ 16777282) {
-    			$$invalidate(19, innerWidth = width - paddingLeft - paddingRight);
+    		if ($$self.$$.dirty[0] & /*width, paddingLeft, paddingRight*/ 33554562) {
+    			$$invalidate(20, innerWidth = width - paddingLeft - paddingRight);
     		}
 
-    		if ($$self.$$.dirty[0] & /*height, paddingTop, paddingBottom*/ 12582916) {
+    		if ($$self.$$.dirty[0] & /*height, paddingTop, paddingBottom*/ 25165828) {
     			innerHeight = height - paddingTop - paddingBottom;
     		}
 
-    		if ($$self.$$.dirty[0] & /*xRange, paddingLeft, width, paddingRight*/ 16793666) {
-    			$$invalidate(18, xScale = linear().domain(xRange).range([paddingLeft, width - paddingRight]));
+    		if ($$self.$$.dirty[0] & /*xRange, paddingLeft, width, paddingRight*/ 33587330) {
+    			$$invalidate(19, xScale = linear().domain(xRange).range([paddingLeft, width - paddingRight]));
     		}
 
-    		if ($$self.$$.dirty[0] & /*yRange, paddingTop, height, paddingBottom*/ 12615684) {
-    			$$invalidate(17, yScale = linear().domain(yRange).range([paddingTop, height - paddingBottom]));
+    		if ($$self.$$.dirty[0] & /*yRange, paddingTop, height, paddingBottom*/ 25231364) {
+    			$$invalidate(18, yScale = linear().domain(yRange).range([paddingTop, height - paddingBottom]));
     		}
 
-    		if ($$self.$$.dirty[0] & /*yearsArr, yearsDiff*/ 3145728) {
+    		if ($$self.$$.dirty[0] & /*yearsArr, yearsDiff*/ 6291456) {
     			yearsArr.forEach((year, idx) => {
     				if (yearsArr[idx - 1]) yearsDiff.push(yearsArr[idx] - yearsArr[idx - 1]);
     			});
     		}
 
-    		if ($$self.$$.dirty[0] & /*circleDomain, yearsDiff, innerWidth*/ 1638400) {
-    			$$invalidate(5, circleScale = sqrt$1().domain(circleDomain).range(min$1(yearsDiff) < 2
+    		if ($$self.$$.dirty[0] & /*circleDomain, yearsDiff, innerWidth*/ 3276800) {
+    			$$invalidate(6, circleScale = sqrt$1().domain(circleDomain).range(min$1(yearsDiff) < 2
     			? [1, (innerWidth / 10 - 11 * 2) / 2]
     			: [1, innerWidth / 10 / 2]));
     		}
 
-    		if ($$self.$$.dirty[0] & /*circleDomain*/ 65536) {
+    		if ($$self.$$.dirty[0] & /*circleDomain*/ 131072) {
     			// create scales to map radius to number of strokes, stroke width and stroke length
     			// scaleQuantize maps a continuous domain to a discrete range
     			strokeNumScale = quantize().domain(circleDomain).range([30, 40]); //currently not using
     		}
 
-    		if ($$self.$$.dirty[0] & /*circleDomain*/ 65536) {
-    			$$invalidate(4, strokeWidthScale = linear().domain(circleDomain).range([1.5, 3]));
+    		if ($$self.$$.dirty[0] & /*circleDomain*/ 131072) {
+    			$$invalidate(5, strokeWidthScale = linear().domain(circleDomain).range([1.5, 3]));
     		}
 
-    		if ($$self.$$.dirty[0] & /*circleDomain*/ 65536) {
+    		if ($$self.$$.dirty[0] & /*circleDomain*/ 131072) {
     			// $: strokeLengthScale = scaleLinear().domain(circleDomain).range([9, 14]);
-    			$$invalidate(3, strokeLengthScale = linear().domain(circleDomain).range([7, 11]));
+    			$$invalidate(4, strokeLengthScale = linear().domain(circleDomain).range([7, 11]));
     		}
 
-    		if ($$self.$$.dirty[0] & /*data, xScale, yScale, circleScale, strokeWidthScale, strokeLengthScale*/ 401464) {
-    			$$invalidate(8, renderedData = data.map(d => {
+    		if ($$self.$$.dirty[0] & /*data, xScale, yScale, circleScale, strokeWidthScale, strokeLengthScale*/ 802928) {
+    			$$invalidate(3, renderedData = data.map(d => {
     				return {
     					movie: d.Movie,
     					x: (Math.floor(d.Year / 10) - min$1(data.map(d => Math.floor(d.Year / 10)))) % 2 === 0
@@ -7871,8 +8268,8 @@ var app = (function () {
     			}));
     		}
 
-    		if ($$self.$$.dirty[0] & /*data, xScale, yScale*/ 401408) {
-    			$$invalidate(7, timelineData = allYears.map(d => {
+    		if ($$self.$$.dirty[0] & /*data, xScale, yScale*/ 802816) {
+    			$$invalidate(9, timelineData = allYears.map(d => {
     				return {
     					year: d.Year,
     					x: (Math.floor(d.Year / 10) - min$1(data.map(d => Math.floor(d.Year / 10)))) % 2 === 0
@@ -7883,10 +8280,14 @@ var app = (function () {
     				};
     			}));
     		}
+
+    		if ($$self.$$.dirty[0] & /*renderedData, state*/ 9) {
+    			$$invalidate(8, hoveredYear = renderedData.filter(d => d.movie === state).map(d => d.year)[0]);
+    		}
     	};
 
-    	$$invalidate(21, yearsArr = [...years]);
-    	$$invalidate(20, yearsDiff = []);
+    	$$invalidate(22, yearsArr = [...years]);
+    	$$invalidate(21, yearsDiff = []);
 
     	for (let currYear = min$1(years); currYear <= max$1(years); currYear++) {
     		allYears.push({ Year: currYear });
@@ -7896,12 +8297,13 @@ var app = (function () {
     		state,
     		width,
     		height,
+    		renderedData,
     		strokeLengthScale,
     		strokeWidthScale,
     		circleScale,
     		paddingLeft,
+    		hoveredYear,
     		timelineData,
-    		renderedData,
     		colorScheme,
     		minYear,
     		maxYear,
@@ -7934,11 +8336,11 @@ var app = (function () {
     			create_fragment$1,
     			safe_not_equal,
     			{
-    				data: 13,
-    				xRange: 14,
-    				yRange: 15,
-    				circleDomain: 16,
-    				stateWrapper: 12
+    				data: 14,
+    				xRange: 15,
+    				yRange: 16,
+    				circleDomain: 17,
+    				stateWrapper: 13
     			},
     			null,
     			[-1, -1]
@@ -7954,23 +8356,23 @@ var app = (function () {
     		const { ctx } = this.$$;
     		const props = options.props || {};
 
-    		if (/*data*/ ctx[13] === undefined && !('data' in props)) {
+    		if (/*data*/ ctx[14] === undefined && !('data' in props)) {
     			console.warn("<ChartHorizontal> was created without expected prop 'data'");
     		}
 
-    		if (/*xRange*/ ctx[14] === undefined && !('xRange' in props)) {
+    		if (/*xRange*/ ctx[15] === undefined && !('xRange' in props)) {
     			console.warn("<ChartHorizontal> was created without expected prop 'xRange'");
     		}
 
-    		if (/*yRange*/ ctx[15] === undefined && !('yRange' in props)) {
+    		if (/*yRange*/ ctx[16] === undefined && !('yRange' in props)) {
     			console.warn("<ChartHorizontal> was created without expected prop 'yRange'");
     		}
 
-    		if (/*circleDomain*/ ctx[16] === undefined && !('circleDomain' in props)) {
+    		if (/*circleDomain*/ ctx[17] === undefined && !('circleDomain' in props)) {
     			console.warn("<ChartHorizontal> was created without expected prop 'circleDomain'");
     		}
 
-    		if (/*stateWrapper*/ ctx[12] === undefined && !('stateWrapper' in props)) {
+    		if (/*stateWrapper*/ ctx[13] === undefined && !('stateWrapper' in props)) {
     			console.warn("<ChartHorizontal> was created without expected prop 'stateWrapper'");
     		}
     	}

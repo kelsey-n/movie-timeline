@@ -1,5 +1,5 @@
 <script>
-  import { min, max, scaleLinear, scaleSqrt, scaleQuantize } from "d3";
+  import { min, max, scaleLinear, scaleSqrt, scaleQuantize, filter } from "d3";
 
   import { movieColors } from "./movieColors";
 
@@ -85,7 +85,7 @@
   });
 
   // create dataset of points for every year between the min and max to draw our timeline
-  // this is so that we ensure we show the transition between the first & last years in every decade
+  // this is to ensure we show the transition between the first & last years in every decade
   const years = new Set(data.map((d) => d.Year));
   let allYears = [];
   $: for (let currYear = min(years); currYear <= max(years); currYear++) {
@@ -109,6 +109,9 @@
   });
   let minYear = min(years);
   let maxYear = max(years);
+  $: hoveredYear = renderedData
+    .filter((d) => d.movie === state)
+    .map((d) => d.year)[0];
 </script>
 
 <div class="chart" bind:clientWidth={width} bind:clientHeight={height}>
@@ -131,7 +134,13 @@
           {colorScheme}
         />
       </foreignObject>
-      <TimeLineHorizontal {timelineData} {height} {width} {colorScheme} />
+      <TimeLineHorizontal
+        {timelineData}
+        {height}
+        {width}
+        {colorScheme}
+        {hoveredYear}
+      />
       {#each renderedData as { movie, x, y, budget, boxoffice, rating, strokeWidth, strokeLength, year }}
         <Bubble
           bind:state

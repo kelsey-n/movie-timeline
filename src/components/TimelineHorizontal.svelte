@@ -1,12 +1,14 @@
 <script>
   import { tweened } from "svelte/motion";
-  import { cubicOut } from "svelte/easing";
+  import { cubicOut, quintOut } from "svelte/easing";
+  import { draw } from "svelte/transition";
   import { line, curveBasis, min, max } from "d3";
   import { interpolatePath } from "d3-interpolate-path";
 
   export let timelineData;
   export let width;
   export let colorScheme;
+  export let hoveredYear;
 
   const lineGenerator = line()
     .x((d) => d.x)
@@ -14,9 +16,9 @@
     .curve(curveBasis);
 
   const tLinePath = tweened(null, {
-    duration: 400,
-    // easing: cubicOut,
-    interpolate: interpolatePath,
+    duration: 1500,
+    easing: quintOut,
+    // interpolate: interpolatePath,
   });
 
   $: for (let i = 0; i < timelineData.length - 1; i++) {
@@ -32,11 +34,40 @@
     }
   }
 
+  // create two line paths - for timeline data before/after the hovered year
+  // each will have its own transition upon hovering on a movie
+  $: hoveredYearIndex =
+    timelineData.findIndex((d) => d.year === hoveredYear) + 1;
   $: linePath = lineGenerator(timelineData);
-  $: tLinePath.set(linePath);
+  $: linePath1 = lineGenerator(
+    timelineData.slice(0, hoveredYearIndex).reverse()
+  );
+  $: linePath2 = lineGenerator(
+    timelineData.slice(-(timelineData.length - hoveredYearIndex + 1))
+  );
 </script>
 
-<path class="line" stroke={colorScheme.Timeline} d={linePath} />
+{#if hoveredYear}
+  <path
+    in:draw={tLinePath}
+    class="line"
+    stroke={colorScheme.Timeline}
+    d={linePath1}
+  />
+  <path
+    in:draw={tLinePath}
+    class="line"
+    stroke={colorScheme.Timeline}
+    d={linePath2}
+  />
+{:else}
+  <path
+    in:draw={{ tLinePath }}
+    class="line"
+    stroke={colorScheme.Timeline}
+    d={linePath}
+  />
+{/if}
 {#each timelineData as { x, y, year }, idx}
   {#if year % 10 === 0 && year !== 0 && idx !== 0}
     <path
