@@ -61,12 +61,7 @@
     d={linePath2}
   />
 {:else}
-  <path
-    in:draw={{ tLinePath }}
-    class="line"
-    stroke={colorScheme.Timeline}
-    d={linePath}
-  />
+  <path class="line" stroke={colorScheme.Timeline} d={linePath} />
 {/if}
 {#each timelineData as { x, y, year }, idx}
   {#if year % 10 === 0 && year !== 0 && idx !== 0}

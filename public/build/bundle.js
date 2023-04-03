@@ -5685,7 +5685,6 @@ var app = (function () {
     function create_else_block$1(ctx) {
     	let path;
     	let path_stroke_value;
-    	let path_intro;
 
     	const block = {
     		c: function create() {
@@ -5698,9 +5697,7 @@ var app = (function () {
     		m: function mount(target, anchor) {
     			insert_dev(target, path, anchor);
     		},
-    		p: function update(new_ctx, dirty) {
-    			ctx = new_ctx;
-
+    		p: function update(ctx, dirty) {
     			if (dirty & /*colorScheme*/ 4 && path_stroke_value !== (path_stroke_value = /*colorScheme*/ ctx[2].Timeline)) {
     				attr_dev(path, "stroke", path_stroke_value);
     			}
@@ -5709,14 +5706,7 @@ var app = (function () {
     				attr_dev(path, "d", /*linePath*/ ctx[6]);
     			}
     		},
-    		i: function intro(local) {
-    			if (!path_intro) {
-    				add_render_callback(() => {
-    					path_intro = create_in_transition(path, draw, { tLinePath: /*tLinePath*/ ctx[8] });
-    					path_intro.start();
-    				});
-    			}
-    		},
+    		i: noop,
     		o: noop,
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(path);
@@ -5816,7 +5806,7 @@ var app = (function () {
     	return block;
     }
 
-    // (72:2) {#if year % 10 === 0 && year !== 0 && idx !== 0}
+    // (67:2) {#if year % 10 === 0 && year !== 0 && idx !== 0}
     function create_if_block$2(ctx) {
     	let path;
     	let path_d_value;
@@ -5864,7 +5854,7 @@ var app = (function () {
 
     			attr_dev(path, "id", `timeline${/*idx*/ ctx[14]}`);
     			attr_dev(path, "fill", "none");
-    			add_location(path, file$4, 72, 4, 1911);
+    			add_location(path, file$4, 67, 4, 1869);
     			xlink_attr(textPath0, "xlink:href", `#timeline${/*idx*/ ctx[14]}`);
     			attr_dev(textPath0, "text-anchor", "middle");
     			attr_dev(textPath0, "startOffset", textPath0_startOffset_value = /*x*/ ctx[10] > /*width*/ ctx[1] / 2 ? "25%" : "75%");
@@ -5872,16 +5862,16 @@ var app = (function () {
     			attr_dev(textPath0, "fill", "white");
     			attr_dev(textPath0, "stroke-width", "5");
     			attr_dev(textPath0, "stroke-linejoin", "round");
-    			add_location(textPath0, file$4, 92, 6, 2439);
+    			add_location(textPath0, file$4, 87, 6, 2397);
     			attr_dev(text0, "dy", "-5");
-    			add_location(text0, file$4, 91, 4, 2418);
+    			add_location(text0, file$4, 86, 4, 2376);
     			xlink_attr(textPath1, "xlink:href", `#timeline${/*idx*/ ctx[14]}`);
     			attr_dev(textPath1, "text-anchor", "middle");
     			attr_dev(textPath1, "startOffset", textPath1_startOffset_value = /*x*/ ctx[10] > /*width*/ ctx[1] / 2 ? "25%" : "75%");
     			attr_dev(textPath1, "fill", textPath1_fill_value = /*colorScheme*/ ctx[2].Timeline);
-    			add_location(textPath1, file$4, 103, 6, 2732);
+    			add_location(textPath1, file$4, 98, 6, 2690);
     			attr_dev(text1, "dy", "-5");
-    			add_location(text1, file$4, 102, 4, 2711);
+    			add_location(text1, file$4, 97, 4, 2669);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, path, anchor);
@@ -5942,14 +5932,14 @@ var app = (function () {
     		block,
     		id: create_if_block$2.name,
     		type: "if",
-    		source: "(72:2) {#if year % 10 === 0 && year !== 0 && idx !== 0}",
+    		source: "(67:2) {#if year % 10 === 0 && year !== 0 && idx !== 0}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (71:0) {#each timelineData as { x, y, year }
+    // (66:0) {#each timelineData as { x, y, year }
     function create_each_block$2(ctx) {
     	let if_block_anchor;
     	let if_block = /*year*/ ctx[12] % 10 === 0 && /*year*/ ctx[12] !== 0 && /*idx*/ ctx[14] !== 0 && create_if_block$2(ctx);
@@ -5987,7 +5977,7 @@ var app = (function () {
     		block,
     		id: create_each_block$2.name,
     		type: "each",
-    		source: "(71:0) {#each timelineData as { x, y, year }",
+    		source: "(66:0) {#each timelineData as { x, y, year }",
     		ctx
     	});
 
